@@ -8,8 +8,13 @@ import {
   Burger,
   useMantineTheme,
 } from "@mantine/core";
+import SwitchTheme from "../components/SwitchTheme";
 
-const Shell = () => {
+interface ShellProps {
+  children: React.ReactNode;
+}
+
+const Shell: React.FC<ShellProps> = ({ children }) => {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   return (
@@ -47,12 +52,12 @@ const Shell = () => {
                 mr="xl"
               />
             </MediaQuery>
-            <Text>Application header</Text>
+            <SwitchTheme />
           </div>
         </Header>
       }
     >
-      <Text>Resize app to see responsive navbar in action</Text>
+      {children}
     </AppShell>
   );
 };
