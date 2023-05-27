@@ -10,6 +10,7 @@ import {
   ThemeIcon,
   rem,
 } from "@mantine/core";
+import { Link } from "react-router-dom";
 import { IconCheck } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
@@ -54,6 +55,9 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan("md")]: {
       display: "none",
     },
+  },
+  link: {
+    color: theme.colorScheme === "dark" ? theme.white : theme.black,
   },
 }));
 
@@ -107,7 +111,9 @@ export function Home() {
                 size="md"
                 className={classes.control}
               >
-                Dashboard
+                <Link to="/dashboard" className={classes.link}>
+                  Dashboard
+                </Link>
               </Button>
             </Group>
           </div>
