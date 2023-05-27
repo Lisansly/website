@@ -105,16 +105,16 @@ export function Home() {
               <Button radius="lg" size="md" className={classes.control}>
                 Get started
               </Button>
-              <Button
-                variant="default"
-                radius="lg"
-                size="md"
-                className={classes.control}
-              >
-                <Link to="/dashboard" className={classes.link}>
+              <Link to="/dashboard" className={classes.link}>
+                <Button
+                  variant="default"
+                  radius="lg"
+                  size="md"
+                  className={classes.control}
+                >
                   Dashboard
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </Group>
           </div>
           <Image src={"/lisansly.png"} className={classes.image} />
