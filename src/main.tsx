@@ -1,13 +1,14 @@
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
 import Shell from "./layouts/Shell.tsx";
 import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   MantineProvider,
   ColorSchemeProvider,
   ColorScheme,
 } from "@mantine/core";
+import { Home } from "./components/Home.tsx";
 
 const Root = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -31,7 +32,11 @@ const Root = () => {
         withNormalizeCSS
       >
         <Shell>
-          <App />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </BrowserRouter>
         </Shell>
       </MantineProvider>
     </ColorSchemeProvider>
