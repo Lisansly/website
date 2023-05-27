@@ -1,5 +1,7 @@
+import Shell from "./layouts/Shell";
+
 const App = () => {
-  return <div>App</div>;
+  return <Shell />;
 };
 
 export default App;
