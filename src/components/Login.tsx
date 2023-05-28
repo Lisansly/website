@@ -1,7 +1,6 @@
 import {
   TextInput,
   PasswordInput,
-  Anchor,
   Paper,
   Title,
   Text,
