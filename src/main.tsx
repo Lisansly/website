@@ -8,8 +8,8 @@ import {
   ColorSchemeProvider,
   ColorScheme,
 } from "@mantine/core";
-import { Home } from "./components/Home.tsx";
 import Dashboard from "./components/Dashboard.tsx";
+import Home from "./components/Home.tsx";
 
 const Root = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -32,14 +32,14 @@ const Root = () => {
         withGlobalStyles
         withNormalizeCSS
       >
-        <Shell>
-          <BrowserRouter>
+        <BrowserRouter>
+          <Shell>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
-          </BrowserRouter>
-        </Shell>
+          </Shell>
+        </BrowserRouter>
       </MantineProvider>
     </ColorSchemeProvider>
   );
