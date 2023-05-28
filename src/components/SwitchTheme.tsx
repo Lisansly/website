@@ -9,8 +9,8 @@ const SwitchTheme = () => {
       variant="default"
       onClick={() => toggleColorScheme()}
       title="Toggle color scheme"
-      ml="auto"
       radius={"md"}
+      mr={"lg"}
       size={"lg"}
     >
       {dark ? <IconSun size="1.1rem" /> : <IconMoonStars size="1.1rem" />}

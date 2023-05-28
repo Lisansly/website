@@ -22,7 +22,7 @@ const Logo = () => {
     },
     logo: {
       maxWidth: 40,
-      [theme.fn.smallerThan("xs")]: {
+      [theme.fn.smallerThan("md")]: {
         display: "none",
       },
     },
