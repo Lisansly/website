@@ -10,6 +10,7 @@ import {
 } from "@mantine/core";
 import Dashboard from "./components/Dashboard.tsx";
 import Home from "./components/Home.tsx";
+import Login from "./components/Login.tsx";
 
 const Root = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -37,6 +38,7 @@ const Root = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </Shell>
         </BrowserRouter>
