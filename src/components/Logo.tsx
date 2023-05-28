@@ -1,7 +1,11 @@
 import { Group, Image, Text, createStyles } from "@mantine/core";
 import { Link } from "react-router-dom";
 
-const Logo = () => {
+type LogoProps = {
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Logo = ({ setOpened }: LogoProps) => {
   const useStyles = createStyles((theme) => ({
     link: {
       textDecoration: "none",
@@ -35,7 +39,13 @@ const Logo = () => {
   }));
   const { classes } = useStyles();
   return (
-    <Link to={"/"} className={classes.link}>
+    <Link
+      to={"/"}
+      className={classes.link}
+      onClick={() => {
+        setOpened(false);
+      }}
+    >
       <Group className={classes.group}>
         <Image src={"/lisansly.png"} className={classes.logo} />
         <Text>Lisansly</Text>

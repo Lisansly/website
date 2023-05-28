@@ -204,7 +204,7 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
           <div
             style={{ display: "flex", alignItems: "center", height: "100%" }}
           >
-            <Logo />
+            <Logo setOpened={setOpened} />
             {!matches && (
               <>
                 {headerLinks.map((link) => (
