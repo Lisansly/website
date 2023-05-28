@@ -11,6 +11,10 @@ const Logo = () => {
       fontWeight: 700,
       transition: "color 200ms ease",
       marginRight: theme.spacing.xl,
+      [theme.fn.smallerThan("md")]: {
+        marginRight: 0,
+      },
+
       "&:hover": {
         color:
           theme.colorScheme === "dark" ? theme.colors.blue[4] : theme.black,
@@ -22,8 +26,10 @@ const Logo = () => {
     },
     logo: {
       maxWidth: 40,
+      minWidth: 40,
       [theme.fn.smallerThan("md")]: {
-        display: "none",
+        maxWidth: 30,
+        minWidth: 30,
       },
     },
   }));

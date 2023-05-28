@@ -1,15 +1,28 @@
 import {
   AppShell,
   Box,
+  Burger,
   Button,
   Header,
-  Text,
+  Navbar,
   createStyles,
   useMantineTheme,
+  ThemeIcon,
+  UnstyledButton,
+  Group,
+  Text,
 } from "@mantine/core";
 import SwitchTheme from "../components/SwitchTheme";
 import Logo from "../components/Logo";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useMediaQuery } from "@mantine/hooks";
+import {
+  IconFileDescription,
+  IconLayoutDashboard,
+  IconLogin,
+  IconUserPlus,
+} from "@tabler/icons-react";
 
 interface ShellProps {
   children: React.ReactNode;
@@ -27,8 +40,15 @@ interface HeaderButtonProps {
   variant: string;
 }
 
+interface NavbarLinkProps {
+  icon: React.ReactNode;
+  label: string;
+}
+
 const Shell: React.FC<ShellProps> = ({ children }) => {
+  const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
+  const matches = useMediaQuery(`(max-width: 630px)`);
   const useStyles = createStyles((theme) => ({
     link: {
       textDecoration: "none",
@@ -93,6 +113,53 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
       variant: "filled",
     },
   ];
+  const NavbarLink = (link: NavbarLinkProps) => {
+    return (
+      <>
+        <UnstyledButton
+          sx={(theme) => ({
+            display: "block",
+            width: "100%",
+            padding: theme.spacing.xs,
+            borderRadius: theme.radius.sm,
+            color:
+              theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black,
+
+            "&:hover": {
+              backgroundColor:
+                theme.colorScheme === "dark"
+                  ? theme.colors.dark[6]
+                  : theme.colors.gray[0],
+            },
+          })}
+        >
+          <Group>
+            <ThemeIcon variant="default">{link.icon}</ThemeIcon>
+            <Text size="sm">{link.label}</Text>
+          </Group>
+        </UnstyledButton>
+      </>
+    );
+  };
+  const navbarLinks = [
+    {
+      icon: <IconFileDescription size="1.1rem" />,
+      label: "Documentation",
+    },
+    {
+      icon: <IconLayoutDashboard size="1.1rem" />,
+      label: "Dashboard",
+    },
+    {
+      icon: <IconLogin size="1.1rem" />,
+      label: "Login",
+    },
+    {
+      icon: <IconUserPlus size="1.1rem" />,
+      label: "Register",
+    },
+  ];
+
   return (
     <AppShell
       styles={{
@@ -103,27 +170,59 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
               : theme.colors.gray[0],
         },
       }}
+      navbarOffsetBreakpoint="sm"
+      navbar={
+        matches ? (
+          <>
+            <Navbar
+              p="md"
+              hiddenBreakpoint="sm"
+              hidden={!opened}
+              width={{ sm: 200, lg: 300 }}
+            >
+              {navbarLinks.map((link) => (
+                <NavbarLink icon={link.icon} label={link.label} />
+              ))}
+            </Navbar>
+          </>
+        ) : (
+          <></>
+        )
+      }
       header={
         <Header height={{ base: 50, md: 70 }} p="md">
           <div
             style={{ display: "flex", alignItems: "center", height: "100%" }}
           >
             <Logo />
-            {headerLinks.map((link) => (
-              <HeaderLink link={link.link} text={link.text} />
-            ))}
-            <Box className={classes.buttons}>
-              {headerButtons.map((button) => (
-                <HeaderButton
-                  link={button.link}
-                  text={button.text}
-                  color={button.color}
-                  radius={button.radius}
-                  variant={button.variant}
-                />
-              ))}
-            </Box>
+            {!matches && (
+              <>
+                {headerLinks.map((link) => (
+                  <HeaderLink link={link.link} text={link.text} />
+                ))}
+                <Box className={classes.buttons}>
+                  {headerButtons.map((button) => (
+                    <HeaderButton
+                      link={button.link}
+                      text={button.text}
+                      color={button.color}
+                      radius={button.radius}
+                      variant={button.variant}
+                    />
+                  ))}
+                </Box>
+              </>
+            )}
             <SwitchTheme />
+            {matches && (
+              <Burger
+                opened={opened}
+                onClick={() => setOpened((o) => !o)}
+                size="sm"
+                color={theme.colors.gray[6]}
+                mr="sm"
+              />
+            )}
           </div>
         </Header>
       }
