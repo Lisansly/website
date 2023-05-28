@@ -11,7 +11,7 @@ import {
 import Dashboard from "./components/Dashboard.tsx";
 import Home from "./components/Home.tsx";
 
-export default Root = () => {
+const Root = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
     (localStorage.getItem("theme") as ColorScheme) || "light"
   );

@@ -40,8 +40,9 @@ interface HeaderButtonProps {
   variant: string;
 }
 
-interface NavbarLinkProps {
+interface NavbarButtonProps {
   icon: React.ReactNode;
+  link: string;
   label: string;
 }
 
@@ -113,10 +114,11 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
       variant: "filled",
     },
   ];
-  const NavbarLink = (link: NavbarLinkProps) => {
+  const NavbarButton = (button: NavbarButtonProps) => {
     return (
-      <>
+      <Link to={button.link}>
         <UnstyledButton
+          onClick={() => setOpened(false)}
           sx={(theme) => ({
             display: "block",
             width: "100%",
@@ -134,29 +136,33 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
           })}
         >
           <Group>
-            <ThemeIcon variant="default">{link.icon}</ThemeIcon>
-            <Text size="sm">{link.label}</Text>
+            <ThemeIcon variant="default">{button.icon}</ThemeIcon>
+            <Text size="sm">{button.label}</Text>
           </Group>
         </UnstyledButton>
-      </>
+      </Link>
     );
   };
-  const navbarLinks = [
+  const navbarButtons = [
     {
       icon: <IconFileDescription size="1.1rem" />,
+      link: "/documentation",
       label: "Documentation",
     },
     {
       icon: <IconLayoutDashboard size="1.1rem" />,
+      link: "/dashboard",
       label: "Dashboard",
     },
     {
       icon: <IconLogin size="1.1rem" />,
+      link: "/login",
       label: "Login",
     },
     {
       icon: <IconUserPlus size="1.1rem" />,
-      label: "Register",
+      link: "/signup",
+      label: "Sign Up",
     },
   ];
 
@@ -180,8 +186,12 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
               hidden={!opened}
               width={{ sm: 200, lg: 300 }}
             >
-              {navbarLinks.map((link) => (
-                <NavbarLink icon={link.icon} label={link.label} />
+              {navbarButtons.map((button) => (
+                <NavbarButton
+                  icon={button.icon}
+                  label={button.label}
+                  link={button.link}
+                />
               ))}
             </Navbar>
           </>
