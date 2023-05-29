@@ -1,42 +1,8 @@
-import {
-  TextInput,
-  PasswordInput,
-  Paper,
-  Title,
-  Text,
-  Container,
-  Button,
-  useMantineTheme,
-} from "@mantine/core";
+import { Paper, Title, Text, Container, useMantineTheme } from "@mantine/core";
+import PasswordInput from "../components/auth/PasswordInput";
+import TextInput from "../components/auth/TextInput";
+import Button from "../components/auth/Button";
 import { Link } from "react-router-dom";
-
-type InputProps = {
-  label: string;
-  placeholder: string;
-  required: boolean;
-};
-
-const textInput = (props: InputProps) => {
-  return (
-    <TextInput
-      label={props.label}
-      placeholder={props.placeholder}
-      required={props.required}
-      mb={"md"}
-    />
-  );
-};
-
-const passwordInput = (props: InputProps) => {
-  return (
-    <PasswordInput
-      label={props.label}
-      placeholder={props.placeholder}
-      required={props.required}
-      mb={"md"}
-    />
-  );
-};
 
 const textInputs = [
   {
@@ -66,6 +32,7 @@ const passwordInputs = [
 
 export default function SignUp() {
   const theme = useMantineTheme();
+
   return (
     <Container size={420} my={40}>
       <Title
@@ -89,13 +56,24 @@ export default function SignUp() {
           Login
         </Link>
       </Text>
-
       <Paper withBorder shadow="sm" p={30} mt={30} radius="lg">
-        {textInputs.map((input) => textInput(input))}
-        {passwordInputs.map((input) => passwordInput(input))}
-        <Button fullWidth mt={"xl"} radius={"md"}>
-          Sign Up
-        </Button>
+        {textInputs.map((input) => (
+          <TextInput
+            placeholder={input.placeholder}
+            required={input.required}
+            label={input.label}
+            mb="md"
+          />
+        ))}
+        {passwordInputs.map((input) => (
+          <PasswordInput
+            placeholder={input.placeholder}
+            required={input.required}
+            label={input.label}
+            mb="md"
+          />
+        ))}
+        <Button fullWidth={true} mt="xl" radius="md" label="Sign Up" />
       </Paper>
     </Container>
   );

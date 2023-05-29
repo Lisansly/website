@@ -1,12 +1,12 @@
 import { ActionIcon, useMantineColorScheme } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
 import { IconSun, IconMoonStars } from "@tabler/icons-react";
+import { useMediaQuery } from "@mantine/hooks";
 
 const SwitchTheme = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const matches = useMediaQuery(`(max-width: 630px)`);
-
   const dark = colorScheme === "dark";
+
   return (
     <ActionIcon
       variant="default"

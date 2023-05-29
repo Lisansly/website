@@ -1,17 +1,17 @@
+import { IconCheck } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
 import {
   createStyles,
-  Image,
+  ThemeIcon,
   Container,
-  Title,
   Button,
+  Image,
+  Title,
   Group,
   Text,
   List,
-  ThemeIcon,
   rem,
 } from "@mantine/core";
-import { Link } from "react-router-dom";
-import { IconCheck } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -20,7 +20,6 @@ const useStyles = createStyles((theme) => ({
     paddingTop: `calc(${theme.spacing.xl} * 4)`,
     paddingBottom: `calc(${theme.spacing.xl} * 4)`,
   },
-
   content: {
     maxWidth: rem(480),
     marginRight: `calc(${theme.spacing.xl} * 3)`,
@@ -30,7 +29,6 @@ const useStyles = createStyles((theme) => ({
       marginRight: 0,
     },
   },
-
   title: {
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
@@ -42,31 +40,30 @@ const useStyles = createStyles((theme) => ({
       fontSize: rem(28),
     },
   },
-
   control: {
     [theme.fn.smallerThan("xs")]: {
       flex: 1,
     },
   },
-
   image: {
     flex: 1,
-
     [theme.fn.smallerThan("md")]: {
       display: "none",
     },
   },
 }));
 
+const features = [
+  {
+    title: "Free usage",
+    description:
+      "Lisansly offers a completely free licensing solution, allowing developers to license their web and desktop applications without any upfront costs.",
+  },
+];
+
 export function HeroHeader() {
   const { classes } = useStyles();
-  const features = [
-    {
-      title: "Free usage",
-      description:
-        "Lisansly offers a completely free licensing solution, allowing developers to license their web and desktop applications without any upfront costs.",
-    },
-  ];
+
   return (
     <div>
       <Container>
@@ -80,7 +77,6 @@ export function HeroHeader() {
               desktop applications. This platform simplifies the license
               management process, saving developers time and effort.
             </Text>
-
             <List
               mt={30}
               spacing="sm"
@@ -97,7 +93,6 @@ export function HeroHeader() {
                 </List.Item>
               ))}
             </List>
-
             <Group mt={30}>
               <Button radius="lg" size="md" className={classes.control}>
                 Get started

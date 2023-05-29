@@ -1,20 +1,19 @@
+import { Link } from "react-router-dom";
 import {
   createStyles,
+  Container,
+  Button,
   Title,
   Text,
-  Button,
-  Container,
   Group,
   rem,
 } from "@mantine/core";
-import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   root: {
     paddingTop: rem(80),
     paddingBottom: rem(80),
   },
-
   label: {
     textAlign: "center",
     fontWeight: 900,
@@ -30,18 +29,15 @@ const useStyles = createStyles((theme) => ({
       fontSize: rem(120),
     },
   },
-
   title: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     textAlign: "center",
     fontWeight: 900,
     fontSize: rem(38),
-
     [theme.fn.smallerThan("sm")]: {
       fontSize: rem(32),
     },
   },
-
   description: {
     maxWidth: rem(500),
     margin: "auto",
