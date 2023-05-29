@@ -18,11 +18,6 @@ const Logo = ({ setOpened }: LogoProps) => {
       [theme.fn.smallerThan("md")]: {
         marginRight: 0,
       },
-
-      "&:hover": {
-        color:
-          theme.colorScheme === "dark" ? theme.colors.blue[4] : theme.black,
-      },
     },
     group: {
       display: "flex",
