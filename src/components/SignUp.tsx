@@ -10,6 +10,60 @@ import {
 } from "@mantine/core";
 import { Link } from "react-router-dom";
 
+type InputProps = {
+  label: string;
+  placeholder: string;
+  required: boolean;
+};
+
+const textInput = (props: InputProps) => {
+  return (
+    <TextInput
+      label={props.label}
+      placeholder={props.placeholder}
+      required={props.required}
+      mb={"md"}
+    />
+  );
+};
+
+const passwordInput = (props: InputProps) => {
+  return (
+    <PasswordInput
+      label={props.label}
+      placeholder={props.placeholder}
+      required={props.required}
+      mb={"md"}
+    />
+  );
+};
+
+const textInputs = [
+  {
+    label: "Username",
+    placeholder: "Username",
+    required: true,
+  },
+  {
+    label: "Email",
+    placeholder: "example@mail.com",
+    required: true,
+  },
+];
+
+const passwordInputs = [
+  {
+    label: "Password",
+    placeholder: "Your password",
+    required: true,
+  },
+  {
+    label: "Confirm Password",
+    placeholder: "Confirm your password",
+    required: true,
+  },
+];
+
 export default function SignUp() {
   const theme = useMantineTheme();
   return (
@@ -37,20 +91,9 @@ export default function SignUp() {
       </Text>
 
       <Paper withBorder shadow="sm" p={30} mt={30} radius="lg">
-        <TextInput label="Email" placeholder="example@mail.com" required />
-        <PasswordInput
-          label="Password"
-          placeholder="Your password"
-          required
-          mt="md"
-        />
-        <PasswordInput
-          label="Confirm Password"
-          placeholder="Confirm your password"
-          required
-          mt="md"
-        />
-        <Button fullWidth mt="xl" radius={"md"}>
+        {textInputs.map((input) => textInput(input))}
+        {passwordInputs.map((input) => passwordInput(input))}
+        <Button fullWidth mt={"xl"} radius={"md"}>
           Sign Up
         </Button>
       </Paper>
