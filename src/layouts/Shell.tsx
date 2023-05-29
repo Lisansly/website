@@ -24,27 +24,27 @@ import {
   IconUserPlus,
 } from "@tabler/icons-react";
 
-interface ShellProps {
+type ShellProps = {
   children: React.ReactNode;
-}
+};
 
-interface HeaderLinkProps {
+type HeaderLinkProps = {
   link: string;
-  text: string;
-}
-interface HeaderButtonProps {
+  label: string;
+};
+type HeaderButtonProps = {
   link: string;
-  text: string;
+  label: string;
   color: string;
   radius: string;
   variant: string;
-}
+};
 
-interface NavbarButtonProps {
+type NavbarButtonProps = {
   icon: React.ReactNode;
   link: string;
   label: string;
-}
+};
 
 const Shell: React.FC<ShellProps> = ({ children }) => {
   const [opened, setOpened] = useState(false);
@@ -75,14 +75,14 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
   const HeaderLink = (link: HeaderLinkProps) => {
     return (
       <Link to={link.link} className={classes.link}>
-        <Text>{link.text}</Text>
+        <Text>{link.label}</Text>
       </Link>
     );
   };
 
   const headerLinks: HeaderLinkProps[] = [
-    { link: "/documentation", text: "Documentation" },
-    { link: "/dashboard", text: "Dashboard" },
+    { link: "/documentation", label: "Documentation" },
+    { link: "/dashboard", label: "Dashboard" },
   ];
 
   const HeaderButton = (button: HeaderButtonProps) => {
@@ -93,7 +93,7 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
           radius={button.radius}
           variant={button.variant}
         >
-          {button.text}
+          {button.label}
         </Button>
       </Link>
     );
@@ -101,14 +101,14 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
   const headerButtons: HeaderButtonProps[] = [
     {
       link: "/login",
-      text: "Login",
+      label: "Login",
       color: "blue",
       radius: "xl",
       variant: "default",
     },
     {
       link: "/signup",
-      text: "Sign Up",
+      label: "Sign Up",
       color: "blue",
       radius: "xl",
       variant: "filled",
@@ -208,13 +208,13 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
             {!matches && (
               <>
                 {headerLinks.map((link) => (
-                  <HeaderLink link={link.link} text={link.text} />
+                  <HeaderLink link={link.link} label={link.label} />
                 ))}
                 <Box className={classes.buttons}>
                   {headerButtons.map((button) => (
                     <HeaderButton
                       link={button.link}
-                      text={button.text}
+                      label={button.label}
                       color={button.color}
                       radius={button.radius}
                       variant={button.variant}
