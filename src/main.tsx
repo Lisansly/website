@@ -12,6 +12,7 @@ import Dashboard from "./components/Dashboard.tsx";
 import Home from "./components/Home.tsx";
 import Login from "./components/Login.tsx";
 import SignUp from "./components/SignUp.tsx";
+import PageNotFound from "./components/PageNotFound.tsx";
 
 const Root = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -41,6 +42,7 @@ const Root = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/*" element={<PageNotFound />} />
             </Routes>
           </Shell>
         </BrowserRouter>
