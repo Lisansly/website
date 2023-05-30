@@ -20,7 +20,7 @@ type HeaderProps = {
 const useStyles = createStyles((theme) => ({
   buttons: {
     marginLeft: "auto",
-    marginRight: theme.spacing.xl,
+    marginRight: "30px",
     display: "flex",
     alignItems: "center",
     gap: theme.spacing.md,
