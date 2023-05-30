@@ -1,6 +1,6 @@
 import { AppShell, createStyles, useMantineTheme } from "@mantine/core";
-import Navbar from "../components/navbar/Navbar";
-import Header from "../components/header/Header";
+import Navbar from "./Navbar";
+import Header from "./Header";
 import { useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
 
@@ -29,7 +29,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Shell: React.FC<ShellProps> = ({ children }) => {
-  const matches = useMediaQuery(`(max-width: 630px)`);
+  const matches = useMediaQuery(`(max-width: 700px)`);
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   const { classes } = useStyles();

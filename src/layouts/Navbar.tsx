@@ -1,5 +1,5 @@
 import { Navbar as Nvbr } from "@mantine/core";
-import Button from "./Button";
+import Button from "../components/navbar/Button";
 import {
   IconFileDescription,
   IconLayoutDashboard,
@@ -8,8 +8,8 @@ import {
 } from "@tabler/icons-react";
 
 type NavbarProps = {
-  opened: boolean;
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  opened: boolean;
 };
 
 const navbarButtons = [

@@ -1,9 +1,9 @@
 import { Group, Image, Text, createStyles } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 
 type LogoProps = {
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  matches: boolean;
 };
 
 const useStyles = createStyles((theme) => ({
@@ -25,8 +25,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const Logo = ({ setOpened }: LogoProps) => {
-  const matches = useMediaQuery(`(max-width: 630px)`);
+const Logo = (props: LogoProps) => {
   const { classes } = useStyles();
 
   return (
@@ -34,11 +33,11 @@ const Logo = ({ setOpened }: LogoProps) => {
       to={"/"}
       className={classes.link}
       onClick={() => {
-        setOpened(false);
+        props.setOpened(false);
       }}
     >
       <Group className={classes.group}>
-        <Image src={"/lisansly.png"} width={matches ? 30 : 40} />
+        <Image src={"/lisansly.png"} width={props.matches ? 30 : 40} />
         <Text>Lisansly</Text>
       </Group>
     </Link>

@@ -1,8 +1,8 @@
 import { Box, Burger, Header as Hdr, MantineTheme } from "@mantine/core";
-import SwitchTheme from "./SwitchTheme";
-import Button from "./Button";
-import Logo from "./Logo";
-import Link from "./Link";
+import SwitchTheme from "../components/header/SwitchTheme";
+import Button from "../components/header/Button";
+import Logo from "../components/header/Logo";
+import Link from "../components/header/Link";
 
 const headerLinks = [
   { link: "/documentation", label: "Documentation" },
@@ -40,7 +40,7 @@ const Header = (props: HeaderProps) => {
   return (
     <Hdr height={{ base: 50, md: 70 }} p="md">
       <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-        <Logo setOpened={props.setOpened} />
+        <Logo setOpened={props.setOpened} matches={props.matches} />
         {!props.matches && (
           <>
             {headerLinks.map((link) => (
@@ -60,7 +60,7 @@ const Header = (props: HeaderProps) => {
             </Box>
           </>
         )}
-        <SwitchTheme />
+        <SwitchTheme matches={props.matches} />
         {props.matches && (
           <Burger
             opened={props.opened}
