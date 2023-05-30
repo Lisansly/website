@@ -1,4 +1,4 @@
-import { PasswordInput as PswdInput } from "@mantine/core";
+import { PasswordInput as MantinePasswordInput } from "@mantine/core";
 
 type PasswordInputProps = {
   placeholder: string;
@@ -9,7 +9,7 @@ type PasswordInputProps = {
 
 const PasswordInput = (props: PasswordInputProps) => {
   return (
-    <PswdInput
+    <MantinePasswordInput
       placeholder={props.placeholder}
       required={props.required}
       label={props.label}

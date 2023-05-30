@@ -3,6 +3,11 @@ import { IconSun, IconMoonStars } from "@tabler/icons-react";
 
 type SwitchThemeProps = {
   matches: boolean;
+  variant: string;
+  radius: string;
+  title: string;
+  size: string;
+  mr: string;
 };
 
 const SwitchTheme = (props: SwitchThemeProps) => {
@@ -11,13 +16,13 @@ const SwitchTheme = (props: SwitchThemeProps) => {
 
   return (
     <ActionIcon
-      variant="default"
+      variant={props.variant}
       onClick={() => toggleColorScheme()}
-      title="Toggle color scheme"
-      radius={"md"}
-      mr={"lg"}
-      ml={props.matches ? "auto" : "0px"}
-      size={"lg"}
+      title={props.title}
+      radius={props.radius}
+      mr={props.mr}
+      ml={props.matches ? "auto" : "0"}
+      size={props.size}
     >
       {dark ? <IconSun size="1.1rem" /> : <IconMoonStars size="1.1rem" />}
     </ActionIcon>

@@ -1,4 +1,4 @@
-import { TextInput as TxtInput } from "@mantine/core";
+import { TextInput as MantineTextInput } from "@mantine/core";
 
 type TextInputProps = {
   placeholder: string;
@@ -9,7 +9,7 @@ type TextInputProps = {
 
 const TextInput = (props: TextInputProps) => {
   return (
-    <TxtInput
+    <MantineTextInput
       placeholder={props.placeholder}
       required={props.required}
       label={props.label}

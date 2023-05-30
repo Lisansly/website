@@ -1,4 +1,4 @@
-import { Navbar as Nvbr } from "@mantine/core";
+import { Navbar as MantineNavbar } from "@mantine/core";
 import Button from "../components/navbar/Button";
 import {
   IconFileDescription,
@@ -37,7 +37,7 @@ const navbarButtons = [
 
 const Navbar = (props: NavbarProps) => {
   return (
-    <Nvbr
+    <MantineNavbar
       p="md"
       hiddenBreakpoint="sm"
       hidden={!props.opened}
@@ -47,11 +47,11 @@ const Navbar = (props: NavbarProps) => {
         <Button
           icon={button.icon}
           label={button.label}
-          link={button.link}
+          path={button.link}
           setOpened={props.setOpened}
         />
       ))}
-    </Nvbr>
+    </MantineNavbar>
   );
 };
 

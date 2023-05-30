@@ -3,25 +3,19 @@ import { Link } from "react-router-dom";
 
 type LogoProps = {
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  marginLeft: string;
+  smallSize: number;
+  largeSize: number;
   matches: boolean;
+  label: string;
+  path: string;
+  logo: string;
 };
 
 const useStyles = createStyles((theme) => ({
-  link: {
-    textDecoration: "none",
-    color: theme.colorScheme === "dark" ? theme.white : theme.black,
-    marginLeft: theme.spacing.md,
-    fontSize: theme.fontSizes.lg,
+  label: {
+    fontSize: theme.fontSizes.xl,
     fontWeight: 700,
-    transition: "color 200ms ease",
-    marginRight: theme.spacing.xl,
-    [theme.fn.smallerThan("md")]: {
-      marginRight: 0,
-    },
-  },
-  group: {
-    display: "flex",
-    flexWrap: "nowrap",
   },
 }));
 
@@ -30,15 +24,17 @@ const Logo = (props: LogoProps) => {
 
   return (
     <Link
-      to={"/"}
-      className={classes.link}
+      to={props.path}
       onClick={() => {
         props.setOpened(false);
       }}
     >
-      <Group className={classes.group}>
-        <Image src={"/lisansly.png"} width={props.matches ? 30 : 40} />
-        <Text>Lisansly</Text>
+      <Group ml={props.marginLeft}>
+        <Image
+          src={props.logo}
+          width={props.matches ? props.smallSize : props.largeSize}
+        />
+        <Text className={classes.label}>{props.label}</Text>
       </Group>
     </Link>
   );

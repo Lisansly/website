@@ -1,4 +1,4 @@
-import { Button as Btn } from "@mantine/core";
+import { Button as MantineButton } from "@mantine/core";
 
 type ButtonProps = {
   fullWidth: boolean;
@@ -9,9 +9,13 @@ type ButtonProps = {
 
 const Button = (props: ButtonProps) => {
   return (
-    <Btn fullWidth={props.fullWidth} radius={props.radius} mt={props.mt}>
+    <MantineButton
+      fullWidth={props.fullWidth}
+      radius={props.radius}
+      mt={props.mt}
+    >
       {props.label}
-    </Btn>
+    </MantineButton>
   );
 };
 

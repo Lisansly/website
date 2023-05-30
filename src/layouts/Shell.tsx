@@ -1,38 +1,17 @@
-import { AppShell, createStyles, useMantineTheme } from "@mantine/core";
-import Navbar from "./Navbar";
-import Header from "./Header";
+import { AppShell, useMantineTheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
+import Navbar from "./Navbar";
+import Header from "./Header";
 
 type ShellProps = {
   children: React.ReactNode;
 };
 
-const useStyles = createStyles((theme) => ({
-  link: {
-    textDecoration: "none",
-    color: theme.colorScheme === "dark" ? theme.white : theme.black,
-    marginLeft: theme.spacing.md,
-    fontSize: theme.fontSizes.md,
-    fontWeight: 600,
-    transition: "color 200ms ease",
-    "&:hover": {
-      color: theme.colorScheme === "dark" ? theme.colors.blue[4] : theme.black,
-    },
-  },
-  buttons: {
-    marginLeft: "auto",
-    marginRight: theme.spacing.xl,
-    display: "flex",
-    alignItems: "center",
-  },
-}));
-
 const Shell: React.FC<ShellProps> = ({ children }) => {
   const matches = useMediaQuery(`(max-width: 700px)`);
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
-  const { classes } = useStyles();
 
   return (
     <AppShell
@@ -54,7 +33,6 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
           opened={opened}
           matches={matches}
           theme={theme}
-          classes={classes}
         />
       }
     >

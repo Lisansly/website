@@ -32,7 +32,16 @@ const Root = () => {
       toggleColorScheme={toggleColorScheme}
     >
       <MantineProvider
-        theme={{ colorScheme }}
+        theme={{
+          colorScheme,
+          globalStyles(theme) {
+            return {
+              a: {
+                color: theme.colorScheme === "dark" ? theme.white : theme.black,
+              },
+            };
+          },
+        }}
         withGlobalStyles
         withNormalizeCSS
       >
