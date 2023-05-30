@@ -1,4 +1,3 @@
-import { Text } from "@mantine/core";
 import { Link as ReactRouterDomLink } from "react-router-dom";
 
 type LinkProps = {
@@ -7,11 +6,7 @@ type LinkProps = {
 };
 
 const Link = (props: LinkProps) => {
-  return (
-    <ReactRouterDomLink to={props.path}>
-      <Text>{props.label}</Text>
-    </ReactRouterDomLink>
-  );
+  return <ReactRouterDomLink to={props.path}>{props.label}</ReactRouterDomLink>;
 };
 
 export default Link;

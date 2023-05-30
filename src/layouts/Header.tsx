@@ -1,7 +1,7 @@
 import SwitchTheme from "../components/header/SwitchTheme";
 import Button from "../components/header/Button";
 import Logo from "../components/header/Logo";
-import Link from "../components/header/Link";
+import Link from "../components/Link";
 import {
   Header as MantineHeader,
   MantineTheme,
