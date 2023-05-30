@@ -1,5 +1,5 @@
 import { Navbar as MantineNavbar } from "@mantine/core";
-import Button from "../components/navbar/Button";
+import Button from "./Button";
 import {
   IconFileDescription,
   IconLayoutDashboard,

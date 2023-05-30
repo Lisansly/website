@@ -15,11 +15,15 @@
     "@mantine/core": "^6.0.11",
     "@mantine/hooks": "^6.0.11",
     "@tabler/icons-react": "^2.20.0",
+    "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-auth-kit": "^2.12.2",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.2"
   },
   "devDependencies": {
+    "@pact-foundation/pact": "^11.0.2",
+    "@types/jest": "^29.5.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.57.1",

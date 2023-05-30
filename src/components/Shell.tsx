@@ -1,8 +1,8 @@
 import { AppShell, useMantineTheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
-import Navbar from "./Navbar";
-import Header from "./Header";
+import Navbar from "./navbar/Navbar";
+import Header from "./header/Header";
 
 type ShellProps = {
   children: React.ReactNode;

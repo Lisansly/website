@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PageNotFound from "./pages/PageNotFound.tsx";
-import Dashboard from "./pages/Dashboard.tsx";
-import SignUp from "./pages/SignUp.tsx";
+import PageNotFound from "./components/PageNotFound.tsx";
+import Dashboard from "./components/dashboard/Dashboard.tsx";
+import SignUp from "./components/auth/SignUp.tsx";
 import ReactDOM from "react-dom/client";
-import Shell from "./layouts/Shell.tsx";
-import Login from "./pages/Login.tsx";
-import Home from "./pages/Home.tsx";
+import Shell from "./components/Shell.tsx";
+import Login from "./components/auth/Login.tsx";
+import Home from "./components/home/Home.tsx";
 import { useState } from "react";
 import "./index.css";
 import {

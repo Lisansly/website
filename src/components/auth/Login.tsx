@@ -1,8 +1,8 @@
 import { Paper, Title, Text, Container } from "@mantine/core";
-import PasswordInput from "../components/auth/PasswordInput";
-import TextInput from "../components/auth/TextInput";
-import Button from "../components/auth/Button";
-import Link from "../components/Link";
+import PasswordInput from "./PasswordInput";
+import TextInput from "./TextInput";
+import Button from "./Button";
+import Link from "../Link";
 
 export default function Login() {
   return (
