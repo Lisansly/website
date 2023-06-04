@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   createStyles,
   Container,
@@ -8,6 +7,7 @@ import {
   Group,
   rem,
 } from "@mantine/core";
+import Link from "./Link";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -23,7 +23,7 @@ const useStyles = createStyles((theme) => ({
     color:
       theme.colorScheme === "dark"
         ? theme.colors.dark[4]
-        : theme.colors.gray[2],
+        : theme.colors.gray[4],
 
     [theme.fn.smallerThan("sm")]: {
       fontSize: rem(120),
@@ -63,8 +63,8 @@ export default function PageNotFound() {
         address, or the page has been moved to another URL.
       </Text>
       <Group position="center">
-        <Link to={"/"}>
-          <Button variant="default" size="md" radius={"lg"}>
+        <Link path="/">
+          <Button variant="default" size="md" radius={"md"}>
             Take me back to home page
           </Button>
         </Link>
