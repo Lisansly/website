@@ -1,18 +1,18 @@
 import { Button as MantineButton } from "@mantine/core";
 
 type ButtonProps = {
-  fullWidth: boolean;
-  radius: string;
+  loading?: boolean;
   label: string;
-  mt: string;
 };
 
 const Button = (props: ButtonProps) => {
   return (
     <MantineButton
-      fullWidth={props.fullWidth}
-      radius={props.radius}
-      mt={props.mt}
+      loading={props.loading}
+      type="submit"
+      radius="sm"
+      fullWidth
+      mt="xl"
     >
       {props.label}
     </MantineButton>

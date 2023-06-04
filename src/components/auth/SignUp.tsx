@@ -2,31 +2,28 @@ import { Paper, Title, Text, Container } from "@mantine/core";
 import PasswordInput from "./PasswordInput";
 import TextInput from "./TextInput";
 import Button from "./Button";
+import Avatar from "../Avatar";
 import Link from "../Link";
 
 const textInputs = [
   {
-    label: "Username",
     placeholder: "Your username",
-    required: true,
+    label: "Username",
   },
   {
-    label: "Email",
     placeholder: "example@mail.com",
-    required: true,
+    label: "Email",
   },
 ];
 
 const passwordInputs = [
   {
-    label: "Password",
     placeholder: "Your password",
-    required: true,
+    label: "Password",
   },
   {
-    label: "Confirm Password",
     placeholder: "Confirm your password",
-    required: true,
+    label: "Confirm Password",
   },
 ];
 
@@ -37,26 +34,25 @@ export default function SignUp() {
         Create an account
       </Title>
       <Text color="dimmed" size="sm" align="center" mt={5}>
-        Do you already have an account? <Link label="Login" path="/login" />
+        Do you already have an account? <Link path="/login">Login</Link>
       </Text>
       <Paper withBorder shadow="sm" p={30} mt={30} radius="lg">
+        <Avatar size="8em" mb="xl" />
         {textInputs.map((input) => (
           <TextInput
             placeholder={input.placeholder}
-            required={input.required}
             label={input.label}
-            mb="md"
+            key={input.label}
           />
         ))}
         {passwordInputs.map((input) => (
           <PasswordInput
             placeholder={input.placeholder}
-            required={input.required}
             label={input.label}
-            mb="md"
+            key={input.label}
           />
         ))}
-        <Button fullWidth={true} mt="xl" radius="md" label="Sign Up" />
+        <Button label="Sign Up" />
       </Paper>
     </Container>
   );

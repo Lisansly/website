@@ -2,18 +2,17 @@ import { PasswordInput as MantinePasswordInput } from "@mantine/core";
 
 type PasswordInputProps = {
   placeholder: string;
-  required: boolean;
+  validation?: any;
   label: string;
-  mb: string;
 };
 
 const PasswordInput = (props: PasswordInputProps) => {
   return (
     <MantinePasswordInput
       placeholder={props.placeholder}
-      required={props.required}
+      {...props.validation}
       label={props.label}
-      mb={props.mb}
+      mb="md"
     />
   );
 };
