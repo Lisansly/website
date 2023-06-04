@@ -8,6 +8,7 @@ import {
 import Avatar from "../Avatar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSignOut } from "react-auth-kit";
 
 type UserButtonProps = {
   image: string;
@@ -37,7 +38,7 @@ const useStyles = createStyles((theme) => ({
 export default function UserMenu(props: UserButtonProps) {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles();
-
+  const signOut = useSignOut();
   return (
     <Group position="center">
       <Menu withArrow opened={opened} onChange={setOpened}>
@@ -56,9 +57,15 @@ export default function UserMenu(props: UserButtonProps) {
           <Link to="/profile">
             <Menu.Item icon={<IconUserCircle size={14} />}>Profile</Menu.Item>
           </Link>
-          <Menu.Item color="red" icon={<IconLogout size={14} />}>
-            Logout
-          </Menu.Item>
+          <Link to="/">
+            <Menu.Item
+              color="red"
+              icon={<IconLogout size={14} />}
+              onClick={signOut}
+            >
+              Logout
+            </Menu.Item>
+          </Link>
         </Menu.Dropdown>
       </Menu>
     </Group>
