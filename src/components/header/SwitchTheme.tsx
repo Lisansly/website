@@ -1,31 +1,23 @@
-import { ActionIcon, useMantineColorScheme } from "@mantine/core";
+import { Switch, useMantineColorScheme } from "@mantine/core";
 import { IconSun, IconMoonStars } from "@tabler/icons-react";
 
 type SwitchThemeProps = {
-  matches: boolean;
-  variant: string;
-  radius: string;
-  title: string;
-  size: string;
-  mr: string;
+  ml: string;
 };
 
 const SwitchTheme = (props: SwitchThemeProps) => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const dark = colorScheme === "dark";
 
   return (
-    <ActionIcon
-      variant={props.variant}
+    <Switch
+      checked={colorScheme === "dark"}
       onClick={() => toggleColorScheme()}
-      title={props.title}
-      radius={props.radius}
-      mr={props.mr}
-      ml={props.matches ? "auto" : "0"}
-      size={props.size}
-    >
-      {dark ? <IconSun size="1.1rem" /> : <IconMoonStars size="1.1rem" />}
-    </ActionIcon>
+      size="lg"
+      radius="sm"
+      ml={props.ml}
+      onLabel={<IconSun size="1.25rem" stroke={1.5} />}
+      offLabel={<IconMoonStars size="1.25rem" stroke={1.5} />}
+    />
   );
 };
 

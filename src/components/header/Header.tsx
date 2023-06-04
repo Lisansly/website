@@ -1,59 +1,76 @@
 import SwitchTheme from "./SwitchTheme";
+import UserMenu from "./UserMenu";
 import Button from "./Button";
 import Logo from "./Logo";
 import Link from "../Link";
 import {
   Header as MantineHeader,
+  createStyles,
   MantineTheme,
   Burger,
+  Group,
   Box,
-  createStyles,
+  Text,
 } from "@mantine/core";
 
 type HeaderProps = {
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  isAuthenticated: () => boolean;
   theme: MantineTheme;
-  opened: boolean;
   matches: boolean;
+  opened: boolean;
 };
 
 const useStyles = createStyles((theme) => ({
   buttons: {
-    marginLeft: "auto",
-    marginRight: "30px",
-    display: "flex",
-    alignItems: "center",
     gap: theme.spacing.md,
+    alignItems: "center",
+    display: "flex",
   },
   links: {
-    marginLeft: "30px",
-    display: "flex",
-    alignItems: "center",
     gap: theme.spacing.md,
+    alignItems: "center",
+    display: "flex",
+  },
+  link: {
+    transition: "200ms ease",
+    ":hover": {
+      color:
+        theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 4 : 6],
+    },
+  },
+  header: {
+    display: "flex",
+    flexWrap: "nowrap",
+    height: "100%",
+    paddingRight: theme.spacing.xl,
+    paddingLeft: theme.spacing.xl,
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[9]
+        : theme.colors.gray[2],
+    borderColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[6]
+        : theme.colors.gray[4],
   },
 }));
 
 const headerLinks = [
-  { link: "/documentation", label: "Documentation" },
-  { link: "/dashboard", label: "Dashboard" },
+  { path: "/documentation", label: "Documentation" },
+  { path: "/dashboard/cloud-based-licensing", label: "Dashboard" },
 ];
 
 const headerButtons = [
   {
+    variant: "default",
     path: "/login",
     label: "Login",
-    color: "blue",
-    radius: "xl",
-    variant: "default",
-    mr: "md",
   },
   {
-    path: "/signup",
-    label: "Sign Up",
-    color: "blue",
-    radius: "xl",
     variant: "filled",
-    mr: "",
+    label: "Sign Up",
+    path: "/signup",
   },
 ];
 
@@ -61,56 +78,47 @@ const Header = (props: HeaderProps) => {
   const { classes } = useStyles();
 
   return (
-    <MantineHeader height={{ base: 50, md: 70 }} p="md">
-      <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-        <Logo
-          setOpened={props.setOpened}
-          matches={props.matches}
-          logo="/lisansly.png"
-          label="Lisansly"
-          marginLeft="md"
-          smallSize={30}
-          largeSize={35}
-          path="/"
-        />
+    <MantineHeader height={{ base: 70, md: 85 }} className={classes.header}>
+      <Group>
+        <Logo setOpened={props.setOpened} matches={props.matches} />
         {!props.matches && (
-          <>
-            <Box className={classes.links}>
-              {headerLinks.map((link) => (
-                <Link path={link.link} label={link.label} />
-              ))}
-            </Box>
-            <Box className={classes.buttons}>
-              {headerButtons.map((button) => (
-                <Button
-                  path={button.path}
-                  label={button.label}
-                  color={button.color}
-                  radius={button.radius}
-                  variant={button.variant}
-                />
-              ))}
-            </Box>
-          </>
+          <Box className={classes.links}>
+            {headerLinks.map((link) => (
+              <Link path={link.path} key={link.path}>
+                <Text fw={700} className={classes.link}>
+                  {link.label}
+                </Text>
+              </Link>
+            ))}
+          </Box>
         )}
-        <SwitchTheme
-          matches={props.matches}
-          title="Switch theme"
-          variant="default"
-          radius="md"
-          size="lg"
-          mr="lg"
-        />
+      </Group>
+      <Group ml={"auto"}>
+        {!props.isAuthenticated() && !props.matches && (
+          <Box className={classes.buttons}>
+            {headerButtons.map((button) => (
+              <Button
+                variant={button.variant}
+                label={button.label}
+                path={button.path}
+                key={button.path}
+              />
+            ))}
+          </Box>
+        )}
+        {props.isAuthenticated() && (
+          <UserMenu image="as" name="yusufalitangoz" />
+        )}
+        <SwitchTheme ml={props.matches ? "0" : "md"} />
         {props.matches && (
           <Burger
-            opened={props.opened}
             onClick={() => props.setOpened((o) => !o)}
-            size="sm"
             color={props.theme.colors.gray[6]}
-            mr="sm"
+            opened={props.opened}
+            size="sm"
           />
         )}
-      </div>
+      </Group>
     </MantineHeader>
   );
 };

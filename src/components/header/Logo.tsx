@@ -1,21 +1,21 @@
 import { Group, Image, Text, createStyles } from "@mantine/core";
-import { Link } from "react-router-dom";
+import Link from "../Link";
 
 type LogoProps = {
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
-  marginLeft: string;
-  smallSize: number;
-  largeSize: number;
   matches: boolean;
-  label: string;
-  path: string;
-  logo: string;
 };
 
 const useStyles = createStyles((theme) => ({
   label: {
-    fontSize: theme.fontSizes.xl,
-    fontWeight: 700,
+    [theme.fn.smallerThan("xs")]: {
+      display: "none",
+    },
+  },
+  group: {
+    display: "flex",
+    flexWrap: "nowrap",
+    marginRight: theme.spacing.xl,
   },
 }));
 
@@ -23,18 +23,23 @@ const Logo = (props: LogoProps) => {
   const { classes } = useStyles();
 
   return (
-    <Link
-      to={props.path}
-      onClick={() => {
-        props.setOpened(false);
-      }}
-    >
-      <Group ml={props.marginLeft}>
-        <Image
-          src={props.logo}
-          width={props.matches ? props.smallSize : props.largeSize}
-        />
-        <Text className={classes.label}>{props.label}</Text>
+    <Link path="/">
+      <Group
+        className={classes.group}
+        onClick={() => {
+          props.setOpened(false);
+        }}
+      >
+        <Image src="/lisansly.png" width={props.matches ? 30 : 35} />
+        <Text
+          gradient={{ from: "blue", to: "#4DABF7" }}
+          variant="gradient"
+          size={props.matches ? 22 : 25}
+          fw={900}
+          className={classes.label}
+        >
+          Lisansly
+        </Text>
       </Group>
     </Link>
   );
