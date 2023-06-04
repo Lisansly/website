@@ -1,116 +1,127 @@
-import { IconCheck } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
 import {
   createStyles,
-  ThemeIcon,
   Container,
   Button,
-  Image,
-  Title,
   Group,
   Text,
-  List,
   rem,
 } from "@mantine/core";
+import { IconBrandGithub } from "@tabler/icons-react";
+import { NavigateFunction } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
+  wrapper: {
+    position: "relative",
+    boxSizing: "border-box",
+  },
+
   inner: {
-    display: "flex",
-    justifyContent: "space-between",
-    paddingTop: `calc(${theme.spacing.xl} * 4)`,
-    paddingBottom: `calc(${theme.spacing.xl} * 4)`,
-  },
-  content: {
-    maxWidth: rem(480),
-    marginRight: `calc(${theme.spacing.xl} * 3)`,
+    position: "relative",
+    paddingTop: rem(100),
+    paddingBottom: rem(120),
 
-    [theme.fn.smallerThan("md")]: {
-      maxWidth: "100%",
-      marginRight: 0,
+    [theme.fn.smallerThan("sm")]: {
+      paddingBottom: rem(80),
+      paddingTop: rem(80),
     },
   },
+
   title: {
-    color: theme.colorScheme === "dark" ? theme.white : theme.black,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    fontSize: rem(44),
-    lineHeight: 1.2,
+    fontSize: rem(62),
     fontWeight: 900,
+    lineHeight: 1.1,
+    margin: 0,
+    padding: 0,
+    color: theme.colorScheme === "dark" ? theme.white : theme.black,
 
-    [theme.fn.smallerThan("xs")]: {
-      fontSize: rem(28),
+    [theme.fn.smallerThan("sm")]: {
+      fontSize: rem(42),
+      lineHeight: 1.2,
     },
   },
+
+  description: {
+    marginTop: theme.spacing.xl,
+    fontSize: rem(24),
+
+    [theme.fn.smallerThan("sm")]: {
+      fontSize: rem(18),
+    },
+  },
+
+  controls: {
+    marginTop: `calc(${theme.spacing.xl} * 2)`,
+
+    [theme.fn.smallerThan("sm")]: {
+      marginTop: theme.spacing.xl,
+    },
+  },
+
   control: {
-    [theme.fn.smallerThan("xs")]: {
+    height: rem(54),
+    paddingLeft: rem(38),
+    paddingRight: rem(38),
+
+    [theme.fn.smallerThan("sm")]: {
+      height: rem(54),
+      paddingLeft: rem(18),
+      paddingRight: rem(18),
       flex: 1,
-    },
-  },
-  image: {
-    flex: 1,
-    [theme.fn.smallerThan("md")]: {
-      display: "none",
     },
   },
 }));
 
-const features = [
-  {
-    title: "Free usage",
-    description:
-      "Lisansly offers a completely free licensing solution, allowing developers to license their web and desktop applications without any upfront costs.",
-  },
-];
+type HeroHeaderProps = {
+  navigate: NavigateFunction;
+};
 
-export function HeroHeader() {
+export function HeroHeader(props: HeroHeaderProps) {
   const { classes } = useStyles();
 
   return (
-    <div>
-      <Container>
-        <div className={classes.inner}>
-          <div className={classes.content}>
-            <Title className={classes.title}>
-              License your app with lisansly
-            </Title>
-            <Text color="dimmed" mt="md">
-              Lisansly is a platform that developers can use to license web or
-              desktop applications. This platform simplifies the license
-              management process, saving developers time and effort.
-            </Text>
-            <List
-              mt={30}
-              spacing="sm"
-              size="sm"
-              icon={
-                <ThemeIcon size={20} radius="xl">
-                  <IconCheck size={rem(12)} stroke={1.5} />
-                </ThemeIcon>
-              }
-            >
-              {features.map((feature) => (
-                <List.Item>
-                  <b>{feature.title}</b> – {feature.description}
-                </List.Item>
-              ))}
-            </List>
-            <Group mt={30}>
-              <Button radius="lg" size="md" className={classes.control}>
-                Get started
-              </Button>
-              <Link to="/dashboard">
-                <Button
-                  variant="default"
-                  radius="lg"
-                  size="md"
-                  className={classes.control}
-                >
-                  Dashboard
-                </Button>
-              </Link>
-            </Group>
-          </div>
-          <Image src={"/lisansly.png"} className={classes.image} />
-        </div>
+    <div className={classes.wrapper}>
+      <Container size={700} className={classes.inner}>
+        <h1 className={classes.title}>
+          License your application with{" "}
+          <Text
+            gradient={{ from: "blue", to: "#4DABF7" }}
+            variant="gradient"
+            component="span"
+            inherit
+          >
+            Lisansly
+          </Text>
+        </h1>
+
+        <Text className={classes.description} color="dimmed">
+          Lisansly is a platform that developers can use to license web or
+          desktop applications. This platform simplifies the license management
+          process, saving developers time and effort.
+        </Text>
+
+        <Group className={classes.controls}>
+          <Button
+            onClick={() => props.navigate("/documentation")}
+            gradient={{ from: "blue", to: "#4DABF7" }}
+            className={classes.control}
+            variant="gradient"
+            size="xl"
+          >
+            Get started
+          </Button>
+          <Button
+            leftIcon={<IconBrandGithub />}
+            href="https://github.com/Lisansly"
+            className={classes.control}
+            variant="default"
+            target="_blank"
+            component="a"
+            size="xl"
+          >
+            GitHub
+          </Button>
+        </Group>
       </Container>
     </div>
   );
