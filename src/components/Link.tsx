@@ -1,12 +1,14 @@
 import { Link as ReactRouterDomLink } from "react-router-dom";
 
 type LinkProps = {
-  label: string;
+  children: React.ReactNode;
   path: string;
 };
 
 const Link = (props: LinkProps) => {
-  return <ReactRouterDomLink to={props.path}>{props.label}</ReactRouterDomLink>;
+  return (
+    <ReactRouterDomLink to={props.path}>{props.children}</ReactRouterDomLink>
+  );
 };
 
 export default Link;
