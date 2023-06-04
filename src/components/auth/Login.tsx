@@ -1,18 +1,20 @@
 import { Paper, Title, Text, Container } from "@mantine/core";
+import Client from "../../clients/AuthClient";
 import PasswordInput from "./PasswordInput";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "@mantine/form";
 import TextInput from "./TextInput";
 import { AxiosError } from "axios";
 import { useState } from "react";
-import Client from "./Client";
 import Button from "./Button";
-import Link from "../Link";
+import Notification from "../Notification";
+import { useSignIn } from "react-auth-kit";
 
 const textInputs = [
   {
     placeholder: "Your username or email",
     label: "Username or email",
-    key: "username",
+    key: "identifier",
   },
 ];
 
@@ -24,37 +26,66 @@ const passwordInputs = [
   },
 ];
 
-export type LoginBody = {
-  username?: string;
+export type LoginPathParam = {
+  identifier: string;
   password: string;
-  email?: string;
 };
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const signIn = useSignIn();
 
-  const form = useForm<LoginBody>({
+  const form = useForm<LoginPathParam>({
     initialValues: {
-      username: "",
+      identifier: "",
       password: "",
     },
 
     validate: (values) => ({
-      username: values.username === "" ? "Username is required" : null,
-      password: values.password === "" ? "Password is required" : null,
+      identifier:
+        values.identifier === ""
+          ? "Username or email is required"
+          : values.identifier.length < 3
+          ? "This field must be at least 3 characters"
+          : null,
+      password:
+        values.password === ""
+          ? "Password is required"
+          : values.password.length < 6
+          ? "Password must be at least 6 characters"
+          : null,
     }),
+    validateInputOnChange: true,
   });
 
-  const loginRequest = async (values: LoginBody) => {
-    const body = {
-      [/\S+@\S+/.test(values.username!) ? "email" : "username"]:
-        values.username,
-      password: values.password,
-    };
-    var response = await Client.login(body);
+  const onSubmit = async (values: LoginPathParam) => {
+    setLoading(true);
+    var response = await Client.login(values);
     if (response instanceof AxiosError) {
+      let identifier = "username";
+      if (/^\S+@\S+$/.test(form.values.identifier)) {
+        identifier = "email";
+      }
+      Notification.error("Wrong " + identifier + " or password");
     } else {
+      const accessToken = response.data.accessToken;
+      //const refreshToken = response.data.refreshToken;
+      const decodedAccessToken = JSON.parse(atob(accessToken.split(".")[1]));
+      //const decodedRefreshToken = JSON.parse(atob(refreshToken.split(".")[1]));
+
+      signIn({
+        token: accessToken,
+        expiresIn: decodedAccessToken.exp,
+        tokenType: "Bearer",
+        /*
+        refreshToken: refreshToken,
+        refreshTokenExpireIn: decodedRefreshToken.exp,
+        */
+      });
+      navigate("/");
     }
+    setLoading(false);
   };
 
   return (
@@ -63,14 +94,10 @@ export default function Login() {
         Welcome to Lisansly!
       </Title>
       <Text color="dimmed" size="sm" align="center" mt={5}>
-        Do not have an account yet? <Link path="/signup">Sign Up</Link>
+        Do not have an account yet? <Link to="/signup">Sign Up</Link>
       </Text>
       <Paper
-        onSubmit={form.onSubmit(async (values) => {
-          setLoading(true);
-          await loginRequest(values);
-          setLoading(false);
-        })}
+        onSubmit={form.onSubmit((values) => onSubmit(values))}
         component="form"
         shadow="sm"
         radius="lg"
