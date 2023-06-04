@@ -1,18 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PageNotFound from "./components/PageNotFound.tsx";
 import Dashboard from "./components/dashboard/Dashboard.tsx";
+import PageNotFound from "./components/PageNotFound.tsx";
+import { Notifications } from "@mantine/notifications";
 import SignUp from "./components/auth/SignUp.tsx";
-import ReactDOM from "react-dom/client";
-import Shell from "./components/Shell.tsx";
 import Login from "./components/auth/Login.tsx";
 import Home from "./components/home/Home.tsx";
+import Shell from "./components/Shell.tsx";
+import ReactDOM from "react-dom/client";
 import { useState } from "react";
 import "./index.css";
 import {
-  MantineProvider,
   ColorSchemeProvider,
+  MantineProvider,
   ColorScheme,
 } from "@mantine/core";
+import { AuthProvider } from "react-auth-kit";
 
 const Root = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -38,6 +40,9 @@ const Root = () => {
             return {
               a: {
                 color: theme.colorScheme === "dark" ? theme.white : theme.black,
+                ":hover": {
+                  cursor: "pointer",
+                },
               },
             };
           },
@@ -45,17 +50,23 @@ const Root = () => {
         withGlobalStyles
         withNormalizeCSS
       >
-        <BrowserRouter>
-          <Shell>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/*" element={<PageNotFound />} />
-            </Routes>
-          </Shell>
-        </BrowserRouter>
+        <Notifications position="top-center" mt={"xl"} autoClose={4000} />
+        <AuthProvider authType={"localstorage"} authName={"_auth"}>
+          <BrowserRouter>
+            <Shell>
+              <Routes>
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/" element={<Home />} />
+                <Route
+                  path="/dashboard/:tabValue?/:projectName?"
+                  element={<Dashboard />}
+                />
+                <Route path="/*" element={<PageNotFound />} />
+              </Routes>
+            </Shell>
+          </BrowserRouter>
+        </AuthProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   );
