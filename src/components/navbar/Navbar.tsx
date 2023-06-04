@@ -3,8 +3,8 @@ import Button from "./Button";
 import {
   IconFileDescription,
   IconLayoutDashboard,
-  IconLogin,
   IconUserPlus,
+  IconLogin,
 } from "@tabler/icons-react";
 
 type NavbarProps = {
@@ -38,17 +38,19 @@ const navbarButtons = [
 const Navbar = (props: NavbarProps) => {
   return (
     <MantineNavbar
-      p="md"
-      hiddenBreakpoint="sm"
-      hidden={!props.opened}
       width={{ sm: 200, lg: 300 }}
+      hidden={!props.opened}
+      hiddenBreakpoint="sm"
+      zIndex={10}
+      p="md"
     >
       {navbarButtons.map((button) => (
         <Button
-          icon={button.icon}
-          label={button.label}
-          path={button.link}
           setOpened={props.setOpened}
+          label={button.label}
+          key={button.label}
+          icon={button.icon}
+          path={button.link}
         />
       ))}
     </MantineNavbar>

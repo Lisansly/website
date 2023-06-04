@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
 import React from "react";
 import {
-  Group,
-  Text,
-  ThemeIcon,
   UnstyledButton,
   createStyles,
+  ThemeIcon,
+  Group,
+  Text,
 } from "@mantine/core";
+import Link from "../Link";
 
 type ButtonProps = {
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,7 +22,6 @@ const useStyles = createStyles((theme) => ({
     padding: theme.spacing.xs,
     borderRadius: theme.radius.sm,
     color: theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black,
-
     "&:hover": {
       backgroundColor:
         theme.colorScheme === "dark"
@@ -36,9 +35,11 @@ const Button = (props: ButtonProps) => {
   const { classes } = useStyles();
 
   return (
-    <Link to={props.path}>
+    <Link path={props.path}>
       <UnstyledButton
-        onClick={() => props.setOpened && props.setOpened(false)}
+        onClick={() => {
+          props.setOpened && props.setOpened(false);
+        }}
         className={classes.button}
       >
         <Group>
