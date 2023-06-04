@@ -1,10 +1,10 @@
 import { IconChevronLeft } from "@tabler/icons-react";
 import { ActionIcon } from "@mantine/core";
-import Link from "../Link";
+import { Link } from "react-router-dom";
 
 const BackButton = () => {
   return (
-    <Link path="/dashboard/cloud-based-licensing">
+    <Link to="/dashboard/cloud-based-licensing">
       <ActionIcon variant="default">
         <IconChevronLeft size="1.125rem" />
       </ActionIcon>

@@ -1,5 +1,5 @@
 import { Button as MantineButton } from "@mantine/core";
-import Link from "../Link";
+import { Link } from "react-router-dom";
 
 type ButtonProps = {
   variant: string;
@@ -9,7 +9,7 @@ type ButtonProps = {
 
 const Button = (props: ButtonProps) => {
   return (
-    <Link path={props.path}>
+    <Link to={props.path}>
       <MantineButton variant={props.variant} radius="sm">
         {props.label}
       </MantineButton>

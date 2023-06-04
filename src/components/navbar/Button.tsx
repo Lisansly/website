@@ -6,7 +6,7 @@ import {
   Group,
   Text,
 } from "@mantine/core";
-import Link from "../Link";
+import { Link } from "react-router-dom";
 
 type ButtonProps = {
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
@@ -35,7 +35,7 @@ const Button = (props: ButtonProps) => {
   const { classes } = useStyles();
 
   return (
-    <Link path={props.path}>
+    <Link to={props.path}>
       <UnstyledButton
         onClick={() => {
           props.setOpened && props.setOpened(false);

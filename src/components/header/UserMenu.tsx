@@ -6,8 +6,8 @@ import {
   IconChevronRight,
 } from "@tabler/icons-react";
 import Avatar from "../Avatar";
-import Link from "../Link";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 type UserButtonProps = {
   image: string;
@@ -53,7 +53,7 @@ export default function UserMenu(props: UserButtonProps) {
         </Menu.Target>
         <Menu.Dropdown className={classes.menuDropdown}>
           <Menu.Label mb={"xs"}>{props.name}</Menu.Label>
-          <Link path="/profile">
+          <Link to="/profile">
             <Menu.Item icon={<IconUserCircle size={14} />}>Profile</Menu.Item>
           </Link>
           <Menu.Item color="red" icon={<IconLogout size={14} />}>

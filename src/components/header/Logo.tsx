@@ -1,5 +1,5 @@
 import { Group, Image, Text, createStyles } from "@mantine/core";
-import Link from "../Link";
+import { Link } from "react-router-dom";
 
 type LogoProps = {
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,7 +23,7 @@ const Logo = (props: LogoProps) => {
   const { classes } = useStyles();
 
   return (
-    <Link path="/">
+    <Link to="/">
       <Group
         className={classes.group}
         onClick={() => {

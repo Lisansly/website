@@ -1,4 +1,4 @@
-import Link from "../Link";
+import { Link } from "react-router-dom";
 
 type SideBarLinkProps = {
   item: {
@@ -13,7 +13,7 @@ type SideBarLinkProps = {
 
 const SideBarLink = (props: SideBarLinkProps) => {
   return (
-    <Link path={"/dashboard/" + props.item.path}>
+    <Link to={"/dashboard/" + props.item.path}>
       <span
         className={props.cx(props.classes.link, {
           [props.classes.linkActive]: props.item.path === props.tabValue,

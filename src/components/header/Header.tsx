@@ -2,7 +2,6 @@ import SwitchTheme from "./SwitchTheme";
 import UserMenu from "./UserMenu";
 import Button from "./Button";
 import Logo from "./Logo";
-import Link from "../Link";
 import {
   Header as MantineHeader,
   createStyles,
@@ -10,8 +9,8 @@ import {
   Burger,
   Group,
   Box,
-  Text,
 } from "@mantine/core";
+import Link from "./Link";
 
 type HeaderProps = {
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
@@ -84,11 +83,12 @@ const Header = (props: HeaderProps) => {
         {!props.matches && (
           <Box className={classes.links}>
             {headerLinks.map((link) => (
-              <Link path={link.path} key={link.path}>
-                <Text fw={700} className={classes.link}>
-                  {link.label}
-                </Text>
-              </Link>
+              <Link
+                className={classes.link}
+                label={link.label}
+                path={link.path}
+                key={link.path}
+              />
             ))}
           </Box>
         )}
