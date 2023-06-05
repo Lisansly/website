@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { SignInPathParam } from "../components/auth/SignIn";
+import { SignUpBody } from "../components/auth/SignUp";
 
 class AuthClient {
   private readonly apiUrl: string;
@@ -13,11 +14,20 @@ class AuthClient {
   ): Promise<AxiosResponse | AxiosError> {
     try {
       const response = await axios.get(
-        `${this.apiUrl}/user/identifier/${values.identifier}/password/${values.password}`,
-        {
-          withCredentials: false,
-        }
+        `${this.apiUrl}/user/identifier/${values.identifier}/password/${values.password}`
       );
+      return response;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        return error;
+      }
+      throw error;
+    }
+  }
+
+  public async signUp(values: SignUpBody): Promise<AxiosResponse | AxiosError> {
+    try {
+      const response = await axios.post(`${this.apiUrl}/user`, values);
       return response;
     } catch (error) {
       if (error instanceof AxiosError) {
