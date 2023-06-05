@@ -63,7 +63,7 @@ export default function UserMenu(props: UserButtonProps) {
               icon={<IconLogout size={14} />}
               onClick={signOut}
             >
-              Logout
+              Sign Out
             </Menu.Item>
           </Link>
         </Menu.Dropdown>
