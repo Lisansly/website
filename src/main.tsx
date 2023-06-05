@@ -3,7 +3,7 @@ import Dashboard from "./components/dashboard/Dashboard.tsx";
 import PageNotFound from "./components/PageNotFound.tsx";
 import { Notifications } from "@mantine/notifications";
 import SignUp from "./components/auth/SignUp.tsx";
-import Login from "./components/auth/Login.tsx";
+import SignIn from "./components/auth/SignIn.tsx";
 import Home from "./components/home/Home.tsx";
 import Shell from "./components/Shell.tsx";
 import ReactDOM from "react-dom/client";
@@ -56,7 +56,7 @@ const Root = () => {
             <Shell>
               <Routes>
                 <Route path="/signup" element={<SignUp />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="/signin" element={<SignIn />} />
                 <Route path="/" element={<Home />} />
                 <Route
                   path="/dashboard/:tabValue?/:projectName?"

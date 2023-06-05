@@ -25,8 +25,8 @@ const navbarButtons = [
   },
   {
     icon: <IconLogin size="1.1rem" />,
-    link: "/login",
-    label: "Login",
+    link: "/signin",
+    label: "Sign In",
   },
   {
     icon: <IconUserPlus size="1.1rem" />,

@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { LoginPathParam } from "../components/auth/Login";
+import { SignInPathParam } from "../components/auth/SignIn";
 
 class AuthClient {
   private readonly apiUrl: string;
@@ -8,8 +8,8 @@ class AuthClient {
     this.apiUrl = import.meta.env.VITE_API_URL as string;
   }
 
-  public async login(
-    values: LoginPathParam
+  public async signIn(
+    values: SignInPathParam
   ): Promise<AxiosResponse | AxiosError> {
     try {
       const response = await axios.get(

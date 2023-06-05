@@ -63,8 +63,8 @@ const headerLinks = [
 const headerButtons = [
   {
     variant: "default",
-    path: "/login",
-    label: "Login",
+    path: "/signin",
+    label: "Sign In",
   },
   {
     variant: "filled",

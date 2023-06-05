@@ -26,17 +26,17 @@ const passwordInputs = [
   },
 ];
 
-export type LoginPathParam = {
+export type SignInPathParam = {
   identifier: string;
   password: string;
 };
 
-export default function Login() {
+export default function SignIn() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const signIn = useSignIn();
 
-  const form = useForm<LoginPathParam>({
+  const form = useForm<SignInPathParam>({
     initialValues: {
       identifier: "",
       password: "",
@@ -59,9 +59,9 @@ export default function Login() {
     validateInputOnChange: true,
   });
 
-  const onSubmit = async (values: LoginPathParam) => {
+  const onSubmit = async (values: SignInPathParam) => {
     setLoading(true);
-    var response = await Client.login(values);
+    var response = await Client.signIn(values);
     if (response instanceof AxiosError) {
       let identifier = "username";
       if (/^\S+@\S+$/.test(form.values.identifier)) {
@@ -121,7 +121,7 @@ export default function Login() {
             key={input.label}
           />
         ))}
-        <Button loading={loading} label="Login" />
+        <Button loading={loading} label="Sign In" />
       </Paper>
     </Container>
   );

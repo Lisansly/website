@@ -3,7 +3,7 @@ import PasswordInput from "./PasswordInput";
 import TextInput from "./TextInput";
 import Button from "./Button";
 import Avatar from "../Avatar";
-import Link from "../Link";
+import { Link } from "react-router-dom";
 
 const textInputs = [
   {
@@ -34,7 +34,7 @@ export default function SignUp() {
         Create an account
       </Title>
       <Text color="dimmed" size="sm" align="center" mt={5}>
-        Do you already have an account? <Link path="/login">Login</Link>
+        Do you already have an account? <Link to="/signin">Sign In</Link>
       </Text>
       <Paper withBorder shadow="sm" p={30} mt={30} radius="lg">
         <Avatar size="8em" mb="xl" />
