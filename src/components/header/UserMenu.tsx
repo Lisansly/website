@@ -44,7 +44,7 @@ export default function UserMenu(props: UserButtonProps) {
       <Menu withArrow opened={opened} onChange={setOpened}>
         <Menu.Target>
           <Group className={classes.menuTarget}>
-            <Avatar size="md" />
+            <Avatar size="md" username="" />
             {opened ? (
               <IconChevronDown size={"1rem"} />
             ) : (
