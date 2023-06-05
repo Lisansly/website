@@ -1,6 +1,6 @@
 import { Paper, Title, Text, Container } from "@mantine/core";
 import { Link, useNavigate } from "react-router-dom";
-import Client from "../../clients/AuthClient";
+import AuthClient from "../../clients/AuthClient";
 import PasswordInput from "./PasswordInput";
 import Notification from "../Notification";
 import { useSignIn } from "react-auth-kit";
@@ -61,7 +61,7 @@ export default function SignIn() {
 
   const onSubmit = async (values: SignInPathParam) => {
     setLoading(true);
-    var response = await Client.signIn(values);
+    var response = await AuthClient.signIn(values);
     if (response instanceof AxiosError) {
       let identifier = "username";
       if (/^\S+@\S+$/.test(form.values.identifier)) {
