@@ -63,11 +63,15 @@ export default function SignIn() {
     setLoading(true);
     var response = await AuthClient.signIn(values);
     if (response instanceof AxiosError) {
-      let identifier = "username";
-      if (/^\S+@\S+$/.test(form.values.identifier)) {
-        identifier = "email";
+      if (response.response?.status === 500) {
+        Notification.error("Please try again later");
+      } else {
+        let identifier = "username";
+        if (/^\S+@\S+$/.test(form.values.identifier)) {
+          identifier = "email";
+        }
+        Notification.error("Wrong " + identifier + " or password");
       }
-      Notification.error("Wrong " + identifier + " or password");
     } else {
       const accessToken = response.data.accessToken;
       //const refreshToken = response.data.refreshToken;
