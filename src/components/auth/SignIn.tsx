@@ -1,14 +1,14 @@
 import { Paper, Title, Text, Container } from "@mantine/core";
+import { Link, useNavigate } from "react-router-dom";
 import Client from "../../clients/AuthClient";
 import PasswordInput from "./PasswordInput";
-import { Link, useNavigate } from "react-router-dom";
+import Notification from "../Notification";
+import { useSignIn } from "react-auth-kit";
 import { useForm } from "@mantine/form";
 import TextInput from "./TextInput";
 import { AxiosError } from "axios";
 import { useState } from "react";
 import Button from "./Button";
-import Notification from "../Notification";
-import { useSignIn } from "react-auth-kit";
 
 const textInputs = [
   {
@@ -52,8 +52,8 @@ export default function SignIn() {
       password:
         values.password === ""
           ? "Password is required"
-          : values.password.length < 6
-          ? "Password must be at least 6 characters"
+          : values.password.length < 10
+          ? "Password must be at least 10 characters"
           : null,
     }),
     validateInputOnChange: true,
