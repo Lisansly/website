@@ -10,11 +10,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSignOut } from "react-auth-kit";
 
-type UserButtonProps = {
-  image: string;
-  name: string;
-};
-
 const useStyles = createStyles((theme) => ({
   menuTarget: {
     borderRadius: theme.radius.md,
@@ -25,9 +20,21 @@ const useStyles = createStyles((theme) => ({
   menuDropdown: {
     padding: 5,
   },
+  username: {
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[5]
+        : theme.colors.gray[0],
+    textAlign: "center",
+    color: theme.colorScheme === "dark" ? theme.white : theme.black,
+  },
 }));
 
-export default function UserMenu(props: UserButtonProps) {
+type UserMenuProps = {
+  username: string;
+};
+
+export default function UserMenu(props: UserMenuProps) {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles();
   const signOut = useSignOut();
@@ -36,7 +43,7 @@ export default function UserMenu(props: UserButtonProps) {
       <Menu withArrow opened={opened} onChange={setOpened}>
         <Menu.Target>
           <Group className={classes.menuTarget}>
-            <Avatar size="md" username="" />
+            <Avatar size="md" username={props.username} />
             {opened ? (
               <IconChevronDown size={"1rem"} />
             ) : (
@@ -45,7 +52,7 @@ export default function UserMenu(props: UserButtonProps) {
           </Group>
         </Menu.Target>
         <Menu.Dropdown className={classes.menuDropdown}>
-          <Menu.Label mb={"xs"}>{props.name}</Menu.Label>
+          <Menu.Label className={classes.username}>{props.username}</Menu.Label>
           <Link to="/profile">
             <Menu.Item icon={<IconUserCircle size={14} />}>Profile</Menu.Item>
           </Link>

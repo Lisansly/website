@@ -108,6 +108,10 @@ export default function SignUp() {
         refreshToken: refreshToken,
         refreshTokenExpireIn: decodedRefreshToken.exp,
         */
+        authState: {
+          name: decodedAccessToken.name,
+          email: decodedAccessToken.email,
+        },
       });
       navigate("/");
     }

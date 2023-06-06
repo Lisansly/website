@@ -19,6 +19,7 @@ import {
 } from "@tabler/icons-react";
 
 import MenuButton from "./MenuButton";
+import { useAuthUser } from "react-auth-kit";
 
 type NavbarProps = {
   isAuthenticated: () => boolean;
@@ -126,7 +127,7 @@ const Navbar = (props: NavbarProps) => {
     },
   }));
   const { classes } = useStyles();
-
+  const userData = useAuthUser();
   return (
     <Header
       hidden={false}
@@ -165,9 +166,7 @@ const Navbar = (props: NavbarProps) => {
               ))}
             </Box>
           )}
-          {props.isAuthenticated() && (
-            <UserMenu image="as" name="yusufalitangoz" />
-          )}
+          {props.isAuthenticated() && <UserMenu username={userData()?.name} />}
         </Group>
       </Group>
       <Burger

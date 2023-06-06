@@ -86,6 +86,10 @@ export default function SignIn() {
         refreshToken: refreshToken,
         refreshTokenExpireIn: decodedRefreshToken.exp,
         */
+        authState: {
+          name: decodedAccessToken.name,
+          email: decodedAccessToken.email,
+        },
       });
       navigate("/");
     }
