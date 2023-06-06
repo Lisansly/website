@@ -3,17 +3,10 @@ import Logo from "./Logo";
 import {
   Header as MantineHeader,
   createStyles,
-  MantineTheme,
   Group,
   ActionIcon,
 } from "@mantine/core";
 import { IconBrandGithub } from "@tabler/icons-react";
-
-type HeaderProps = {
-  isAuthenticated: () => boolean;
-  theme: MantineTheme;
-  matches: boolean;
-};
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -33,7 +26,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const Header = (props: HeaderProps) => {
+const Header = () => {
   const { classes } = useStyles();
 
   return (
@@ -49,7 +42,7 @@ const Header = (props: HeaderProps) => {
           <IconBrandGithub />
         </ActionIcon>
         <Logo />
-        <SwitchTheme ml={props.matches ? "0" : "md"} />
+        <SwitchTheme />
       </Group>
     </MantineHeader>
   );

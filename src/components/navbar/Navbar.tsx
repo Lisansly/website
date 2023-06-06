@@ -1,11 +1,4 @@
-import {
-  Box,
-  Burger,
-  Group,
-  Header,
-  MantineTheme,
-  createStyles,
-} from "@mantine/core";
+import { Box, Burger, Group, Header, createStyles } from "@mantine/core";
 import Link from "./Link";
 import Button from "./Button";
 import UserMenu from "./UserMenu";
@@ -23,8 +16,6 @@ import { useAuthUser } from "react-auth-kit";
 
 type NavbarProps = {
   isAuthenticated: () => boolean;
-  theme: MantineTheme;
-  matches: boolean;
 };
 
 const buttons = [
@@ -176,7 +167,6 @@ const Navbar = (props: NavbarProps) => {
       <Burger
         className={classes.burger}
         onClick={() => setOpened((o) => !o)}
-        color={props.theme.colors.gray[6]}
         opened={opened}
       />
       <div className={classes.menu}>

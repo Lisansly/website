@@ -1,11 +1,7 @@
 import { Switch, useMantineColorScheme } from "@mantine/core";
 import { IconSun, IconMoonStars } from "@tabler/icons-react";
 
-type SwitchThemeProps = {
-  ml: string;
-};
-
-const SwitchTheme = (props: SwitchThemeProps) => {
+const SwitchTheme = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
@@ -14,7 +10,6 @@ const SwitchTheme = (props: SwitchThemeProps) => {
       onClick={() => toggleColorScheme()}
       size="lg"
       radius="sm"
-      ml={props.ml}
       onLabel={<IconSun size="1.25rem" stroke={1.5} />}
       offLabel={<IconMoonStars size="1.25rem" stroke={1.5} />}
     />

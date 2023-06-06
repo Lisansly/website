@@ -1,6 +1,5 @@
-import { AppShell, useMantineTheme } from "@mantine/core";
 import { useIsAuthenticated } from "react-auth-kit";
-import { useMediaQuery } from "@mantine/hooks";
+import { AppShell } from "@mantine/core";
 import Navbar from "./navbar/Navbar";
 import Header from "./header/Header";
 
@@ -9,13 +8,11 @@ type ShellProps = {
 };
 
 const Shell: React.FC<ShellProps> = ({ children }) => {
-  const matches = useMediaQuery(`(max-width: 770px)`);
   const isAuthenticated = useIsAuthenticated();
-  const theme = useMantineTheme();
 
   return (
     <AppShell
-      styles={{
+      sx={(theme) => ({
         main: {
           background:
             theme.colorScheme === "dark"
@@ -23,22 +20,10 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
               : theme.colors.gray[0],
           paddingTop: 140,
         },
-      }}
+      })}
       navbarOffsetBreakpoint="sm"
-      navbar={
-        <Navbar
-          isAuthenticated={isAuthenticated}
-          matches={matches}
-          theme={theme}
-        />
-      }
-      header={
-        <Header
-          isAuthenticated={isAuthenticated}
-          matches={matches}
-          theme={theme}
-        />
-      }
+      navbar={<Navbar isAuthenticated={isAuthenticated} />}
+      header={<Header />}
     >
       {children}
     </AppShell>
