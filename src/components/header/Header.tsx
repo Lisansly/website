@@ -17,6 +17,10 @@ type HeaderProps = {
 
 const useStyles = createStyles((theme) => ({
   header: {
+    borderColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[5]
+        : theme.colors.gray[3],
     display: "flex",
     flexWrap: "nowrap",
     height: "100%",

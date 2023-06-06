@@ -97,6 +97,10 @@ const Navbar = (props: NavbarProps) => {
       },
     },
     navbar: {
+      borderColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[5]
+          : theme.colors.gray[3],
       zIndex: 10,
       top: 60,
       [theme.fn.largerThan("sm")]: {
