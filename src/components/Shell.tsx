@@ -9,7 +9,6 @@ type ShellProps = {
 
 const Shell: React.FC<ShellProps> = ({ children }) => {
   const isAuthenticated = useIsAuthenticated();
-
   return (
     <AppShell
       sx={(theme) => ({
@@ -19,6 +18,9 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
               ? theme.colors.dark[7]
               : theme.colors.gray[0],
           paddingTop: 140,
+          [theme.fn.smallerThan("sm")]: {
+            paddingTop: 110,
+          },
         },
       })}
       navbarOffsetBreakpoint="sm"
