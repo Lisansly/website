@@ -11,20 +11,25 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     textDecoration: "none",
     fontSize: theme.fontSizes.sm,
-    marginBottom: 5,
+    marginBottom: 10,
     padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
     borderRadius: theme.radius.sm,
     fontWeight: 500,
 
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[7]
+        : theme.colors.gray[1],
     [theme.fn.smallerThan("md")]: {
       padding: 8,
     },
+
     "&:hover": {
       cursor: "pointer",
       backgroundColor:
         theme.colorScheme === "dark"
-          ? theme.colors.dark[6]
-          : theme.colors.gray[1],
+          ? theme.colors.dark[4]
+          : theme.colors.gray[0],
       color: theme.colorScheme === "dark" ? theme.white : theme.black,
 
       [`& .${getStylesRef("icon")}`]: {
@@ -43,13 +48,13 @@ const useStyles = createStyles((theme) => ({
   linkActive: {
     backgroundColor:
       theme.colorScheme === "dark"
-        ? theme.colors.dark[9]
-        : theme.colors.gray[2],
+        ? theme.colors.dark[5]
+        : theme.colors.gray[3],
     ":hover": {
       backgroundColor:
         theme.colorScheme === "dark"
-          ? theme.colors.dark[9]
-          : theme.colors.gray[2],
+          ? theme.colors.dark[5]
+          : theme.colors.gray[3],
     },
   },
   label: {
@@ -69,16 +74,16 @@ const useStyles = createStyles((theme) => ({
     },
     backgroundColor:
       theme.colorScheme === "dark"
-        ? theme.colors.dark[7]
-        : theme.colors.gray[0],
+        ? theme.colors.dark[9]
+        : theme.colors.gray[2],
     zIndex: 1,
   },
 }));
 
 const links = [
   {
-    path: "cloud-based-licensing",
-    label: "Cloud Based Licensing",
+    path: "cloud-based-licensinga",
+    label: "Cloud Based Licensinga",
     icon: IconCloudComputing,
   },
 ];
@@ -98,7 +103,7 @@ export function SideBar(props: SideBarProps) {
   }, [props.tabValue]);
 
   return (
-    <Navbar className={classes.sidebar}>
+    <Navbar pt={80} className={classes.sidebar}>
       <Navbar.Section grow>
         {links.map((link) => (
           <SideBarLink

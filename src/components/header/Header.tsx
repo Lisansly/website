@@ -1,23 +1,18 @@
 import SwitchTheme from "./SwitchTheme";
-import UserMenu from "./UserMenu";
-import Button from "./Button";
 import Logo from "./Logo";
 import {
   Header as MantineHeader,
   createStyles,
   MantineTheme,
-  Burger,
   Group,
-  Box,
+  ActionIcon,
 } from "@mantine/core";
-import Link from "./Link";
+import { IconBrandGithub } from "@tabler/icons-react";
 
 type HeaderProps = {
-  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
   isAuthenticated: () => boolean;
   theme: MantineTheme;
   matches: boolean;
-  opened: boolean;
 };
 
 const useStyles = createStyles((theme) => ({
@@ -48,76 +43,26 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark"
         ? theme.colors.dark[9]
         : theme.colors.gray[2],
-    borderColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[6]
-        : theme.colors.gray[4],
   },
 }));
-
-const headerLinks = [
-  { path: "/documentation", label: "Documentation" },
-  { path: "/dashboard/cloud-based-licensing", label: "Dashboard" },
-];
-
-const headerButtons = [
-  {
-    variant: "default",
-    path: "/signin",
-    label: "Sign In",
-  },
-  {
-    variant: "filled",
-    label: "Sign Up",
-    path: "/signup",
-  },
-];
 
 const Header = (props: HeaderProps) => {
   const { classes } = useStyles();
 
   return (
-    <MantineHeader height={{ base: 70, md: 85 }} className={classes.header}>
-      <Group>
-        <Logo setOpened={props.setOpened} matches={props.matches} />
-        {!props.matches && (
-          <Box className={classes.links}>
-            {headerLinks.map((link) => (
-              <Link
-                className={classes.link}
-                label={link.label}
-                path={link.path}
-                key={link.path}
-              />
-            ))}
-          </Box>
-        )}
-      </Group>
-      <Group ml={"auto"}>
-        {!props.isAuthenticated() && !props.matches && (
-          <Box className={classes.buttons}>
-            {headerButtons.map((button) => (
-              <Button
-                variant={button.variant}
-                label={button.label}
-                path={button.path}
-                key={button.path}
-              />
-            ))}
-          </Box>
-        )}
-        {props.isAuthenticated() && (
-          <UserMenu image="as" name="yusufalitangoz" />
-        )}
+    <MantineHeader height={60} className={classes.header}>
+      <Group position="apart" w={"100%"}>
+        <ActionIcon
+          href="https://github.com/Lisansly"
+          variant="default"
+          target="_blank"
+          component="a"
+          size="lg"
+        >
+          <IconBrandGithub />
+        </ActionIcon>
+        <Logo />
         <SwitchTheme ml={props.matches ? "0" : "md"} />
-        {props.matches && (
-          <Burger
-            onClick={() => props.setOpened((o) => !o)}
-            color={props.theme.colors.gray[6]}
-            opened={props.opened}
-            size="sm"
-          />
-        )}
       </Group>
     </MantineHeader>
   );

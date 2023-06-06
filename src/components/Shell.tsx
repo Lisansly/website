@@ -3,7 +3,6 @@ import { useIsAuthenticated } from "react-auth-kit";
 import { useMediaQuery } from "@mantine/hooks";
 import Navbar from "./navbar/Navbar";
 import Header from "./header/Header";
-import { useState } from "react";
 
 type ShellProps = {
   children: React.ReactNode;
@@ -12,7 +11,6 @@ type ShellProps = {
 const Shell: React.FC<ShellProps> = ({ children }) => {
   const matches = useMediaQuery(`(max-width: 770px)`);
   const isAuthenticated = useIsAuthenticated();
-  const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
 
   return (
@@ -21,20 +19,23 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
         main: {
           background:
             theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[1],
+              ? theme.colors.dark[7]
+              : theme.colors.gray[0],
+          paddingTop: 140,
         },
       }}
       navbarOffsetBreakpoint="sm"
       navbar={
-        matches ? <Navbar setOpened={setOpened} opened={opened} /> : <></>
+        <Navbar
+          isAuthenticated={isAuthenticated}
+          matches={matches}
+          theme={theme}
+        />
       }
       header={
         <Header
           isAuthenticated={isAuthenticated}
-          setOpened={setOpened}
           matches={matches}
-          opened={opened}
           theme={theme}
         />
       }

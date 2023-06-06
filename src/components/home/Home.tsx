@@ -4,9 +4,9 @@ import { HeroHeader } from "./HeroHeader";
 const Home = () => {
   const navigate = useNavigate();
   return (
-    <>
+    <div>
       <HeroHeader navigate={navigate} />
-    </>
+    </div>
   );
 };
 
