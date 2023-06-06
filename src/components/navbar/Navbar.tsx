@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 import Link from "./Link";
 import Button from "./Button";
-import UserMenu from "../header/UserMenu";
+import UserMenu from "./UserMenu";
 import { useState } from "react";
 import {
   IconFileDescription,

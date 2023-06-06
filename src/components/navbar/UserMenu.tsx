@@ -17,17 +17,9 @@ type UserButtonProps = {
 
 const useStyles = createStyles((theme) => ({
   menuTarget: {
-    padding: 6,
-    [theme.fn.smallerThan("md")]: {
-      padding: 4,
-    },
     borderRadius: theme.radius.md,
     "&:hover": {
       cursor: "pointer",
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[4]
-          : theme.colors.gray[0],
     },
   },
   menuDropdown: {

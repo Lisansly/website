@@ -16,23 +16,6 @@ type HeaderProps = {
 };
 
 const useStyles = createStyles((theme) => ({
-  buttons: {
-    gap: theme.spacing.md,
-    alignItems: "center",
-    display: "flex",
-  },
-  links: {
-    gap: theme.spacing.md,
-    alignItems: "center",
-    display: "flex",
-  },
-  link: {
-    transition: "200ms ease",
-    ":hover": {
-      color:
-        theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 4 : 6],
-    },
-  },
   header: {
     display: "flex",
     flexWrap: "nowrap",
