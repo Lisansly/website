@@ -1,21 +1,23 @@
 import { Box, Burger, Group, Header, createStyles } from "@mantine/core";
-import Link from "./Link";
-import Button from "./Button";
+import { useAuthUser } from "react-auth-kit";
+import MenuButton from "./MenuButton";
 import UserMenu from "./UserMenu";
 import { useState } from "react";
+import Button from "./Button";
+import Link from "./Link";
 import {
   IconFileDescription,
   IconLayoutDashboard,
   IconUserPlus,
   IconLogin,
   IconHome,
+  IconLogout,
+  IconUser,
 } from "@tabler/icons-react";
-
-import MenuButton from "./MenuButton";
-import { useAuthUser } from "react-auth-kit";
 
 type NavbarProps = {
   isAuthenticated: () => boolean;
+  signOut: () => boolean;
 };
 
 const buttons = [
@@ -28,46 +30,6 @@ const buttons = [
     variant: "filled",
     label: "Sign Up",
     path: "/signup",
-  },
-];
-
-const links = [
-  { path: "/", label: "Home" },
-  { path: "/documentation", label: "Documentation" },
-  { path: "/dashboard/cloud-based-licensing", label: "Dashboard" },
-];
-
-type menuButtonProps = {
-  icon: React.ReactNode;
-  link: string;
-  label: string;
-};
-
-const menuButtons: menuButtonProps[] = [
-  {
-    icon: <IconHome size="1.1rem" />,
-    link: "/",
-    label: "Home",
-  },
-  {
-    icon: <IconFileDescription size="1.1rem" />,
-    link: "/documentation",
-    label: "Documentation",
-  },
-  {
-    icon: <IconLayoutDashboard size="1.1rem" />,
-    link: "/dashboard",
-    label: "Dashboard",
-  },
-  {
-    icon: <IconLogin size="1.1rem" />,
-    link: "/signin",
-    label: "Sign In",
-  },
-  {
-    icon: <IconUserPlus size="1.1rem" />,
-    link: "/signup",
-    label: "Sign Up",
   },
 ];
 
@@ -112,29 +74,85 @@ const Navbar = (props: NavbarProps) => {
     },
     burger: {
       display: "none",
-      paddingTop: 8,
-      paddingLeft: theme.spacing.xl,
+      marginLeft: 20,
       [theme.fn.smallerThan("sm")]: {
         display: "block",
       },
     },
     menu: {
-      padding: 13,
+      padding: 15,
       display: "none",
-      paddingTop: 5,
+      paddingTop: 0,
       [theme.fn.smallerThan("sm")]: {
         display: opened ? "block" : "none",
       },
     },
   }));
+
   const { classes } = useStyles();
   const userData = useAuthUser();
+
+  const links = [
+    { path: "/", label: "Home" },
+    { path: "/documentation", label: "Documentation" },
+    { path: "/dashboard/cloud-based-licensing", label: "Dashboard" },
+  ];
+
+  type MenuButtonProps = {
+    icon: React.ReactNode;
+    onClick?: () => void;
+    show: boolean;
+    label: string;
+    link: string;
+  };
+
+  const menuButtons: MenuButtonProps[] = [
+    {
+      icon: <IconHome size="1.1rem" />,
+      link: "/",
+      label: "Home",
+      show: true,
+    },
+    {
+      icon: <IconFileDescription size="1.1rem" />,
+      link: "/documentation",
+      label: "Documentation",
+      show: true,
+    },
+    {
+      icon: <IconLayoutDashboard size="1.1rem" />,
+      link: "/dashboard",
+      label: "Dashboard",
+      show: true,
+    },
+    {
+      icon: <IconLogin size="1.1rem" />,
+      link: "/signin",
+      label: "Sign In",
+      show: !props.isAuthenticated(),
+    },
+    {
+      icon: <IconUserPlus size="1.1rem" />,
+      link: "/signup",
+      label: "Sign Up",
+      show: !props.isAuthenticated(),
+    },
+    {
+      icon: <IconUser size="1.1rem" />,
+      link: "/profile/edit",
+      label: "Profile",
+      show: props.isAuthenticated(),
+    },
+    {
+      icon: <IconLogout size="1.1rem" />,
+      link: "/",
+      label: "Sign Out",
+      show: props.isAuthenticated(),
+      onClick: () => props.signOut(),
+    },
+  ];
   return (
-    <Header
-      hidden={false}
-      height={{ base: opened ? 275 : 40, sm: 70 }}
-      className={classes.navbar}
-    >
+    <Header hidden={false} height={"max-content"} className={classes.navbar}>
       <Group
         sx={(theme) => ({
           [theme.fn.smallerThan("sm")]: {
@@ -167,7 +185,9 @@ const Navbar = (props: NavbarProps) => {
               ))}
             </Box>
           )}
-          {props.isAuthenticated() && <UserMenu username={userData()?.name} />}
+          {props.isAuthenticated() && (
+            <UserMenu username={userData()?.name} signOut={props.signOut} />
+          )}
         </Group>
       </Group>
       <Burger
@@ -177,13 +197,18 @@ const Navbar = (props: NavbarProps) => {
       />
       <div className={classes.menu}>
         {menuButtons.map((button) => (
-          <MenuButton
-            setOpened={setOpened}
-            label={button.label}
-            key={button.label}
-            icon={button.icon}
-            path={button.link}
-          />
+          <>
+            {button.show && (
+              <MenuButton
+                onClick={button.onClick}
+                setOpened={setOpened}
+                label={button.label}
+                key={button.label}
+                icon={button.icon}
+                path={button.link}
+              />
+            )}
+          </>
         ))}
       </div>
     </Header>

@@ -1,4 +1,4 @@
-import { useIsAuthenticated } from "react-auth-kit";
+import { useIsAuthenticated, useSignOut } from "react-auth-kit";
 import { AppShell } from "@mantine/core";
 import Navbar from "./navbar/Navbar";
 import Header from "./header/Header";
@@ -9,6 +9,8 @@ type ShellProps = {
 
 const Shell: React.FC<ShellProps> = ({ children }) => {
   const isAuthenticated = useIsAuthenticated();
+  const signOut = useSignOut();
+
   return (
     <AppShell
       sx={(theme) => ({
@@ -24,7 +26,7 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
         },
       })}
       navbarOffsetBreakpoint="sm"
-      navbar={<Navbar isAuthenticated={isAuthenticated} />}
+      navbar={<Navbar isAuthenticated={isAuthenticated} signOut={signOut} />}
       header={<Header />}
     >
       {children}

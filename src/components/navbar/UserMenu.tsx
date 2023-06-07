@@ -8,7 +8,6 @@ import {
 import Avatar from "../Avatar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSignOut } from "react-auth-kit";
 
 const useStyles = createStyles((theme) => ({
   menuTarget: {
@@ -32,12 +31,12 @@ const useStyles = createStyles((theme) => ({
 
 type UserMenuProps = {
   username: string;
+  signOut: () => boolean;
 };
 
 export default function UserMenu(props: UserMenuProps) {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles();
-  const signOut = useSignOut();
   return (
     <Group position="center">
       <Menu withArrow opened={opened} onChange={setOpened}>
@@ -60,7 +59,7 @@ export default function UserMenu(props: UserMenuProps) {
             <Menu.Item
               color="red"
               icon={<IconLogout size={14} />}
-              onClick={signOut}
+              onClick={props.signOut}
             >
               Sign Out
             </Menu.Item>

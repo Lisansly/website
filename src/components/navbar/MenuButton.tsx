@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 
 type ButtonProps = {
+  onClick?: () => void;
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
   icon: React.ReactNode;
   label: string;
@@ -39,6 +40,7 @@ const MenuButton = (props: ButtonProps) => {
       <UnstyledButton
         onClick={() => {
           props.setOpened && props.setOpened(false);
+          props.onClick && props.onClick();
         }}
         className={classes.button}
       >
