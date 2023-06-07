@@ -1,8 +1,8 @@
 import { createStyles, Navbar, getStylesRef } from "@mantine/core";
-import { Icon, IconCloudComputing } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import SideBarLink from "./SideBarLink";
 import { useEffect } from "react";
+import { TabProps } from "./Dashboard";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -15,11 +15,10 @@ const useStyles = createStyles((theme) => ({
     padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
     borderRadius: theme.radius.sm,
     fontWeight: 500,
-
     backgroundColor:
       theme.colorScheme === "dark"
         ? theme.colors.dark[7]
-        : theme.colors.gray[1],
+        : theme.colors.gray[3],
     [theme.fn.smallerThan("md")]: {
       padding: 8,
     },
@@ -27,9 +26,7 @@ const useStyles = createStyles((theme) => ({
     "&:hover": {
       cursor: "pointer",
       backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[4]
-          : theme.colors.gray[0],
+        theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white,
       color: theme.colorScheme === "dark" ? theme.white : theme.black,
 
       [`& .${getStylesRef("icon")}`]: {
@@ -48,14 +45,8 @@ const useStyles = createStyles((theme) => ({
   linkActive: {
     backgroundColor:
       theme.colorScheme === "dark"
-        ? theme.colors.dark[5]
-        : theme.colors.gray[3],
-    ":hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[5]
-          : theme.colors.gray[3],
-    },
+        ? theme.colors.dark[6]
+        : theme.colors.gray[0],
   },
   label: {
     marginLeft: theme.spacing.sm,
@@ -80,22 +71,9 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-type linkProps = {
-  path: string;
-  label: string;
-  icon: Icon;
-};
-
-const links: linkProps[] = [
-  {
-    path: "cloud-based-licensinga",
-    label: "Cloud Based Licensinga",
-    icon: IconCloudComputing,
-  },
-];
-
 type SideBarProps = {
   tabValue: string | undefined;
+  tabs: TabProps[];
 };
 
 export function SideBar(props: SideBarProps) {
@@ -103,7 +81,7 @@ export function SideBar(props: SideBarProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!links.some((link) => link.path === props.tabValue)) {
+    if (!props.tabs.some((tab) => tab.path === props.tabValue)) {
       navigate("/dashboard/cloud-based-licensing");
     }
   }, [props.tabValue]);
@@ -111,12 +89,12 @@ export function SideBar(props: SideBarProps) {
   return (
     <Navbar pt={80} className={classes.sidebar}>
       <Navbar.Section grow>
-        {links.map((link) => (
+        {props.tabs.map((tab) => (
           <SideBarLink
             tabValue={props.tabValue}
             classes={classes}
-            key={link.path}
-            item={link}
+            key={tab.path}
+            item={tab}
             cx={cx}
           />
         ))}

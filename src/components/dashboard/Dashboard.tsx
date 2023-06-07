@@ -1,7 +1,8 @@
-import CloudBasedLicensing from "./CloudBasedLicensing";
+import CloudBasedLicensing from "./cloud_based_licensing/CloudBasedLicensing";
 import { createStyles } from "@mantine/core";
 import { useParams } from "react-router-dom";
 import { SideBar } from "./SideBar";
+import { Icon, IconCloudComputing } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
   dashboard: {
@@ -14,24 +15,35 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-type tabProps = {
-  path: string;
+export type TabProps = {
   component: JSX.Element;
+  label: string;
+  path: string;
+  icon: Icon;
 };
 
 const Dashboard = () => {
   const { tabValue, projectName } = useParams();
   const { classes } = useStyles();
-  const tabs: tabProps[] = [
+
+  const tabs: TabProps[] = [
     {
-      path: "cloud-based-licensing",
       component: <CloudBasedLicensing projectName={projectName} />,
+      label: "Cloud Based Licensing",
+      path: "cloud-based-licensing",
+      icon: IconCloudComputing,
+    },
+    {
+      component: <CloudBasedLicensing projectName={projectName} />,
+      label: "Cloud Based Licensing",
+      path: "caloud-based-licensing",
+      icon: IconCloudComputing,
     },
   ];
 
   return (
     <>
-      <SideBar tabValue={tabValue} />
+      <SideBar tabValue={tabValue} tabs={tabs} />
       <div className={classes.dashboard}>
         {tabs.find((tab) => tab.path === tabValue)?.component}
       </div>
