@@ -3,7 +3,7 @@ import AuthClient from "../clients/AuthClient";
 import { AxiosError } from "axios";
 
 const refreshToken = createRefresh({
-  interval: 0.1,
+  interval: 10,
   refreshApiCallback: async ({ refreshToken, authUserState }): Promise<any> => {
     const response = await AuthClient.refreshToken(
       refreshToken || "",
