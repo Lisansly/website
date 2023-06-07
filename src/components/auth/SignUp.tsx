@@ -13,8 +13,8 @@ import Avatar from "../Avatar";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "@mantine/form";
 import { AxiosError } from "axios";
-import { useState } from "react";
-import { useSignIn } from "react-auth-kit";
+import { useEffect, useState } from "react";
+import { useIsAuthenticated, useSignIn } from "react-auth-kit";
 import Notification from "../Notification";
 import AuthClient from "../../clients/AuthClient";
 
@@ -52,8 +52,14 @@ const passwordInputs: PasswordInputProps[] = [
 ];
 
 export default function SignUp() {
-  const [loading, setLoading] = useState(false);
+  const isAuthenticated = useIsAuthenticated();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    isAuthenticated() && navigate("/");
+  }, []);
+
+  const [loading, setLoading] = useState(false);
   const signIn = useSignIn();
 
   const form = useForm<SignUpBody>({

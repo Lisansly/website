@@ -2,11 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthClient from "../../clients/AuthClient";
 import PasswordInput from "./PasswordInput";
 import Notification from "../Notification";
-import { useSignIn } from "react-auth-kit";
+import { useIsAuthenticated, useSignIn } from "react-auth-kit";
 import { useForm } from "@mantine/form";
 import TextInput from "./TextInput";
 import { AxiosError } from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./Button";
 import {
   Paper,
@@ -39,8 +39,14 @@ export type SignInPathParam = {
 };
 
 export default function SignIn() {
-  const [loading, setLoading] = useState(false);
+  const isAuthenticated = useIsAuthenticated();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    isAuthenticated() && navigate("/");
+  }, []);
+
+  const [loading, setLoading] = useState(false);
   const signIn = useSignIn();
 
   const form = useForm<SignInPathParam>({
