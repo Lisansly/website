@@ -15,6 +15,7 @@ import {
   ColorScheme,
 } from "@mantine/core";
 import { AuthProvider } from "react-auth-kit";
+import refreshToken from "./components/RefreshToken.ts";
 
 const Root = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -51,7 +52,11 @@ const Root = () => {
         withNormalizeCSS
       >
         <Notifications position="top-center" mt={"xl"} autoClose={4000} />
-        <AuthProvider authType={"localstorage"} authName={"_auth"}>
+        <AuthProvider
+          authType={"localstorage"}
+          authName={"_auth"}
+          refresh={refreshToken}
+        >
           <BrowserRouter>
             <Shell>
               <Routes>
