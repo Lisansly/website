@@ -18,7 +18,7 @@ import { AuthProvider, RequireAuth } from "react-auth-kit";
 import refreshToken from "./components/RefreshToken.ts";
 import Profile from "./components/profile/Profile.tsx";
 
-const Root = () => {
+export function Root() {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
     (localStorage.getItem("theme") as ColorScheme) || "light"
   );
@@ -81,7 +81,7 @@ const Root = () => {
       </MantineProvider>
     </ColorSchemeProvider>
   );
-};
+}
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Root />
