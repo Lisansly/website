@@ -31,16 +31,19 @@ const Helper = () => {
   return (
     <Paper p="md" withBorder w={"450px"} radius={"lg"}>
       <Group position="center">
-        <Group spacing={"xl"}>
-          <Avatar username={userData()?.name} size="100px" />
-          <Select
-            size="xs"
-            defaultValue={"All"}
-            data={["All", "Account"]}
-            label="Select the category related to your question"
-            variant="filled"
-          />
-        </Group>
+        <Avatar username={userData()?.name} size="100px" />
+        <Select
+          size="xs"
+          sx={(theme) => ({
+            [theme.fn.largerThan("xs")]: {
+              marginLeft: theme.spacing.lg,
+            },
+          })}
+          defaultValue={"All"}
+          data={["All", "Account"]}
+          label="Select the category related to your question"
+          variant="filled"
+        />
         <Code
           sx={{ wordBreak: "break-word" }}
           color={"blue"}
