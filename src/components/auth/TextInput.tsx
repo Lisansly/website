@@ -2,7 +2,7 @@ import { TextInput as MantineTextInput } from "@mantine/core";
 
 type TextInputProps = {
   placeholder: string;
-  validation?: any;
+  validation: any;
   label: string;
 };
 

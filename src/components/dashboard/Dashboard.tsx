@@ -14,10 +14,15 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+type tabProps = {
+  path: string;
+  component: JSX.Element;
+};
+
 const Dashboard = () => {
   const { tabValue, projectName } = useParams();
   const { classes } = useStyles();
-  const tabs = [
+  const tabs: tabProps[] = [
     {
       path: "cloud-based-licensing",
       component: <CloudBasedLicensing projectName={projectName} />,

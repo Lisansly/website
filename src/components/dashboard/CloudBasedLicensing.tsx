@@ -3,9 +3,9 @@ import NewProjectButton from "./NewProjectButton";
 import { useNavigate } from "react-router-dom";
 import SearchProject from "./SearchProject";
 import ManageProject from "./ManageProject";
-import Project from "./Project";
+import Project, { ProjectProps } from "./Project";
 
-const projects = [
+const projects: ProjectProps[] = [
   {
     name: "Lisansly",
     keyCount: 12,
@@ -68,10 +68,8 @@ const CloudBasedLicensing = (props: CloudBasedLicensingProps) => {
                 <Project
                   projectsCount={projects.length}
                   navigate={navigate}
-                  keyCount={project.keyCount}
-                  name={project.name}
+                  props={project}
                   key={index}
-                  path={project.path}
                 />
               ))}
             </Group>

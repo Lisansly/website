@@ -1,5 +1,5 @@
 import { createStyles, Navbar, getStylesRef } from "@mantine/core";
-import { IconCloudComputing } from "@tabler/icons-react";
+import { Icon, IconCloudComputing } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import SideBarLink from "./SideBarLink";
 import { useEffect } from "react";
@@ -80,7 +80,13 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const links = [
+type linkProps = {
+  path: string;
+  label: string;
+  icon: Icon;
+};
+
+const links: linkProps[] = [
   {
     path: "cloud-based-licensinga",
     label: "Cloud Based Licensinga",

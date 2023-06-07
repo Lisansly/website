@@ -2,27 +2,29 @@ import { Paper, Text, createStyles } from "@mantine/core";
 import { NavigateFunction } from "react-router-dom";
 
 export type ProjectProps = {
-  projectsCount: number;
-  navigate: NavigateFunction;
   keyCount: number;
   name: string;
   path: string;
 };
 
-const Project = (props: ProjectProps) => {
+const Project = ({
+  projectsCount,
+  navigate,
+  props,
+}: {
+  projectsCount: number;
+  navigate: NavigateFunction;
+  props: ProjectProps;
+}) => {
   const useStyles = createStyles((theme) => ({
     project: {
       padding: theme.spacing.lg,
       height: "200px",
       [theme.fn.largerThan("md")]: {
         width: `calc(100% / ${
-          props.projectsCount === 4 ? 2 : props.projectsCount <= 3 ? 1 : 3
+          projectsCount === 4 ? 2 : projectsCount <= 3 ? 1 : 3
         } ${
-          props.projectsCount >= 5
-            ? " - 11px"
-            : props.projectsCount >= 4
-            ? " - 8px"
-            : ""
+          projectsCount >= 5 ? " - 11px" : projectsCount >= 4 ? " - 8px" : ""
         })`,
       },
       [theme.fn.smallerThan("md")]: {
@@ -52,7 +54,7 @@ const Project = (props: ProjectProps) => {
     <Paper
       withBorder
       className={classes.project}
-      onClick={() => props.navigate(props.path)}
+      onClick={() => navigate(props.path)}
     >
       <Text size="xl" className={classes.name}>
         {props.name}

@@ -37,7 +37,13 @@ const links = [
   { path: "/dashboard/cloud-based-licensing", label: "Dashboard" },
 ];
 
-const menuButtons = [
+type menuButtonProps = {
+  icon: React.ReactNode;
+  link: string;
+  label: string;
+};
+
+const menuButtons: menuButtonProps[] = [
   {
     icon: <IconHome size="1.1rem" />,
     link: "/",

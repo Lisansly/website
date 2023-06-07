@@ -1,4 +1,11 @@
-import { Paper, Title, Text, Container } from "@mantine/core";
+import {
+  Paper,
+  Title,
+  Text,
+  Container,
+  TextInputProps,
+  PasswordInputProps,
+} from "@mantine/core";
 import PasswordInput from "./PasswordInput";
 import TextInput from "./TextInput";
 import Button from "./Button";
@@ -18,7 +25,7 @@ export type SignUpBody = {
   confirmPassword: string;
 };
 
-const textInputs = [
+const textInputs: TextInputProps[] = [
   {
     placeholder: "Your username",
     label: "Username",
@@ -31,7 +38,7 @@ const textInputs = [
   },
 ];
 
-const passwordInputs = [
+const passwordInputs: PasswordInputProps[] = [
   {
     placeholder: "Your password",
     label: "Password",
@@ -137,18 +144,18 @@ export default function SignUp() {
         <Avatar size="8em" mb="xl" username={form.values.name} />
         {textInputs.map((input) => (
           <TextInput
-            validation={form.getInputProps(input.key)}
-            placeholder={input.placeholder}
-            label={input.label}
-            key={input.label}
+            validation={form.getInputProps(input.key as string)}
+            placeholder={input.placeholder as string}
+            label={input.label as string}
+            key={input.key}
           />
         ))}
         {passwordInputs.map((input) => (
           <PasswordInput
-            validation={form.getInputProps(input.key)}
-            placeholder={input.placeholder}
-            label={input.label}
-            key={input.label}
+            validation={form.getInputProps(input.key as string)}
+            placeholder={input.placeholder as string}
+            label={input.label as string}
+            key={input.key}
           />
         ))}
         <Button label="Sign Up" loading={loading} />

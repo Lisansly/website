@@ -1,4 +1,3 @@
-import { Paper, Title, Text, Container } from "@mantine/core";
 import { Link, useNavigate } from "react-router-dom";
 import AuthClient from "../../clients/AuthClient";
 import PasswordInput from "./PasswordInput";
@@ -9,8 +8,16 @@ import TextInput from "./TextInput";
 import { AxiosError } from "axios";
 import { useState } from "react";
 import Button from "./Button";
+import {
+  Paper,
+  Title,
+  Text,
+  Container,
+  TextInputProps,
+  PasswordInputProps,
+} from "@mantine/core";
 
-const textInputs = [
+const textInputs: TextInputProps[] = [
   {
     placeholder: "Your username or email",
     label: "Username or email",
@@ -18,7 +25,7 @@ const textInputs = [
   },
 ];
 
-const passwordInputs = [
+const passwordInputs: PasswordInputProps[] = [
   {
     placeholder: "Your password",
     label: "Password",
@@ -115,18 +122,18 @@ export default function SignIn() {
       >
         {textInputs.map((input) => (
           <TextInput
-            validation={form.getInputProps(input.key)}
-            placeholder={input.placeholder}
-            label={input.label}
-            key={input.label}
+            validation={form.getInputProps(input.key as string)}
+            placeholder={input.placeholder as string}
+            label={input.label as string}
+            key={input.key}
           />
         ))}
         {passwordInputs.map((input) => (
           <PasswordInput
-            validation={form.getInputProps(input.key)}
-            placeholder={input.placeholder}
-            label={input.label}
-            key={input.label}
+            validation={form.getInputProps(input.key as string)}
+            placeholder={input.placeholder as string}
+            label={input.label as string}
+            key={input.key}
           />
         ))}
         <Button loading={loading} label="Sign In" />
