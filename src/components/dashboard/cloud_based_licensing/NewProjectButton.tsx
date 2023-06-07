@@ -6,7 +6,7 @@ const NewProjectButton = () => {
   const matches = useMediaQuery(`(max-width: 770px)`);
   return (
     <Button variant="default">
-      {matches ? <IconPlus size={"1rem"} /> : "New Project"}
+      {matches ? <IconPlus size="1rem" /> : "New Project"}
     </Button>
   );
 };

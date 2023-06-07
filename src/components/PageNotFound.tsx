@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   createStyles,
   Container,
@@ -7,7 +8,6 @@ import {
   Group,
   rem,
 } from "@mantine/core";
-import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -54,17 +54,17 @@ export default function PageNotFound() {
       <div className={classes.label}>404</div>
       <Title className={classes.title}>Nothing to see here</Title>
       <Text
-        color="dimmed"
-        size="lg"
-        align="center"
         className={classes.description}
+        color="dimmed"
+        align="center"
+        size="lg"
       >
         Unfortunately, this is only a 404 page. You may have mistyped the
         address, or the page has been moved to another URL.
       </Text>
       <Group position="center">
         <Link to="/">
-          <Button variant="default" size="md" radius={"md"}>
+          <Button variant="default" size="md" radius="md">
             Take me back to home page
           </Button>
         </Link>

@@ -1,7 +1,7 @@
 import { Autocomplete, Group, Paper, Code, Select } from "@mantine/core";
-import Avatar from "./Avatar";
 import { useAuthUser } from "react-auth-kit";
 import { useState, useEffect } from "react";
+import Avatar from "./Avatar";
 
 const questions = [
   {
@@ -29,20 +29,20 @@ const Helper = () => {
   }, [answer, typedAnswer]);
 
   return (
-    <Paper p="md" withBorder w={"450px"} radius={"lg"}>
+    <Paper p="md" withBorder w="450px" radius="lg">
       <Group position="center">
         <Avatar username={userData()?.name} size="100px" />
         <Select
-          size="xs"
           sx={(theme) => ({
             [theme.fn.largerThan("xs")]: {
               marginLeft: theme.spacing.lg,
             },
           })}
-          defaultValue={"All"}
-          data={["All", "Account"]}
           label="Select the category related to your question"
+          data={["All", "Account"]}
+          defaultValue={"All"}
           variant="filled"
+          size="xs"
         />
         <Code
           sx={{ wordBreak: "break-word" }}
@@ -54,8 +54,6 @@ const Helper = () => {
           {typedAnswer}
         </Code>
         <Autocomplete
-          w={"100%"}
-          placeholder="Write your question"
           data={questions.map((question) => question.question)}
           onChange={(value) => {
             const question = questions.find(
@@ -64,6 +62,8 @@ const Helper = () => {
             setAnswer(question?.answer || "...");
             setTypedAnswer("");
           }}
+          placeholder="Write your question"
+          w={"100%"}
         />
       </Group>
     </Paper>

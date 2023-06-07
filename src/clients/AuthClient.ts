@@ -1,5 +1,5 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
 import { SignInPathParam } from "../components/auth/SignIn";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { SignUpBody } from "../components/auth/SignUp";
 
 class AuthClient {

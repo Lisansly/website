@@ -1,22 +1,22 @@
+import { useIsAuthenticated, useSignIn } from "react-auth-kit";
+import { Link, useNavigate } from "react-router-dom";
+import AuthClient from "../../clients/AuthClient";
+import { useEffect, useState } from "react";
+import Notification from "../Notification";
+import PasswordInput from "../PasswordInput";
+import { useForm } from "@mantine/form";
+import TextInput from "../TextInput";
+import { AxiosError } from "axios";
+import Button from "../Button";
+import Avatar from "../Avatar";
 import {
+  PasswordInputProps,
+  TextInputProps,
+  Container,
   Paper,
   Title,
   Text,
-  Container,
-  TextInputProps,
-  PasswordInputProps,
 } from "@mantine/core";
-import PasswordInput from "../PasswordInput";
-import TextInput from "../TextInput";
-import Button from "../Button";
-import Avatar from "../Avatar";
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "@mantine/form";
-import { AxiosError } from "axios";
-import { useEffect, useState } from "react";
-import { useIsAuthenticated, useSignIn } from "react-auth-kit";
-import Notification from "../Notification";
-import AuthClient from "../../clients/AuthClient";
 
 export type SignUpBody = {
   name: string;
@@ -140,11 +140,11 @@ export default function SignUp() {
       <Paper
         onSubmit={form.onSubmit((values) => onSubmit(values))}
         component="form"
-        withBorder
         shadow="sm"
-        p={30}
-        mt={30}
         radius="lg"
+        withBorder
+        mt={30}
+        p={30}
       >
         <Avatar size="8em" mb="xl" username={form.values.name} />
         {textInputs.map((input) => (

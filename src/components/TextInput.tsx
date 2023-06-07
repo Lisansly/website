@@ -13,7 +13,6 @@ const TextInput = (props: TextInputProps) => {
       placeholder={props.placeholder}
       {...props.validation}
       label={props.label}
-      key={props.key}
       mb="md"
     />
   );

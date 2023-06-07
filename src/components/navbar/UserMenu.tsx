@@ -1,13 +1,13 @@
 import { Group, Menu, createStyles } from "@mantine/core";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import Avatar from "../Avatar";
 import {
+  IconChevronRight,
   IconChevronDown,
   IconUserCircle,
   IconLogout,
-  IconChevronRight,
 } from "@tabler/icons-react";
-import Avatar from "../Avatar";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   menuTarget: {
@@ -44,9 +44,9 @@ export default function UserMenu(props: UserMenuProps) {
           <Group className={classes.menuTarget}>
             <Avatar size="md" username={props.username} />
             {opened ? (
-              <IconChevronDown size={"1rem"} />
+              <IconChevronDown size="1rem" />
             ) : (
-              <IconChevronRight size={"1rem"} />
+              <IconChevronRight size="1rem" />
             )}
           </Group>
         </Menu.Target>
@@ -57,9 +57,9 @@ export default function UserMenu(props: UserMenuProps) {
           </Link>
           <Link to="/">
             <Menu.Item
-              color="red"
               icon={<IconLogout size={14} />}
               onClick={props.signOut}
+              color="red"
             >
               Sign Out
             </Menu.Item>

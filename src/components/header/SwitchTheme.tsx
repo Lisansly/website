@@ -6,12 +6,12 @@ const SwitchTheme = () => {
 
   return (
     <Switch
-      checked={colorScheme === "dark"}
-      onClick={() => toggleColorScheme()}
-      size="lg"
-      radius="sm"
-      onLabel={<IconSun size="1.25rem" stroke={1.5} />}
       offLabel={<IconMoonStars size="1.25rem" stroke={1.5} />}
+      onLabel={<IconSun size="1.25rem" stroke={1.5} />}
+      onClick={() => toggleColorScheme()}
+      checked={colorScheme === "dark"}
+      radius="sm"
+      size="lg"
     />
   );
 };

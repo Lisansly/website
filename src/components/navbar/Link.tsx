@@ -2,9 +2,9 @@ import { Text } from "@mantine/core";
 import { Link as ReactRouterDomLink } from "react-router-dom";
 
 type LinkProps = {
+  className: any;
   label: string;
   path: string;
-  className: any;
 };
 
 const Link = (props: LinkProps) => {

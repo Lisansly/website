@@ -52,9 +52,9 @@ const Project = ({
   const { classes } = useStyles();
   return (
     <Paper
-      withBorder
-      className={classes.project}
       onClick={() => navigate(props.path)}
+      className={classes.project}
+      withBorder
     >
       <Text size="xl" className={classes.name}>
         {props.name}

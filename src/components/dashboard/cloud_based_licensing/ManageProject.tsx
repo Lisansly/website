@@ -1,6 +1,6 @@
 import { Badge, Box, CopyButton, Group, Paper, Text } from "@mantine/core";
-import BackButton from "./BackButton";
 import EditLisanceKeysButton from "./EditLisanceKeysButton";
+import BackButton from "../BackButton";
 
 type ManageProjectProps = {
   projectName: string | undefined;
@@ -8,20 +8,20 @@ type ManageProjectProps = {
 
 const ManageProject = (props: ManageProjectProps) => {
   return (
-    <Box p={"xs"}>
-      <Box display={"flex"} mb={"xl"}>
+    <Box p="xs">
+      <Box display="flex" mb="xl">
         <Group>
-          <BackButton />
+          <BackButton path="/dashboard/cloud-based-licensing" />
           <Box>
             <Text fw={700}>{props.projectName}</Text>
-            <Text c={"dimmed"} size={"xs"}>
+            <Text c="dimmed" size="xs">
               have 12 lisance keys
             </Text>
           </Box>
         </Group>
       </Box>
-      <Paper p={"md"} radius={"sm"} withBorder maw={"500px"}>
-        <Group position="apart" mb={"md"}>
+      <Paper p="md" radius="sm" withBorder maw="500px">
+        <Group position="apart" mb="md">
           <Box>
             <Text fw={700}>Lisance Keys</Text>
           </Box>
@@ -31,13 +31,13 @@ const ManageProject = (props: ManageProjectProps) => {
           <CopyButton value="https://mantine.dev">
             {({ copied, copy }) => (
               <Badge
-                variant="light"
+                color={copied ? "teal" : "blue"}
                 sx={{ cursor: "pointer" }}
+                variant="light"
+                onClick={copy}
                 radius={"sm"}
                 w={"100%"}
                 p={"md"}
-                color={copied ? "teal" : "blue"}
-                onClick={copy}
               >
                 {copied
                   ? "Copied lisance key"

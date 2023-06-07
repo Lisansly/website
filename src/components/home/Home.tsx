@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { HeroHeader } from "./HeroHeader";
-import Helper from "../Helper";
 import { Group } from "@mantine/core";
+import Helper from "../Helper";
 
 const Home = () => {
   const navigate = useNavigate();

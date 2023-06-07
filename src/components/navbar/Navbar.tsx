@@ -9,9 +9,9 @@ import {
   IconFileDescription,
   IconLayoutDashboard,
   IconUserPlus,
+  IconLogout,
   IconLogin,
   IconHome,
-  IconLogout,
   IconUser,
 } from "@tabler/icons-react";
 
@@ -191,24 +191,23 @@ const Navbar = (props: NavbarProps) => {
         </Group>
       </Group>
       <Burger
-        className={classes.burger}
         onClick={() => setOpened((o) => !o)}
+        className={classes.burger}
         opened={opened}
       />
       <div className={classes.menu}>
-        {menuButtons.map((button) => (
-          <>
+        {menuButtons.map((button, index) => (
+          <div key={index}>
             {button.show && (
               <MenuButton
                 onClick={button.onClick}
                 setOpened={setOpened}
                 label={button.label}
-                key={button.label}
                 icon={button.icon}
                 path={button.link}
               />
             )}
-          </>
+          </div>
         ))}
       </div>
     </Header>

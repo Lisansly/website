@@ -1,5 +1,5 @@
 import { createRefresh } from "react-auth-kit";
-import AuthClient from "../clients/AuthClient";
+import AuthClient from "./clients/AuthClient";
 import { AxiosError } from "axios";
 
 const refreshToken = createRefresh({

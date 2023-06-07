@@ -1,9 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/dashboard/Dashboard.tsx";
+import { AuthProvider, RequireAuth } from "react-auth-kit";
 import PageNotFound from "./components/PageNotFound.tsx";
+import Profile from "./components/profile/Profile.tsx";
 import { Notifications } from "@mantine/notifications";
 import SignUp from "./components/auth/SignUp.tsx";
 import SignIn from "./components/auth/SignIn.tsx";
+import refreshToken from "./RefreshToken.ts";
 import Home from "./components/home/Home.tsx";
 import Shell from "./components/Shell.tsx";
 import ReactDOM from "react-dom/client";
@@ -14,9 +17,6 @@ import {
   MantineProvider,
   ColorScheme,
 } from "@mantine/core";
-import { AuthProvider, RequireAuth } from "react-auth-kit";
-import refreshToken from "./components/RefreshToken.ts";
-import Profile from "./components/profile/Profile.tsx";
 
 export function Root() {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(

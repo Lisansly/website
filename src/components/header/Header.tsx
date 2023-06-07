@@ -1,12 +1,12 @@
+import { IconBrandGithub } from "@tabler/icons-react";
 import SwitchTheme from "./SwitchTheme";
 import Logo from "./Logo";
 import {
   Header as MantineHeader,
   createStyles,
-  Group,
   ActionIcon,
+  Group,
 } from "@mantine/core";
-import { IconBrandGithub } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <MantineHeader height={60} className={classes.header}>
-      <Group position="apart" w={"100%"}>
+      <Group position="apart" w="100%">
         <ActionIcon
           href="https://github.com/Lisansly"
           variant="default"

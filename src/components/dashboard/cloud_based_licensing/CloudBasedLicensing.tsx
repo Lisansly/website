@@ -1,9 +1,9 @@
 import { Center, Group, Pagination } from "@mantine/core";
 import NewProjectButton from "./NewProjectButton";
+import Project, { ProjectProps } from "./Project";
 import { useNavigate } from "react-router-dom";
 import SearchProject from "./SearchProject";
 import ManageProject from "./ManageProject";
-import Project, { ProjectProps } from "./Project";
 
 const projects: ProjectProps[] = [
   {
@@ -58,7 +58,7 @@ const CloudBasedLicensing = (props: CloudBasedLicensingProps) => {
     <>
       {props.projectName === undefined ? (
         <Center p="xs">
-          <Group display={"grid"} maw={"1000px"} spacing={"xl"}>
+          <Group display="grid" maw="1000px" spacing="xl">
             <Group sx={{ flexWrap: "nowrap", display: "flex" }}>
               <SearchProject />
               <NewProjectButton />

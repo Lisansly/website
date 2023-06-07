@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import {
   UnstyledButton,
@@ -6,12 +7,11 @@ import {
   Group,
   Text,
 } from "@mantine/core";
-import { Link } from "react-router-dom";
 
 type ButtonProps = {
-  onClick?: () => void;
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
   icon: React.ReactNode;
+  onClick?: () => void;
   label: string;
   path: string;
 };

@@ -1,8 +1,8 @@
 import CloudBasedLicensing from "./cloud_based_licensing/CloudBasedLicensing";
-import { createStyles } from "@mantine/core";
-import { useNavigate, useParams } from "react-router-dom";
-import { SideBar } from "./SideBar";
 import { Icon, IconCloudComputing } from "@tabler/icons-react";
+import { useNavigate, useParams } from "react-router-dom";
+import { createStyles } from "@mantine/core";
+import { SideBar } from "./SideBar";
 import { useEffect } from "react";
 
 const useStyles = createStyles((theme) => ({

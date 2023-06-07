@@ -13,7 +13,7 @@ const Avatar = (props: AvatarProps) => {
         src={`https://api.dicebear.com/6.x/thumbs/svg?seed=${props.username}&radius=50&scale=75`}
         size={props.size}
         mb={props.mb}
-        radius={"xl"}
+        radius="xl"
       />
     </Center>
   );

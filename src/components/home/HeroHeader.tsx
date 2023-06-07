@@ -1,3 +1,5 @@
+import { IconBrandGithub } from "@tabler/icons-react";
+import { NavigateFunction } from "react-router-dom";
 import {
   createStyles,
   Container,
@@ -6,8 +8,6 @@ import {
   Text,
   rem,
 } from "@mantine/core";
-import { IconBrandGithub } from "@tabler/icons-react";
-import { NavigateFunction } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -22,7 +22,7 @@ const useStyles = createStyles((theme) => ({
 
     [theme.fn.smallerThan("sm")]: {
       paddingBottom: rem(80),
-      paddingTop: rem(80),
+      paddingTop: rem(10),
     },
   },
 
@@ -36,7 +36,7 @@ const useStyles = createStyles((theme) => ({
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
 
     [theme.fn.smallerThan("sm")]: {
-      fontSize: rem(42),
+      fontSize: rem(40),
       lineHeight: 1.2,
     },
   },
@@ -111,8 +111,8 @@ export function HeroHeader(props: HeroHeaderProps) {
             Get started
           </Button>
           <Button
-            leftIcon={<IconBrandGithub />}
             href="https://github.com/Lisansly"
+            leftIcon={<IconBrandGithub />}
             className={classes.control}
             variant="default"
             target="_blank"
