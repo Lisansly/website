@@ -14,7 +14,7 @@ import {
   MantineProvider,
   ColorScheme,
 } from "@mantine/core";
-import { AuthProvider } from "react-auth-kit";
+import { AuthProvider, RequireAuth } from "react-auth-kit";
 import refreshToken from "./components/RefreshToken.ts";
 
 const Root = () => {
@@ -65,7 +65,11 @@ const Root = () => {
                 <Route path="/" element={<Home />} />
                 <Route
                   path="/dashboard/:tabValue?/:projectName?"
-                  element={<Dashboard />}
+                  element={
+                    <RequireAuth loginPath={"/signin"}>
+                      <Dashboard />
+                    </RequireAuth>
+                  }
                 />
                 <Route path="/*" element={<PageNotFound />} />
               </Routes>
