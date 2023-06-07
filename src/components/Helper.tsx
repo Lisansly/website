@@ -31,15 +31,16 @@ const Helper = () => {
   return (
     <Paper p="md" withBorder w={"450px"} radius={"lg"}>
       <Group position="center">
-        <Avatar username={userData()?.name} size="100px" />
-        <Select
-          ml={"xl"}
-          size="xs"
-          defaultValue={"All"}
-          data={["All", "Account"]}
-          label="Select the category related to your question"
-          variant="filled"
-        />
+        <Group spacing={"xl"}>
+          <Avatar username={userData()?.name} size="100px" />
+          <Select
+            size="xs"
+            defaultValue={"All"}
+            data={["All", "Account"]}
+            label="Select the category related to your question"
+            variant="filled"
+          />
+        </Group>
         <Code
           sx={{ wordBreak: "break-word" }}
           color={"blue"}
