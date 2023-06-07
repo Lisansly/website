@@ -23,7 +23,7 @@ const EditProfile = () => {
     <Tabs.Panel value="edit" pt="xs">
       <Group position="center" mt={"xl"} spacing={"xl"}>
         <Helper />
-        <Paper p="md" withBorder radius={"lg"} maw={"400px"} w={"100%"}>
+        <Paper p="md" withBorder radius={"md"} maw={"400px"} w={"100%"}>
           {textInputs.map((input) => (
             <TextInput
               placeholder={input.placeholder as string}
