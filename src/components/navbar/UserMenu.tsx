@@ -53,7 +53,7 @@ export default function UserMenu(props: UserMenuProps) {
         </Menu.Target>
         <Menu.Dropdown className={classes.menuDropdown}>
           <Menu.Label className={classes.username}>{props.username}</Menu.Label>
-          <Link to="/profile">
+          <Link to="/profile/edit">
             <Menu.Item icon={<IconUserCircle size={14} />}>Profile</Menu.Item>
           </Link>
           <Link to="/">

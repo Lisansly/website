@@ -20,7 +20,7 @@ const passwordInputs: PasswordInputProps[] = [
 const ChangePassword = () => {
   const [loading] = useState(false);
   return (
-    <Tabs.Panel value="changePassword" pt="xs">
+    <Tabs.Panel value="change-password" pt="xs">
       <Group position="center" mt={"xl"} spacing={"xl"}>
         <Helper />
         <Paper p="md" withBorder radius={"lg"} maw={"400px"} w={"100%"}>

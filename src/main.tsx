@@ -61,7 +61,7 @@ const Root = () => {
           <BrowserRouter>
             <Shell>
               <Routes>
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/:tabValue?" element={<Profile />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/" element={<Home />} />

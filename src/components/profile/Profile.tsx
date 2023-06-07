@@ -1,13 +1,19 @@
+import { useNavigate, useParams } from "react-router-dom";
 import ChangePassword from "./ChangePassword";
 import EditProfile from "./EditProfile";
 import { Tabs } from "@mantine/core";
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const { tabValue } = useParams();
   return (
-    <Tabs defaultValue="editProfile">
+    <Tabs
+      value={tabValue}
+      onTabChange={(value) => navigate(`/profile/${value}`)}
+    >
       <Tabs.List position="center">
-        <Tabs.Tab value="editProfile">Edit Profile</Tabs.Tab>
-        <Tabs.Tab value="changePassword">Change Password</Tabs.Tab>
+        <Tabs.Tab value="edit">Edit Profile</Tabs.Tab>
+        <Tabs.Tab value="change-password">Change Password</Tabs.Tab>
       </Tabs.List>
 
       <EditProfile />

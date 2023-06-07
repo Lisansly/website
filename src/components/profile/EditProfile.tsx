@@ -20,7 +20,7 @@ const textInputs: TextInputProps[] = [
 const EditProfile = () => {
   const [loading] = useState(false);
   return (
-    <Tabs.Panel value="editProfile" pt="xs">
+    <Tabs.Panel value="edit" pt="xs">
       <Group position="center" mt={"xl"} spacing={"xl"}>
         <Helper />
         <Paper p="md" withBorder radius={"lg"} maw={"400px"} w={"100%"}>
