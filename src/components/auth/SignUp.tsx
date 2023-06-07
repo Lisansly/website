@@ -103,19 +103,18 @@ export default function SignUp() {
       // TODO: Handle other errors
     } else {
       const accessToken = response.data.accessToken;
-      //const refreshToken = response.data.refreshToken;
+      const refreshToken = response.data.refreshToken;
       const decodedAccessToken = JSON.parse(atob(accessToken.split(".")[1]));
-      //const decodedRefreshToken = JSON.parse(atob(refreshToken.split(".")[1]));
+      const decodedRefreshToken = JSON.parse(atob(refreshToken.split(".")[1]));
 
       signIn({
         token: accessToken,
         expiresIn: decodedAccessToken.exp,
         tokenType: "Bearer",
-        /*
         refreshToken: refreshToken,
         refreshTokenExpireIn: decodedRefreshToken.exp,
-        */
         authState: {
+          id: decodedAccessToken.sub,
           name: decodedAccessToken.name,
           email: decodedAccessToken.email,
         },
