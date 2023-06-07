@@ -16,6 +16,7 @@ import {
 } from "@mantine/core";
 import { AuthProvider, RequireAuth } from "react-auth-kit";
 import refreshToken from "./components/RefreshToken.ts";
+import Profile from "./components/profile/Profile.tsx";
 
 const Root = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -60,6 +61,7 @@ const Root = () => {
           <BrowserRouter>
             <Shell>
               <Routes>
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/" element={<Home />} />

@@ -1,21 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import AuthClient from "../../clients/AuthClient";
-import PasswordInput from "./PasswordInput";
+import PasswordInput, { PasswordInputProps } from "../PasswordInput";
 import Notification from "../Notification";
 import { useIsAuthenticated, useSignIn } from "react-auth-kit";
 import { useForm } from "@mantine/form";
-import TextInput from "./TextInput";
+import TextInput, { TextInputProps } from "../TextInput";
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
-import Button from "./Button";
-import {
-  Paper,
-  Title,
-  Text,
-  Container,
-  TextInputProps,
-  PasswordInputProps,
-} from "@mantine/core";
+import Button from "../Button";
+import { Paper, Title, Text, Container } from "@mantine/core";
 
 const textInputs: TextInputProps[] = [
   {

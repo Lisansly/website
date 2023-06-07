@@ -1,9 +1,10 @@
 import { PasswordInput as MantinePasswordInput } from "@mantine/core";
 
-type PasswordInputProps = {
+export type PasswordInputProps = {
   placeholder: string;
-  validation: any;
+  validation?: any;
   label: string;
+  key: string;
 };
 
 const PasswordInput = (props: PasswordInputProps) => {
@@ -12,6 +13,7 @@ const PasswordInput = (props: PasswordInputProps) => {
       placeholder={props.placeholder}
       {...props.validation}
       label={props.label}
+      key={props.key}
       mb="md"
     />
   );

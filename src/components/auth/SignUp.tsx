@@ -6,9 +6,9 @@ import {
   TextInputProps,
   PasswordInputProps,
 } from "@mantine/core";
-import PasswordInput from "./PasswordInput";
-import TextInput from "./TextInput";
-import Button from "./Button";
+import PasswordInput from "../PasswordInput";
+import TextInput from "../TextInput";
+import Button from "../Button";
 import Avatar from "../Avatar";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "@mantine/form";
@@ -152,7 +152,7 @@ export default function SignUp() {
             validation={form.getInputProps(input.key as string)}
             placeholder={input.placeholder as string}
             label={input.label as string}
-            key={input.key}
+            key={input.key as string}
           />
         ))}
         {passwordInputs.map((input) => (
@@ -160,7 +160,7 @@ export default function SignUp() {
             validation={form.getInputProps(input.key as string)}
             placeholder={input.placeholder as string}
             label={input.label as string}
-            key={input.key}
+            key={input.key as string}
           />
         ))}
         <Button label="Sign Up" loading={loading} />
