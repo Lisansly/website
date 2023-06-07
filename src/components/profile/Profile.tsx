@@ -2,10 +2,29 @@ import { useNavigate, useParams } from "react-router-dom";
 import ChangePassword from "./ChangePassword";
 import EditProfile from "./EditProfile";
 import { Tabs } from "@mantine/core";
+import { useEffect } from "react";
 
 const Profile = () => {
-  const navigate = useNavigate();
   const { tabValue } = useParams();
+  const navigate = useNavigate();
+
+  const tabs = [
+    {
+      component: <EditProfile />,
+      path: "edit",
+    },
+    {
+      component: <ChangePassword />,
+      path: "change-password",
+    },
+  ];
+
+  useEffect(() => {
+    if (!tabs.some((tab) => tab.path === tabValue)) {
+      navigate("/profile/edit");
+    }
+  }, [tabValue]);
+
   return (
     <Tabs
       value={tabValue}
@@ -16,8 +35,7 @@ const Profile = () => {
         <Tabs.Tab value="change-password">Change Password</Tabs.Tab>
       </Tabs.List>
 
-      <EditProfile />
-      <ChangePassword />
+      {tabs.find((tab) => tab.path === tabValue)?.component}
     </Tabs>
   );
 };

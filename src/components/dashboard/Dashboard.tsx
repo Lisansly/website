@@ -1,8 +1,9 @@
 import CloudBasedLicensing from "./cloud_based_licensing/CloudBasedLicensing";
 import { createStyles } from "@mantine/core";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { SideBar } from "./SideBar";
 import { Icon, IconCloudComputing } from "@tabler/icons-react";
+import { useEffect } from "react";
 
 const useStyles = createStyles((theme) => ({
   dashboard: {
@@ -25,6 +26,7 @@ export type TabProps = {
 const Dashboard = () => {
   const { tabValue, projectName } = useParams();
   const { classes } = useStyles();
+  const navigate = useNavigate();
 
   const tabs: TabProps[] = [
     {
@@ -40,6 +42,12 @@ const Dashboard = () => {
       icon: IconCloudComputing,
     },
   ];
+
+  useEffect(() => {
+    if (!tabs.some((tab) => tab.path === tabValue)) {
+      navigate("/dashboard/cloud-based-licensing");
+    }
+  }, [tabValue]);
 
   return (
     <>

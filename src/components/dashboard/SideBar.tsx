@@ -1,7 +1,5 @@
 import { createStyles, Navbar, getStylesRef } from "@mantine/core";
-import { useNavigate } from "react-router-dom";
 import SideBarLink from "./SideBarLink";
-import { useEffect } from "react";
 import { TabProps } from "./Dashboard";
 
 const useStyles = createStyles((theme) => ({
@@ -55,13 +53,16 @@ const useStyles = createStyles((theme) => ({
     },
   },
   sidebar: {
+    height: "100%",
     border: "none",
     padding: theme.spacing.md,
     [theme.fn.smallerThan("sm")]: {
       width: "70px",
+      paddingTop: 110,
     },
     [theme.fn.largerThan("sm")]: {
       width: "310px",
+      paddingTop: 150,
     },
     backgroundColor:
       theme.colorScheme === "dark"
@@ -78,16 +79,9 @@ type SideBarProps = {
 
 export function SideBar(props: SideBarProps) {
   const { classes, cx } = useStyles();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!props.tabs.some((tab) => tab.path === props.tabValue)) {
-      navigate("/dashboard/cloud-based-licensing");
-    }
-  }, [props.tabValue]);
 
   return (
-    <Navbar pt={80} className={classes.sidebar}>
+    <Navbar className={classes.sidebar}>
       <Navbar.Section grow>
         {props.tabs.map((tab) => (
           <SideBarLink
