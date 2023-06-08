@@ -12,12 +12,17 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
   const signOut = useSignOut();
 
   return (
-    <ScrollArea type="never">
+    <ScrollArea
+      styles={{
+        scrollbar: {
+          zIndex: 100,
+        },
+      }}
+    >
       <AppShell
         sx={(theme) => ({
           main: {
             height: "100vh",
-
             paddingTop: 140,
             [theme.fn.smallerThan("sm")]: {
               paddingTop: 110,

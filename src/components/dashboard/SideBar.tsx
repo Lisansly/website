@@ -53,6 +53,7 @@ const useStyles = createStyles((theme) => ({
     },
   },
   sidebar: {
+    zIndex: 0,
     height: "100%",
     border: "none",
     padding: theme.spacing.md,
@@ -68,7 +69,6 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark"
         ? theme.colors.dark[9]
         : theme.colors.gray[2],
-    zIndex: 1,
   },
 }));
 
