@@ -1,10 +1,10 @@
+import { isNotEmpty, hasLength, useForm, isEmail } from "@mantine/form";
 import { useIsAuthenticated, useSignIn } from "react-auth-kit";
 import { Link, useNavigate } from "react-router-dom";
 import AuthClient from "../../clients/AuthClient";
+import PasswordInput from "../PasswordInput";
 import { useEffect, useState } from "react";
 import Notification from "../Notification";
-import PasswordInput from "../PasswordInput";
-import { useForm } from "@mantine/form";
 import TextInput from "../TextInput";
 import { AxiosError } from "axios";
 import Button from "../Button";
@@ -69,33 +69,20 @@ export default function SignUp() {
       password: "",
       confirmPassword: "",
     },
-
-    validate: (values) => ({
-      name:
-        values.name === ""
-          ? "Username is required"
-          : values.name.length < 3
-          ? "Username must be at least 3 characters"
-          : null,
-      email:
-        values.email === ""
-          ? "Email is required"
-          : !/^\S+@\S+$/.test(values.email)
-          ? "Email is invalid"
-          : null,
-      password:
-        values.password === ""
-          ? "Password is required"
-          : values.password.length < 10
-          ? "Password must be at least 10 characters"
-          : null,
-      confirmPassword:
-        values.confirmPassword === ""
+    validate: {
+      name: isNotEmpty("Username is required"),
+      email: isEmail("Email must be valid"),
+      password: hasLength(
+        { min: 10 },
+        "Password must be at least 10 characters"
+      ),
+      confirmPassword: (value, values) =>
+        value.length === 0
           ? "Confirm password is required"
-          : values.confirmPassword !== values.password
-          ? "Confirm password must be the same as password"
+          : value !== values.password
+          ? "Passwords must match"
           : null,
-    }),
+    },
     validateInputOnChange: true,
   });
 

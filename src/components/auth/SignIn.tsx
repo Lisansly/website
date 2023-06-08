@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthClient from "../../clients/AuthClient";
 import { useEffect, useState } from "react";
 import Notification from "../Notification";
-import { useForm } from "@mantine/form";
+import { useForm, isNotEmpty } from "@mantine/form";
 import { AxiosError } from "axios";
 import Button from "../Button";
 
@@ -47,21 +47,10 @@ export default function SignIn() {
       identifier: "",
       password: "",
     },
-
-    validate: (values) => ({
-      identifier:
-        values.identifier === ""
-          ? "Username or email is required"
-          : values.identifier.length < 3
-          ? "This field must be at least 3 characters"
-          : null,
-      password:
-        values.password === ""
-          ? "Password is required"
-          : values.password.length < 10
-          ? "Password must be at least 10 characters"
-          : null,
-    }),
+    validate: {
+      identifier: isNotEmpty("Username or email is required"),
+      password: isNotEmpty("Password is required"),
+    },
     validateInputOnChange: true,
   });
 
