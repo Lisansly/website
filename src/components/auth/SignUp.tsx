@@ -1,9 +1,9 @@
 import { isNotEmpty, hasLength, useForm, isEmail } from "@mantine/form";
-import { useIsAuthenticated, useSignIn } from "react-auth-kit";
+import { useSignIn } from "react-auth-kit";
 import { Link, useNavigate } from "react-router-dom";
 import AuthClient from "../../clients/AuthClient";
 import PasswordInput from "../PasswordInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Notification from "../Notification";
 import TextInput from "../TextInput";
 import { AxiosError } from "axios";
@@ -52,14 +52,8 @@ const passwordInputs: PasswordInputProps[] = [
 ];
 
 export default function SignUp() {
-  const isAuthenticated = useIsAuthenticated();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    isAuthenticated() && navigate("/");
-  }, []);
-
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const signIn = useSignIn();
 
   const form = useForm<SignUpBody>({

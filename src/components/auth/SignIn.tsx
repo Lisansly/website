@@ -1,10 +1,10 @@
 import PasswordInput, { PasswordInputProps } from "../PasswordInput";
-import { useIsAuthenticated, useSignIn } from "react-auth-kit";
+import { useSignIn } from "react-auth-kit";
 import { Paper, Title, Text, Container } from "@mantine/core";
 import TextInput, { TextInputProps } from "../TextInput";
 import { Link, useNavigate } from "react-router-dom";
 import AuthClient from "../../clients/AuthClient";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Notification from "../Notification";
 import { useForm, isNotEmpty } from "@mantine/form";
 import { AxiosError } from "axios";
@@ -32,14 +32,8 @@ export type SignInPathParam = {
 };
 
 export default function SignIn() {
-  const isAuthenticated = useIsAuthenticated();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    isAuthenticated() && navigate("/");
-  }, []);
-
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const signIn = useSignIn();
 
   const form = useForm<SignInPathParam>({
