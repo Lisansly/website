@@ -14,7 +14,7 @@ class AuthClient {
   ): Promise<AxiosResponse | AxiosError> {
     try {
       const response = await axios.get(
-        `${this.apiUrl}/user/identifier/${values.identifier}/password/${values.password}`
+        `${this.apiUrl}/user/email/${values.email}/password/${values.password}`
       );
       return response;
     } catch (error) {
