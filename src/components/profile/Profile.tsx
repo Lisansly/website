@@ -27,6 +27,7 @@ const Profile = () => {
 
   return (
     <Tabs
+      mih="100vh"
       value={tabValue}
       onTabChange={(value) => navigate(`/profile/${value}`)}
     >
