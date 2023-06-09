@@ -12,9 +12,9 @@ import Button from "../Button";
 
 const textInputs: TextInputProps[] = [
   {
-    placeholder: "Your email",
-    label: "example@mail.com",
-    key: "identifier",
+    placeholder: "example@mail.com",
+    label: "Email",
+    key: "email",
   },
 ];
 
