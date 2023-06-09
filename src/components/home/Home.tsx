@@ -6,7 +6,7 @@ import Helper from "../Helper";
 const Home = () => {
   const navigate = useNavigate();
   return (
-    <div>
+    <div style={{ minHeight: "100vh" }}>
       <Group position="center" spacing={"xl"}>
         <HeroHeader navigate={navigate} />
         <Helper />

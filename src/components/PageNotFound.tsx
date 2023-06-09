@@ -11,6 +11,7 @@ import {
 
 const useStyles = createStyles((theme) => ({
   root: {
+    minHeight: "100vh",
     paddingTop: rem(80),
     paddingBottom: rem(80),
   },

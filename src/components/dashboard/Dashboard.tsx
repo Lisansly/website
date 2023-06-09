@@ -7,6 +7,7 @@ import { useEffect } from "react";
 
 const useStyles = createStyles((theme) => ({
   dashboard: {
+    minHeight: "100vh",
     [theme.fn.smallerThan("sm")]: {
       marginLeft: "67.5px",
     },
@@ -50,12 +51,10 @@ const Dashboard = () => {
   }, [tabValue]);
 
   return (
-    <>
+    <div className={classes.dashboard}>
       <SideBar tabValue={tabValue} tabs={tabs} />
-      <div className={classes.dashboard}>
-        {tabs.find((tab) => tab.path === tabValue)?.component}
-      </div>
-    </>
+      {tabs.find((tab) => tab.path === tabValue)?.component}
+    </div>
   );
 };
 
