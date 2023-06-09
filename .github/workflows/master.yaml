@@ -39,7 +39,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: dist
+          name: build
           path: dist/
           if-no-files-found: error
 
@@ -59,7 +59,8 @@ jobs:
       - name: Download Upload Artifact
         uses: actions/download-artifact@v3
         with:
-          name: dist
+          name: build
+          path: dist/
 
       - run: yarn global add wrangler
 
@@ -83,7 +84,8 @@ jobs:
       - name: Download Upload Artifact
         uses: actions/download-artifact@v3
         with:
-          name: dist
+          name: build
+          path: dist/
 
       - run: yarn global add wrangler
 
