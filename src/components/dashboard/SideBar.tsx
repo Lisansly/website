@@ -24,7 +24,7 @@ const useStyles = createStyles((theme) => ({
     "&:hover": {
       cursor: "pointer",
       backgroundColor:
-        theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white,
+        theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.white,
       color: theme.colorScheme === "dark" ? theme.white : theme.black,
 
       [`& .${getStylesRef("icon")}`]: {

@@ -37,8 +37,8 @@ const Dashboard = () => {
     },
     {
       component: <CloudBasedLicensing projectName={projectName} />,
-      label: "Cloud Based Licensing",
-      path: "caloud-based-licensing",
+      label: "Cloud Based Licensing 2",
+      path: "cloud-based-licensing-2",
       icon: IconCloudComputing,
     },
   ];
