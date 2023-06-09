@@ -21,13 +21,10 @@ jobs:
           yarn install
           yarn lint
 
-  deploy-to-dev:
+  build:
     needs:
       - lint
 
-    env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -36,14 +33,57 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Vercel CLI
-        run: npm i -g vercel@latest
+      - run: |
+          yarn install
+          yarn build
 
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=development --token=${{ secrets.VERCEL_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
 
-      - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+  deploy-to-dev:
+    environment: dev
+    needs:
+      - lint
 
-      - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Download Upload Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+
+      - run: yarn global add wrangler
+
+      - run: wrangler pages deploy dist/ --project-name lisansly-dev-website
+
+  deploy-to-production:
+    environment: production
+    needs:
+      - deploy-to-dev
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Download Upload Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+
+      - run: yarn global add wrangler
+
+      - run: wrangler pages deploy dist/ --project-name lisansly-prod-website
+
