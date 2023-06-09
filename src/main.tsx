@@ -1,17 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from "./components/dashboard/Dashboard.tsx";
-import { AuthProvider, RequireAuth } from "react-auth-kit";
-import PageNotFound from "./components/PageNotFound.tsx";
-import Profile from "./components/profile/Profile.tsx";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "react-auth-kit";
 import { Notifications } from "@mantine/notifications";
-import SignUp from "./components/auth/SignUp.tsx";
-import SignIn from "./components/auth/SignIn.tsx";
 import refreshToken from "./RefreshToken.ts";
-import Home from "./components/home/Home.tsx";
 import Shell from "./components/Shell.tsx";
 import ReactDOM from "react-dom/client";
 import { useState } from "react";
 import "./index.css";
+
+import Routes from "./Routes.tsx";
 import {
   ColorSchemeProvider,
   MantineProvider,
@@ -60,21 +56,7 @@ export function Root() {
         >
           <BrowserRouter>
             <Shell>
-              <Routes>
-                <Route path="/profile/:tabValue?" element={<Profile />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/signin" element={<SignIn />} />
-                <Route path="/" element={<Home />} />
-                <Route
-                  path="/dashboard/:tabValue?/:projectName?"
-                  element={
-                    <RequireAuth loginPath={"/signin"}>
-                      <Dashboard />
-                    </RequireAuth>
-                  }
-                />
-                <Route path="/*" element={<PageNotFound />} />
-              </Routes>
+              <Routes />
             </Shell>
           </BrowserRouter>
         </AuthProvider>
