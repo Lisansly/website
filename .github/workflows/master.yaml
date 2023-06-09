@@ -46,7 +46,7 @@ jobs:
   deploy-to-dev:
     environment: dev
     needs:
-      - lint
+      - build
 
     runs-on: ubuntu-latest
     steps:
