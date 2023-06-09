@@ -12,8 +12,8 @@ import Button from "../Button";
 
 const textInputs: TextInputProps[] = [
   {
-    placeholder: "Your username or email",
-    label: "Username or email",
+    placeholder: "Your email",
+    label: "example@mail.com",
     key: "identifier",
   },
 ];
@@ -27,7 +27,7 @@ const passwordInputs: PasswordInputProps[] = [
 ];
 
 export type SignInPathParam = {
-  identifier: string;
+  email: string;
   password: string;
 };
 
@@ -38,11 +38,11 @@ export default function SignIn() {
 
   const form = useForm<SignInPathParam>({
     initialValues: {
-      identifier: "",
+      email: "",
       password: "",
     },
     validate: {
-      identifier: isNotEmpty("Username or email is required"),
+      email: isNotEmpty("Username or email is required"),
       password: isNotEmpty("Password is required"),
     },
     validateInputOnChange: true,
@@ -55,11 +55,7 @@ export default function SignIn() {
       if (response.response?.status === 500) {
         Notification.error("Please try again later");
       } else {
-        let identifier = "username";
-        if (/^\S+@\S+$/.test(form.values.identifier)) {
-          identifier = "email";
-        }
-        Notification.error("Wrong " + identifier + " or password");
+        Notification.error("Wrong email or password");
       }
     } else {
       const accessToken = response.data.accessToken;
@@ -85,7 +81,7 @@ export default function SignIn() {
   };
 
   return (
-    <Container size={420} my={40}>
+    <Container size={420} my={40} mih="100vh">
       <Title align="center" fw={900}>
         Welcome to Lisansly!
       </Title>
