@@ -111,7 +111,7 @@ export default function SignUp() {
     setLoading(false);
   };
   return (
-    <Container size={420} my={40}>
+    <Container size={420} my={40} mih="100vh">
       <Title align="center" fw={900}>
         Create an account
       </Title>
