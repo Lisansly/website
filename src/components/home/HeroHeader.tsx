@@ -11,6 +11,7 @@ import {
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
+    marginTop: theme.spacing.xl,
     position: "relative",
     boxSizing: "border-box",
   },

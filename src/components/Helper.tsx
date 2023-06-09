@@ -29,7 +29,7 @@ const Helper = () => {
   }, [answer, typedAnswer]);
 
   return (
-    <Paper p="md" withBorder w="450px" radius="lg">
+    <Paper p="md" withBorder w="450px" radius="lg" m="xs">
       <Group position="center">
         <Avatar username={userData()?.name} size="100px" />
         <Select
