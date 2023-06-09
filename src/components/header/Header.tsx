@@ -1,6 +1,6 @@
 import { IconBrandGithub } from "@tabler/icons-react";
 import SwitchTheme from "./SwitchTheme";
-import Logo from "./Logo";
+import Logo from "../Logo";
 import {
   Header as MantineHeader,
   createStyles,
