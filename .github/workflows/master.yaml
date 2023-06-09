@@ -44,8 +44,6 @@ jobs:
           if-no-files-found: error
 
   deploy-to-dev:
-    env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     environment: dev
     needs:
       - build
@@ -66,10 +64,10 @@ jobs:
       - run: yarn global add wrangler
 
       - run: wrangler pages deploy dist/ --project-name lisansly-dev-website
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
   deploy-to-production:
-    env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     environment: production
     needs:
       - deploy-to-dev
@@ -90,4 +88,6 @@ jobs:
       - run: yarn global add wrangler
 
       - run: wrangler pages deploy dist/ --project-name lisansly-prod-website
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
