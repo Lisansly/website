@@ -8,10 +8,10 @@ import {
   IconUserCircle,
   IconLogout,
 } from "@tabler/icons-react";
+import { useAuthUser, useSignOut } from "react-auth-kit";
 
 const useStyles = createStyles((theme) => ({
   menuTarget: {
-    borderRadius: theme.radius.md,
     "&:hover": {
       cursor: "pointer",
     },
@@ -29,20 +29,17 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-type UserMenuProps = {
-  name: string;
-  signOut: () => boolean;
-};
-
-export default function UserMenu(props: UserMenuProps) {
+export default function UserMenu() {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles();
+  const userData = useAuthUser();
+  const signOut = useSignOut();
   return (
     <Group position="center">
       <Menu withArrow opened={opened} onChange={setOpened}>
         <Menu.Target>
           <Group className={classes.menuTarget}>
-            <Avatar size="md" name={props.name} />
+            <Avatar size="md" name={userData()?.name} />
             {opened ? (
               <IconChevronDown size="1rem" />
             ) : (
@@ -51,14 +48,14 @@ export default function UserMenu(props: UserMenuProps) {
           </Group>
         </Menu.Target>
         <Menu.Dropdown className={classes.menuDropdown}>
-          <Menu.Label className={classes.name}>{props.name}</Menu.Label>
+          <Menu.Label className={classes.name}>{userData()?.name}</Menu.Label>
           <Link to="/profile/edit">
             <Menu.Item icon={<IconUserCircle size={14} />}>Profile</Menu.Item>
           </Link>
           <Link to="/">
             <Menu.Item
               icon={<IconLogout size={14} />}
-              onClick={props.signOut}
+              onClick={signOut}
               color="red"
             >
               Sign Out

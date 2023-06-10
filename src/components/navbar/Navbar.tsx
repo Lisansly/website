@@ -1,5 +1,4 @@
 import { Box, Burger, Group, Header, createStyles } from "@mantine/core";
-import { useAuthUser } from "react-auth-kit";
 import MenuButton from "./MenuButton";
 import UserMenu from "./UserMenu";
 import { useState } from "react";
@@ -89,7 +88,6 @@ const Navbar = (props: NavbarProps) => {
   }));
 
   const { classes } = useStyles();
-  const userData = useAuthUser();
 
   const links = [
     { path: "/", label: "Home" },
@@ -184,9 +182,7 @@ const Navbar = (props: NavbarProps) => {
               ))}
             </Box>
           )}
-          {props.isAuthenticated() && (
-            <UserMenu name={userData()?.name} signOut={props.signOut} />
-          )}
+          {props.isAuthenticated() && <UserMenu />}
         </Group>
       </Group>
       <Burger
