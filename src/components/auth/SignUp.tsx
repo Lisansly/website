@@ -27,8 +27,8 @@ export type SignUpBody = {
 
 const textInputs: TextInputProps[] = [
   {
-    placeholder: "Your username",
-    label: "Username",
+    placeholder: "Your name",
+    label: "Name",
     key: "name",
   },
   {
@@ -64,7 +64,7 @@ export default function SignUp() {
       confirmPassword: "",
     },
     validate: {
-      name: isNotEmpty("Username is required"),
+      name: isNotEmpty("Name is required"),
       email: isEmail("Email must be valid"),
       password: hasLength(
         { min: 10 },
@@ -111,7 +111,7 @@ export default function SignUp() {
     setLoading(false);
   };
   return (
-    <Container size={420} my={40} mih="100vh">
+    <Container size={420} my={15} mih="100vh">
       <Title align="center" fw={900}>
         Create an account
       </Title>
@@ -127,7 +127,7 @@ export default function SignUp() {
         mt={30}
         p={30}
       >
-        <Avatar size="8em" mb="xl" username={form.values.name} />
+        <Avatar size="8em" mb="xl" name={form.values.name} />
         {textInputs.map((input) => (
           <TextInput
             validation={form.getInputProps(input.key as string)}

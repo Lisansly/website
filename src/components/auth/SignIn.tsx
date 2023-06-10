@@ -42,7 +42,7 @@ export default function SignIn() {
       password: "",
     },
     validate: {
-      email: isNotEmpty("Username or email is required"),
+      email: isNotEmpty("Email is required"),
       password: isNotEmpty("Password is required"),
     },
     validateInputOnChange: true,
@@ -81,7 +81,7 @@ export default function SignIn() {
   };
 
   return (
-    <Container size={420} my={40} mih="100vh">
+    <Container size={420} my={50} mih="100vh">
       <Title align="center" fw={900}>
         Welcome to Lisansly!
       </Title>

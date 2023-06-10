@@ -22,9 +22,9 @@ const ChangePassword = () => {
 
   return (
     <Tabs.Panel value="change-password" pt="xs">
-      <Group position="center" mt="xl" spacing="xl">
+      <Group position="center" mt="xl">
         <Helper />
-        <Paper p="md" withBorder radius="md" maw="400px" w="100%">
+        <Paper p="md" m="xs" withBorder radius="md" maw="400px" w="100%">
           {passwordInputs.map((input) => (
             <PasswordInput
               placeholder={input.placeholder as string}
