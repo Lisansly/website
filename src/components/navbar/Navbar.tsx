@@ -185,7 +185,7 @@ const Navbar = (props: NavbarProps) => {
             </Box>
           )}
           {props.isAuthenticated() && (
-            <UserMenu username={userData()?.name} signOut={props.signOut} />
+            <UserMenu name={userData()?.name} signOut={props.signOut} />
           )}
         </Group>
       </Group>

@@ -31,7 +31,7 @@ const Helper = () => {
   return (
     <Paper p="md" withBorder w="450px" radius="lg" m="xs">
       <Group position="center">
-        <Avatar username={userData()?.name} size="100px" />
+        <Avatar name={userData()?.name} size="100px" />
         <Select
           sx={(theme) => ({
             [theme.fn.largerThan("xs")]: {

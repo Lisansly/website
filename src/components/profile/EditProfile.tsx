@@ -6,8 +6,8 @@ import { useState } from "react";
 
 const textInputs: TextInputProps[] = [
   {
-    placeholder: "New username",
-    label: "Username",
+    placeholder: "New name",
+    label: "Name",
     key: "name",
   },
   {

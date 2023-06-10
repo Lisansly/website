@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
   menuDropdown: {
     padding: 5,
   },
-  username: {
+  name: {
     backgroundColor:
       theme.colorScheme === "dark"
         ? theme.colors.dark[5]
@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 type UserMenuProps = {
-  username: string;
+  name: string;
   signOut: () => boolean;
 };
 
@@ -42,7 +42,7 @@ export default function UserMenu(props: UserMenuProps) {
       <Menu withArrow opened={opened} onChange={setOpened}>
         <Menu.Target>
           <Group className={classes.menuTarget}>
-            <Avatar size="md" username={props.username} />
+            <Avatar size="md" name={props.name} />
             {opened ? (
               <IconChevronDown size="1rem" />
             ) : (
@@ -51,7 +51,7 @@ export default function UserMenu(props: UserMenuProps) {
           </Group>
         </Menu.Target>
         <Menu.Dropdown className={classes.menuDropdown}>
-          <Menu.Label className={classes.username}>{props.username}</Menu.Label>
+          <Menu.Label className={classes.name}>{props.name}</Menu.Label>
           <Link to="/profile/edit">
             <Menu.Item icon={<IconUserCircle size={14} />}>Profile</Menu.Item>
           </Link>

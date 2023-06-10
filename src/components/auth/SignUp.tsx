@@ -3,7 +3,7 @@ import { useSignIn } from "react-auth-kit";
 import { Link, useNavigate } from "react-router-dom";
 import AuthClient from "../../clients/AuthClient";
 import PasswordInput from "../PasswordInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Notification from "../Notification";
 import TextInput from "../TextInput";
 import { AxiosError } from "axios";
@@ -17,6 +17,7 @@ import {
   Title,
   Text,
 } from "@mantine/core";
+import { useDebouncedState } from "@mantine/hooks";
 
 export type SignUpBody = {
   name: string;
@@ -52,6 +53,7 @@ const passwordInputs: PasswordInputProps[] = [
 ];
 
 export default function SignUp() {
+  const [name, setName] = useDebouncedState("", 1000);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const signIn = useSignIn();
@@ -79,6 +81,10 @@ export default function SignUp() {
     },
     validateInputOnChange: true,
   });
+
+  useEffect(() => {
+    setName(form.values.name);
+  }, [form.values.name]);
 
   const onSubmit = async (values: SignUpBody) => {
     setLoading(true);
@@ -127,7 +133,7 @@ export default function SignUp() {
         mt={30}
         p={30}
       >
-        <Avatar size="8em" mb="xl" name={form.values.name} />
+        <Avatar size="8em" mb="xl" name={name} />
         {textInputs.map((input) => (
           <TextInput
             validation={form.getInputProps(input.key as string)}
