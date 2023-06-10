@@ -52,12 +52,11 @@ export default function SignIn() {
     setLoading(true);
     var response = await AuthClient.signIn(values);
     if (response instanceof AxiosError) {
-      if (response.response?.status === 500) {
-        Notification.error("Please try again later");
-      }
-      if (response.response?.status === 401) {
-        Notification.error("Wrong email or password");
-      }
+      Notification.error(
+        response.response?.status === 401
+          ? "Wrong email or password"
+          : "Please try again later"
+      );
     } else {
       const accessToken = response.data.accessToken;
       const refreshToken = response.data.refreshToken;

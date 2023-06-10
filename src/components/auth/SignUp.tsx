@@ -90,12 +90,11 @@ export default function SignUp() {
     setLoading(true);
     var response = await AuthClient.signUp(values);
     if (response instanceof AxiosError) {
-      if (response.response?.status === 500) {
-        Notification.error("Please try again later");
-      }
-      if (response.response?.status === 409) {
-        Notification.error("Email already used");
-      }
+      Notification.error(
+        response.response?.status === 409
+          ? "Email already used"
+          : "Please try again later"
+      );
     } else {
       const accessToken = response.data.accessToken;
       const refreshToken = response.data.refreshToken;
