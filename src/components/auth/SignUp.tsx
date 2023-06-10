@@ -93,7 +93,9 @@ export default function SignUp() {
       if (response.response?.status === 500) {
         Notification.error("Please try again later");
       }
-      // TODO: Handle other errors
+      if (response.response?.status === 409) {
+        Notification.error("Email already used");
+      }
     } else {
       const accessToken = response.data.accessToken;
       const refreshToken = response.data.refreshToken;

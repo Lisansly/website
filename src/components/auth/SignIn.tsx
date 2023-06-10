@@ -54,7 +54,8 @@ export default function SignIn() {
     if (response instanceof AxiosError) {
       if (response.response?.status === 500) {
         Notification.error("Please try again later");
-      } else {
+      }
+      if (response.response?.status === 401) {
         Notification.error("Wrong email or password");
       }
     } else {
