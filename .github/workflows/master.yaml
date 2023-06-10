@@ -33,13 +33,36 @@ jobs:
         with:
           node-version: 18
 
-      - run: |
+      - name: Prepare Env Variables For Env
+        run: |
+          touch .env
+          echo "VITE_API_URL=${{ vars.DEV_API_URL }}" > .env
+
+      - name: Build for Dev
+        run: |
           yarn install
           yarn build
 
       - uses: actions/upload-artifact@v3
         with:
-          name: build
+          name: build-dev
+          path: dist/
+          if-no-files-found: error
+
+      - name: Prepare Env Variables For Prod
+        run: |
+          rm .env
+          touch .env
+          echo "VITE_API_URL=${{ vars.PROD_API_URL }}" > .env
+
+      - name: Build for Prod
+        run: |
+          yarn install
+          yarn build
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build-prod
           path: dist/
           if-no-files-found: error
 
@@ -59,7 +82,7 @@ jobs:
       - name: Download Upload Artifact
         uses: actions/download-artifact@v3
         with:
-          name: build
+          name: build-dev
           path: dist/
 
       - run: yarn global add wrangler
@@ -84,7 +107,7 @@ jobs:
       - name: Download Upload Artifact
         uses: actions/download-artifact@v3
         with:
-          name: build
+          name: build-prod
           path: dist/
 
       - run: yarn global add wrangler
