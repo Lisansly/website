@@ -84,15 +84,7 @@ export function HeroHeader(props: HeroHeaderProps) {
     <div className={classes.wrapper}>
       <Container size={700} className={classes.inner}>
         <h1 className={classes.title}>
-          License your application with{" "}
-          <Text
-            gradient={{ from: "blue", to: "#4DABF7" }}
-            variant="gradient"
-            component="span"
-            inherit
-          >
-            Lisansly
-          </Text>
+          License your application with Lisansly
         </h1>
 
         <Text className={classes.description} color="dimmed">
