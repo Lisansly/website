@@ -1,4 +1,11 @@
-import { Box, Burger, Group, Header, createStyles } from "@mantine/core";
+import {
+  Box,
+  Burger,
+  Group,
+  Header,
+  Transition,
+  createStyles,
+} from "@mantine/core";
 import MenuButton from "./MenuButton";
 import UserMenu from "./UserMenu";
 import { useState } from "react";
@@ -70,20 +77,23 @@ const Navbar = (props: NavbarProps) => {
           ? theme.colors.dark[8]
           : theme.colors.gray[1],
     },
+    navbarGroup: {
+      [theme.fn.smallerThan("sm")]: {
+        display: "none",
+      },
+    },
     burger: {
       display: "none",
-      marginLeft: 20,
+      margin: 5,
+      marginRight: theme.spacing.lg,
+      marginLeft: "auto",
       [theme.fn.smallerThan("sm")]: {
         display: "block",
       },
     },
     menu: {
       padding: 15,
-      display: "none",
       paddingTop: 0,
-      [theme.fn.smallerThan("sm")]: {
-        display: opened ? "block" : "none",
-      },
     },
   }));
 
@@ -150,13 +160,7 @@ const Navbar = (props: NavbarProps) => {
   ];
   return (
     <Header hidden={false} height={"max-content"} className={classes.navbar}>
-      <Group
-        sx={(theme) => ({
-          [theme.fn.smallerThan("sm")]: {
-            display: "none",
-          },
-        })}
-      >
+      <Group className={classes.navbarGroup}>
         <Group>
           <Box className={classes.links}>
             {links.map((link) => (
@@ -190,21 +194,25 @@ const Navbar = (props: NavbarProps) => {
         className={classes.burger}
         opened={opened}
       />
-      <div className={classes.menu}>
-        {menuButtons.map((button, index) => (
-          <div key={index}>
-            {button.show && (
-              <MenuButton
-                onClick={button.onClick}
-                setOpened={setOpened}
-                label={button.label}
-                icon={button.icon}
-                path={button.link}
-              />
-            )}
+      <Transition mounted={opened} transition="fade" duration={750}>
+        {(styles) => (
+          <div className={classes.menu} style={styles}>
+            {menuButtons.map((button, index) => (
+              <div key={index}>
+                {button.show && (
+                  <MenuButton
+                    onClick={button.onClick}
+                    setOpened={setOpened}
+                    label={button.label}
+                    icon={button.icon}
+                    path={button.link}
+                  />
+                )}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        )}
+      </Transition>
     </Header>
   );
 };
