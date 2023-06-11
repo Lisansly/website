@@ -27,7 +27,11 @@ class AuthClient {
 
   public async signUp(values: SignUpBody): Promise<AxiosResponse | AxiosError> {
     try {
-      const response = await axios.post(`${this.apiUrl}/user`, values);
+      const response = await axios.post(`${this.apiUrl}/user`, {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
       return response;
     } catch (error) {
       if (error instanceof AxiosError) {
