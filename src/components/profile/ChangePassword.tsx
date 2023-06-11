@@ -1,7 +1,6 @@
 import PasswordInput, { PasswordInputProps } from "../PasswordInput";
 import { Group, Paper, Tabs } from "@mantine/core";
 import { useState } from "react";
-import Helper from "../Helper";
 import Button from "../Button";
 import { hasLength, useForm } from "@mantine/form";
 
@@ -53,7 +52,6 @@ const ChangePassword = () => {
   return (
     <Tabs.Panel value="change-password" pt="xs">
       <Group position="center" mt="xl">
-        <Helper />
         <Paper
           onSubmit={form.onSubmit((values) => onSubmit(values))}
           component="form"

@@ -3,7 +3,6 @@ import TextInput, { TextInputProps } from "../TextInput";
 import { Group, Paper, Tabs } from "@mantine/core";
 import { useAuthUser } from "react-auth-kit";
 import { useState } from "react";
-import Helper from "../Helper";
 import Button from "../Button";
 
 const textInputs: TextInputProps[] = [
@@ -47,7 +46,6 @@ const EditProfile = () => {
   return (
     <Tabs.Panel value="edit" pt="xs">
       <Group position="center" mt="xl">
-        <Helper />
         <Paper
           onSubmit={form.onSubmit((values) => onSubmit(values))}
           component="form"
