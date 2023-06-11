@@ -19,7 +19,7 @@ import {
 } from "@mantine/core";
 import { useDebouncedState } from "@mantine/hooks";
 
-export type SignUpBody = {
+export type SignUpProps = {
   name: string;
   email: string;
   password: string;
@@ -58,7 +58,7 @@ export default function SignUp() {
   const navigate = useNavigate();
   const signIn = useSignIn();
 
-  const form = useForm<SignUpBody>({
+  const form = useForm<SignUpProps>({
     initialValues: {
       name: "",
       email: "",
@@ -86,7 +86,7 @@ export default function SignUp() {
     setName(form.values.name);
   }, [form.values.name]);
 
-  const onSubmit = async (values: SignUpBody) => {
+  const onSubmit = async (values: SignUpProps) => {
     setLoading(true);
     var response = await AuthClient.signUp(values);
     if (response instanceof AxiosError) {

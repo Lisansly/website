@@ -26,7 +26,7 @@ const passwordInputs: PasswordInputProps[] = [
   },
 ];
 
-export type SignInPathParam = {
+export type SignInPathParams = {
   email: string;
   password: string;
 };
@@ -36,7 +36,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   const signIn = useSignIn();
 
-  const form = useForm<SignInPathParam>({
+  const form = useForm<SignInPathParams>({
     initialValues: {
       email: "",
       password: "",
@@ -48,7 +48,7 @@ export default function SignIn() {
     validateInputOnChange: true,
   });
 
-  const onSubmit = async (values: SignInPathParam) => {
+  const onSubmit = async (values: SignInPathParams) => {
     setLoading(true);
     var response = await AuthClient.signIn(values);
     if (response instanceof AxiosError) {

@@ -1,6 +1,6 @@
-import { SignInPathParam } from "../components/auth/SignIn";
+import { SignInPathParams } from "../components/auth/SignIn";
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { SignUpBody } from "../components/auth/SignUp";
+import { SignUpProps } from "../components/auth/SignUp";
 
 class AuthClient {
   private readonly apiUrl: string;
@@ -10,7 +10,7 @@ class AuthClient {
   }
 
   public async signIn(
-    values: SignInPathParam
+    values: SignInPathParams
   ): Promise<AxiosResponse | AxiosError> {
     try {
       const response = await axios.get(
@@ -25,7 +25,9 @@ class AuthClient {
     }
   }
 
-  public async signUp(values: SignUpBody): Promise<AxiosResponse | AxiosError> {
+  public async signUp(
+    values: SignUpProps
+  ): Promise<AxiosResponse | AxiosError> {
     try {
       const response = await axios.post(`${this.apiUrl}/user`, {
         name: values.name,
