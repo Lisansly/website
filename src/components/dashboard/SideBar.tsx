@@ -10,11 +10,11 @@ const useStyles = createStyles((theme) => ({
     padding: theme.spacing.md,
     [theme.fn.smallerThan("sm")]: {
       width: "70px",
-      paddingTop: 110,
+      paddingTop: 120,
     },
     [theme.fn.largerThan("sm")]: {
       width: "310px",
-      paddingTop: 150,
+      paddingTop: 145,
     },
     backgroundColor:
       theme.colorScheme === "dark"

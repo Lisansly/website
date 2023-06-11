@@ -35,7 +35,7 @@ const Shell: React.FC<ShellProps> = ({ children }) => {
             padding: 0,
             paddingTop: 140,
             [theme.fn.smallerThan("sm")]: {
-              paddingTop: 95,
+              paddingTop: 105,
             },
           },
         })}
