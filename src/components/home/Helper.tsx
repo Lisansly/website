@@ -43,46 +43,44 @@ const Helper = () => {
   return (
     <Transition mounted={mounted} transition="slide-up" duration={1500}>
       {(styles) => (
-        <div style={styles}>
-          <Paper p="md" withBorder maw="450px" radius="lg" m="xs">
-            <Group position="center">
-              <Avatar name={userData()?.name} size="100px" />
-              <Select
-                sx={(theme) => ({
-                  [theme.fn.largerThan("xs")]: {
-                    marginLeft: theme.spacing.lg,
-                  },
-                })}
-                label="Select the category related to your question"
-                data={["All", "Account"]}
-                defaultValue={"All"}
-                variant="filled"
-                size="xs"
-              />
-              <Code
-                sx={{ wordBreak: "break-word" }}
-                color={"blue"}
-                w={"100%"}
-                mih={100}
-                p={"sm"}
-              >
-                {typedAnswer}
-              </Code>
-              <Autocomplete
-                data={questions.map((question) => question.question)}
-                onChange={(value) => {
-                  const question = questions.find(
-                    (question) => question.question === value
-                  );
-                  setAnswer(question?.answer || "...");
-                  setTypedAnswer("");
-                }}
-                placeholder="Write your question"
-                w={"100%"}
-              />
-            </Group>
-          </Paper>
-        </div>
+        <Paper style={styles} p="md" withBorder maw="450px" radius="lg" m="xs">
+          <Group position="center">
+            <Avatar name={userData()?.name} size="100px" />
+            <Select
+              sx={(theme) => ({
+                [theme.fn.largerThan("xs")]: {
+                  marginLeft: theme.spacing.lg,
+                },
+              })}
+              label="Select the category related to your question"
+              data={["All", "Account"]}
+              defaultValue={"All"}
+              variant="filled"
+              size="xs"
+            />
+            <Code
+              sx={{ wordBreak: "break-word" }}
+              color={"blue"}
+              w={"100%"}
+              mih={100}
+              p={"sm"}
+            >
+              {typedAnswer}
+            </Code>
+            <Autocomplete
+              data={questions.map((question) => question.question)}
+              onChange={(value) => {
+                const question = questions.find(
+                  (question) => question.question === value
+                );
+                setAnswer(question?.answer || "...");
+                setTypedAnswer("");
+              }}
+              placeholder="Write your question"
+              w={"100%"}
+            />
+          </Group>
+        </Paper>
       )}
     </Transition>
   );
