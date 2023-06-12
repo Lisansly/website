@@ -92,8 +92,18 @@ const Navbar = (props: NavbarProps) => {
       },
     },
     menu: {
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[8]
+          : theme.colors.gray[1],
+      [theme.fn.largerThan("sm")]: {
+        display: "none",
+      },
+      position: "fixed",
+      width: "100%",
       padding: 15,
-      paddingTop: 0,
+      zIndex: 1,
+      top: 105,
     },
   }));
 
@@ -159,44 +169,46 @@ const Navbar = (props: NavbarProps) => {
     },
   ];
   return (
-    <Header hidden={false} height={"max-content"} className={classes.navbar}>
-      <Group className={classes.navbarGroup}>
-        <Group>
-          <Box className={classes.links}>
-            {links.map((link) => (
-              <Link
-                className={classes.link}
-                label={link.label}
-                path={link.path}
-                key={link.path}
-              />
-            ))}
-          </Box>
-        </Group>
-        <Group ml={"auto"}>
-          {!props.isAuthenticated() && (
-            <Box className={classes.buttons}>
-              {buttons.map((button) => (
-                <Button
-                  variant={button.variant}
-                  label={button.label}
-                  path={button.path}
-                  key={button.path}
+    <>
+      <Header hidden={false} height={"max-content"} className={classes.navbar}>
+        <Group className={classes.navbarGroup}>
+          <Group>
+            <Box className={classes.links}>
+              {links.map((link) => (
+                <Link
+                  className={classes.link}
+                  label={link.label}
+                  path={link.path}
+                  key={link.path}
                 />
               ))}
             </Box>
-          )}
-          {props.isAuthenticated() && <UserMenu />}
+          </Group>
+          <Group ml={"auto"}>
+            {!props.isAuthenticated() && (
+              <Box className={classes.buttons}>
+                {buttons.map((button) => (
+                  <Button
+                    variant={button.variant}
+                    label={button.label}
+                    path={button.path}
+                    key={button.path}
+                  />
+                ))}
+              </Box>
+            )}
+            {props.isAuthenticated() && <UserMenu />}
+          </Group>
         </Group>
-      </Group>
-      <Burger
-        onClick={() => setOpened((o) => !o)}
-        className={classes.burger}
-        opened={opened}
-      />
-      <Transition mounted={opened} transition="fade" duration={750}>
+        <Burger
+          onClick={() => setOpened((o) => !o)}
+          className={classes.burger}
+          opened={opened}
+        />
+      </Header>
+      <Transition mounted={opened} transition="slide-down" duration={750}>
         {(styles) => (
-          <div className={classes.menu} style={styles}>
+          <Box className={classes.menu} style={styles}>
             {menuButtons.map((button, index) => (
               <div key={index}>
                 {button.show && (
@@ -210,10 +222,10 @@ const Navbar = (props: NavbarProps) => {
                 )}
               </div>
             ))}
-          </div>
+          </Box>
         )}
       </Transition>
-    </Header>
+    </>
   );
 };
 
