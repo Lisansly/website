@@ -1,12 +1,11 @@
 import { isNotEmpty, hasLength, useForm, isEmail } from "@mantine/form";
 import { useSignIn } from "react-auth-kit";
 import { Link, useNavigate } from "react-router-dom";
-import AuthClient from "../../clients/AuthClient";
+import AuthClient from "../../clients/auth/Client";
 import PasswordInput from "../PasswordInput";
 import { useEffect, useState } from "react";
 import Notification from "../Notification";
 import TextInput from "../TextInput";
-import { AxiosError } from "axios";
 import Button from "../Button";
 import Avatar from "../Avatar";
 import {
@@ -53,8 +52,10 @@ const passwordInputs: PasswordInputProps[] = [
 ];
 
 export default function SignUp() {
+  const [loading, setLoading] = useState<boolean>(false);
   const [name, setName] = useDebouncedState("", 1000);
-  const [loading, setLoading] = useState(false);
+  const notification: Notification = new Notification();
+  const authClient: AuthClient = new AuthClient();
   const navigate = useNavigate();
   const signIn = useSignIn();
 
@@ -88,16 +89,20 @@ export default function SignUp() {
 
   const onSubmit = async (values: SignUpProps) => {
     setLoading(true);
-    var response = await AuthClient.signUp(values);
-    if (response instanceof AxiosError) {
-      Notification.error(
-        response.response?.status === 409
+    var response = await authClient.signUp({
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    });
+    if (response.statusCode !== 200) {
+      notification.error(
+        response.statusCode === 409
           ? "Email already used"
           : "Please try again later"
       );
     } else {
-      const accessToken = response.data.accessToken;
-      const refreshToken = response.data.refreshToken;
+      const accessToken = response.accessToken!;
+      const refreshToken = response.refreshToken!;
       const decodedAccessToken = JSON.parse(atob(accessToken.split(".")[1]));
       const decodedRefreshToken = JSON.parse(atob(refreshToken.split(".")[1]));
 

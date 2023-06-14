@@ -44,4 +44,4 @@ class Notification {
   }
 }
 
-export default new Notification();
+export default Notification;

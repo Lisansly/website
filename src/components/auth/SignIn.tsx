@@ -3,12 +3,12 @@ import { useSignIn } from "react-auth-kit";
 import { Paper, Title, Text, Container } from "@mantine/core";
 import TextInput, { TextInputProps } from "../TextInput";
 import { Link, useNavigate } from "react-router-dom";
-import AuthClient from "../../clients/AuthClient";
+import AuthClient from "../../clients/auth/Client";
 import { useState } from "react";
 import Notification from "../Notification";
 import { useForm, isNotEmpty } from "@mantine/form";
-import { AxiosError } from "axios";
 import Button from "../Button";
+import { SignInPathParams } from "../../clients/auth/Types";
 
 const textInputs: TextInputProps[] = [
   {
@@ -26,13 +26,10 @@ const passwordInputs: PasswordInputProps[] = [
   },
 ];
 
-export type SignInPathParams = {
-  email: string;
-  password: string;
-};
-
 export default function SignIn() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const notification: Notification = new Notification();
+  const authClient: AuthClient = new AuthClient();
   const navigate = useNavigate();
   const signIn = useSignIn();
 
@@ -50,16 +47,16 @@ export default function SignIn() {
 
   const onSubmit = async (values: SignInPathParams) => {
     setLoading(true);
-    var response = await AuthClient.signIn(values);
-    if (response instanceof AxiosError) {
-      Notification.error(
-        response.response?.status === 401
+    var response = await authClient.signIn(values);
+    if (response.statusCode !== 200) {
+      notification.error(
+        response.statusCode === 401
           ? "Wrong email or password"
           : "Please try again later"
       );
     } else {
-      const accessToken = response.data.accessToken;
-      const refreshToken = response.data.refreshToken;
+      const accessToken = response.accessToken!;
+      const refreshToken = response.refreshToken!;
       const decodedAccessToken = JSON.parse(atob(accessToken.split(".")[1]));
       const decodedRefreshToken = JSON.parse(atob(refreshToken.split(".")[1]));
 

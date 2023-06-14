@@ -1,26 +1,26 @@
 import { createRefresh } from "react-auth-kit";
-import AuthClient from "./clients/AuthClient";
-import { AxiosError } from "axios";
+import AuthClient from "./clients/auth/Client";
 
 const refreshToken = createRefresh({
   interval: 10,
   refreshApiCallback: async ({ refreshToken, authUserState }): Promise<any> => {
-    const response = await AuthClient.refreshToken(
-      refreshToken || "",
-      authUserState?.id
-    );
-    if (response instanceof AxiosError) {
+    const authClient: AuthClient = new AuthClient();
+    const response = await authClient.refreshToken({
+      refreshToken: refreshToken || "",
+      userId: authUserState?.id,
+    });
+    if (response.statusCode !== 200) {
       return {
         isSuccess: false,
       };
     }
     const decodedAccessToken = JSON.parse(
-      atob(response.data.accessToken.split(".")[1])
+      atob(response.accessToken!.split(".")[1])
     );
     //const decodedRefreshToken = JSON.parse(atob(response.data.refreshToken.split(".")[1]));
     return {
       isSuccess: true,
-      newAuthToken: response.data.accessToken,
+      newAuthToken: response.accessToken,
       newAuthTokenExpireIn: decodedAccessToken.exp,
       //newRefreshToken: response.data.refreshToken,
       //newRefreshTokenExpiresIn: decodedRefreshToken.exp,
