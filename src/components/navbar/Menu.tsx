@@ -78,7 +78,7 @@ const Menu = (props: MenuProps) => {
     menu: {
       position: "sticky",
       top: 60,
-      zIndex: 1,
+      zIndex: 2,
       backgroundColor:
         theme.colorScheme === "dark"
           ? theme.colors.dark[8]

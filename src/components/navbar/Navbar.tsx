@@ -41,11 +41,12 @@ const Navbar = () => {
       top: 0,
       position: "sticky",
       padding: theme.spacing.md,
-      borderColor:
+      borderBottom: `1px solid ${
         theme.colorScheme === "dark"
           ? theme.colors.dark[5]
-          : theme.colors.gray[3],
-      zIndex: 1,
+          : theme.colors.gray[3]
+      }`,
+      zIndex: 2,
       height: "max-content",
       backgroundColor:
         theme.colorScheme === "dark"
