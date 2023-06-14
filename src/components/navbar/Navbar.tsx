@@ -38,35 +38,34 @@ const Navbar = () => {
       },
     },
     navbar: {
+      top: 0,
+      position: "sticky",
+      padding: theme.spacing.md,
       borderColor:
         theme.colorScheme === "dark"
           ? theme.colors.dark[5]
           : theme.colors.gray[3],
-      top: 60,
-      [theme.fn.largerThan("sm")]: {
-        padding: theme.spacing.md,
-        paddingRight: 75,
-        paddingLeft: 75,
-      },
-
+      zIndex: 1,
+      height: "max-content",
       backgroundColor:
         theme.colorScheme === "dark"
           ? theme.colors.dark[8]
           : theme.colors.gray[1],
+      [theme.fn.largerThan("md")]: {
+        paddingInline: "19.4%",
+      },
     },
     navbarItems: {
       width: "100%",
-      [theme.fn.smallerThan("sm")]: {
+      [theme.fn.smallerThan("md")]: {
         display: "none",
       },
     },
     burger: {
-      display: "none",
-      margin: 5,
       marginRight: theme.spacing.lg,
       marginLeft: "auto",
-      [theme.fn.smallerThan("sm")]: {
-        display: "block",
+      [theme.fn.largerThan("md")]: {
+        display: "none",
       },
     },
   }));
@@ -91,7 +90,9 @@ const Navbar = () => {
               key={link.path}
             />
           ))}
-          {!isAuthenticated() ? (
+          {isAuthenticated() ? (
+            <UserMenu />
+          ) : (
             <Box className={classes.buttons} ml={"auto"}>
               {buttons.map((button) => (
                 <Button
@@ -102,11 +103,10 @@ const Navbar = () => {
                 />
               ))}
             </Box>
-          ) : (
-            <UserMenu />
           )}
         </Group>
         <Burger
+          size="sm"
           onClick={() => setOpened((o) => !o)}
           className={classes.burger}
           opened={opened}

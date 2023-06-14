@@ -76,23 +76,25 @@ const Menu = (props: MenuProps) => {
 
   const useStyles = createStyles((theme) => ({
     menu: {
-      position: "absolute",
+      position: "sticky",
+      top: 60,
       zIndex: 1,
       backgroundColor:
         theme.colorScheme === "dark"
           ? theme.colors.dark[8]
           : theme.colors.gray[1],
-      [theme.fn.largerThan("sm")]: {
+      [theme.fn.largerThan("md")]: {
         display: "none",
       },
       width: "100%",
       padding: 15,
+      paddingTop: 0,
     },
   }));
   const { classes } = useStyles();
 
   return (
-    <Transition mounted={props.opened} transition="slide-left" duration={500}>
+    <Transition mounted={props.opened} transition="slide-down" duration={500}>
       {(styles) => (
         <Box className={classes.menu} style={styles}>
           {menuButtons.map((button, index) => (

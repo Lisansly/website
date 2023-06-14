@@ -10,7 +10,7 @@ type ButtonProps = {
 const Button = (props: ButtonProps) => {
   return (
     <Link to={props.path}>
-      <MantineButton variant={props.variant} radius="sm">
+      <MantineButton variant={props.variant} radius="sm" size="xs">
         {props.label}
       </MantineButton>
     </Link>

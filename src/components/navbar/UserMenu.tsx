@@ -11,6 +11,9 @@ import {
 } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
+  menu: {
+    marginLeft: "auto",
+  },
   menuTarget: {
     "&:hover": {
       cursor: "pointer",
@@ -35,11 +38,11 @@ export default function UserMenu() {
   const userData = useAuthUser();
   const signOut = useSignOut();
   return (
-    <Group position="center">
+    <Group className={classes.menu}>
       <Menu withArrow opened={opened} onChange={setOpened}>
         <Menu.Target>
           <Group className={classes.menuTarget}>
-            <Avatar size="md" name={userData()?.name} />
+            <Avatar size="30px" name={userData()?.name} />
             {opened ? (
               <IconChevronDown size="1rem" />
             ) : (
