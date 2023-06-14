@@ -12,13 +12,14 @@ type SidebarProps = {
 const useStyles = createStyles((theme) => ({
   sidebar: {
     padding: theme.spacing.xs,
-    width: "300px",
+    width: "350px",
+    paddingTop: theme.spacing.md,
     backgroundColor:
       theme.colorScheme === "dark"
         ? theme.colors.dark[9]
         : theme.colors.gray[2],
     [theme.fn.smallerThan("sm")]: {
-      width: "80px",
+      width: "60px",
     },
   },
 }));

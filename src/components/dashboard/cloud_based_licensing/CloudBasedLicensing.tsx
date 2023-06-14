@@ -1,4 +1,4 @@
-import { Box, Center, Group, Pagination } from "@mantine/core";
+import { Box, Center, Group, Pagination, SimpleGrid } from "@mantine/core";
 import NewProjectButton from "./NewProjectButton";
 import Project, { ProjectProps } from "./Project";
 import { useNavigate } from "react-router-dom";
@@ -6,21 +6,6 @@ import SearchProject from "./SearchProject";
 import ManageProject from "./ManageProject";
 
 const projects: ProjectProps[] = [
-  {
-    name: "Lisansly",
-    keyCount: 12,
-    path: "proje1",
-  },
-  {
-    name: "Lisansly",
-    keyCount: 12,
-    path: "proje1",
-  },
-  {
-    name: "Lisansly",
-    keyCount: 12,
-    path: "proje1",
-  },
   {
     name: "Lisansly",
     keyCount: 12,
@@ -57,23 +42,33 @@ const CloudBasedLicensing = (props: CloudBasedLicensingProps) => {
   return (
     <>
       {props.projectName === undefined ? (
-        <Box w={"100%"} m={"xs"}>
+        <Box w={"100%"} m={"xs"} mt={"md"}>
           <Center>
-            <Group display="grid" spacing="xl" maw={"1000px"}>
-              <Group sx={{ flexWrap: "nowrap", display: "flex" }}>
+            <Group display="grid" spacing="xl">
+              <Group style={{ display: "flew", flexWrap: "nowrap" }}>
                 <SearchProject />
                 <NewProjectButton />
               </Group>
-              <Group sx={{ flexWrap: "wrap", display: "flex" }}>
-                {projects.map((project, index) => (
-                  <Project
-                    projectsCount={projects.length}
-                    navigate={navigate}
-                    props={project}
-                    key={index}
-                  />
-                ))}
-              </Group>
+              <Box mih={"70vh"}>
+                <SimpleGrid
+                  cols={3}
+                  spacing="lg"
+                  breakpoints={[
+                    { maxWidth: "md", cols: 3, spacing: "md" },
+                    { maxWidth: "sm", cols: 2, spacing: "sm" },
+                    { maxWidth: "xs", cols: 1, spacing: "sm" },
+                  ]}
+                >
+                  {projects.map((project, index) => (
+                    <Project
+                      projectsCount={projects.length}
+                      navigate={navigate}
+                      props={project}
+                      key={index}
+                    />
+                  ))}
+                </SimpleGrid>
+              </Box>
               <Center>
                 <Pagination total={3} />
               </Center>

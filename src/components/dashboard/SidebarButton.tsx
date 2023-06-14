@@ -23,8 +23,8 @@ const useStyles = createStyles((theme) => ({
     width: "100%",
     [theme.fn.smallerThan("sm")]: {
       padding: 0,
-      width: "50px",
-      height: "50px",
+      width: "40px",
+      height: "40px",
     },
   },
 }));
@@ -33,10 +33,11 @@ const SidebarButton = (props: SidebarLinkProps) => {
   const { classes } = useStyles();
   return (
     <Button
-      variant={props.item.path === props.tabValue ? "filled" : "default"}
+      variant={props.item.path === props.tabValue ? "filled" : "subtle"}
       onClick={() => props.navigate("/dashboard/" + props.item.path)}
       className={classes.button}
-      size="md"
+      size="sm"
+      radius={"xs"}
     >
       <props.item.icon size="1.25rem" />
       <Text className={classes.label}>{props.item.label}</Text>

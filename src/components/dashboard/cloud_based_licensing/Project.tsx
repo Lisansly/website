@@ -8,7 +8,6 @@ export type ProjectProps = {
 };
 
 const Project = ({
-  projectsCount,
   navigate,
   props,
 }: {
@@ -20,16 +19,6 @@ const Project = ({
     project: {
       padding: theme.spacing.lg,
       height: "200px",
-      [theme.fn.largerThan("md")]: {
-        width: `calc(100% / ${
-          projectsCount === 4 ? 2 : projectsCount <= 3 ? 1 : 3
-        } ${
-          projectsCount >= 5 ? " - 11px" : projectsCount >= 4 ? " - 8px" : ""
-        })`,
-      },
-      [theme.fn.smallerThan("md")]: {
-        width: "100%",
-      },
       transition: "all 200ms ease",
       "&:hover": {
         cursor: "pointer",
