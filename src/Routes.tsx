@@ -12,7 +12,6 @@ const Routes = () => {
 
   return (
     <ReactRouterDomRouters>
-      <Route path="/profile/:tabValue?" element={<Profile />} />
       <Route
         path="/signup"
         element={isAuthenticated() ? <Home /> : <SignUp />}
@@ -21,7 +20,14 @@ const Routes = () => {
         path="/signin"
         element={isAuthenticated() ? <Home /> : <SignIn />}
       />
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/profile/:tabValue?"
+        element={
+          <RequireAuth loginPath={"/signin"}>
+            <Profile />
+          </RequireAuth>
+        }
+      />
       <Route
         path="/dashboard/:tabValue?/:projectName?"
         element={
@@ -30,6 +36,7 @@ const Routes = () => {
           </RequireAuth>
         }
       />
+      <Route path="/" element={<Home />} />
       <Route path="/*" element={<PageNotFound />} />
     </ReactRouterDomRouters>
   );
