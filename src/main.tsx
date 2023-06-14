@@ -1,18 +1,19 @@
+import { Notifications } from "@mantine/notifications";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "react-auth-kit";
-import { Notifications } from "@mantine/notifications";
 import refreshToken from "./RefreshToken.ts";
-import Shell from "./components/Shell.tsx";
 import ReactDOM from "react-dom/client";
 import { useState } from "react";
 import "./index.css";
-
 import Routes from "./Routes.tsx";
 import {
   ColorSchemeProvider,
   MantineProvider,
   ColorScheme,
 } from "@mantine/core";
+import Header from "./components/header/Header.tsx";
+import Footer from "./components/Footer.tsx";
+import Navbar from "./components/navbar/Navbar.tsx";
 
 export function Root() {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -55,9 +56,10 @@ export function Root() {
           refresh={refreshToken}
         >
           <BrowserRouter>
-            <Shell>
-              <Routes />
-            </Shell>
+            <Header />
+            <Navbar />
+            <Routes />
+            <Footer />
           </BrowserRouter>
         </AuthProvider>
       </MantineProvider>

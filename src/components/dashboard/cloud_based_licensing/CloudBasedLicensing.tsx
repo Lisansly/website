@@ -1,4 +1,4 @@
-import { Center, Group, Pagination } from "@mantine/core";
+import { Box, Center, Group, Pagination } from "@mantine/core";
 import NewProjectButton from "./NewProjectButton";
 import Project, { ProjectProps } from "./Project";
 import { useNavigate } from "react-router-dom";
@@ -57,27 +57,29 @@ const CloudBasedLicensing = (props: CloudBasedLicensingProps) => {
   return (
     <>
       {props.projectName === undefined ? (
-        <Center p="xs">
-          <Group display="grid" maw="1000px" spacing="xl">
-            <Group sx={{ flexWrap: "nowrap", display: "flex" }}>
-              <SearchProject />
-              <NewProjectButton />
+        <Box w={"100%"} m={"xs"}>
+          <Center>
+            <Group display="grid" spacing="xl" maw={"1000px"}>
+              <Group sx={{ flexWrap: "nowrap", display: "flex" }}>
+                <SearchProject />
+                <NewProjectButton />
+              </Group>
+              <Group sx={{ flexWrap: "wrap", display: "flex" }}>
+                {projects.map((project, index) => (
+                  <Project
+                    projectsCount={projects.length}
+                    navigate={navigate}
+                    props={project}
+                    key={index}
+                  />
+                ))}
+              </Group>
+              <Center>
+                <Pagination total={3} />
+              </Center>
             </Group>
-            <Group sx={{ flexWrap: "wrap", display: "flex" }}>
-              {projects.map((project, index) => (
-                <Project
-                  projectsCount={projects.length}
-                  navigate={navigate}
-                  props={project}
-                  key={index}
-                />
-              ))}
-            </Group>
-            <Center>
-              <Pagination total={3} />
-            </Center>
-          </Group>
-        </Center>
+          </Center>
+        </Box>
       ) : (
         <ManageProject projectName={props.projectName} />
       )}

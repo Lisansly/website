@@ -1,30 +1,10 @@
-import {
-  Box,
-  Burger,
-  Group,
-  Header,
-  Transition,
-  createStyles,
-} from "@mantine/core";
-import MenuButton from "./MenuButton";
+import { Box, Burger, Group, createStyles } from "@mantine/core";
 import UserMenu from "./UserMenu";
 import { useState } from "react";
 import Button from "./Button";
 import Link from "./Link";
-import {
-  IconFileDescription,
-  IconLayoutDashboard,
-  IconUserPlus,
-  IconLogout,
-  IconLogin,
-  IconHome,
-  IconUser,
-} from "@tabler/icons-react";
-
-type NavbarProps = {
-  isAuthenticated: () => boolean;
-  signOut: () => boolean;
-};
+import { useIsAuthenticated } from "react-auth-kit";
+import Menu from "./Menu";
 
 const buttons = [
   {
@@ -39,8 +19,9 @@ const buttons = [
   },
 ];
 
-const Navbar = (props: NavbarProps) => {
+const Navbar = () => {
   const [opened, setOpened] = useState(false);
+  const isAuthenticated = useIsAuthenticated();
   const useStyles = createStyles((theme) => ({
     buttons: {
       gap: theme.spacing.md,
@@ -72,12 +53,14 @@ const Navbar = (props: NavbarProps) => {
         paddingRight: 75,
         paddingLeft: 75,
       },
+
       backgroundColor:
         theme.colorScheme === "dark"
           ? theme.colors.dark[8]
           : theme.colors.gray[1],
     },
-    navbarGroup: {
+    navbarItems: {
+      width: "100%",
       [theme.fn.smallerThan("sm")]: {
         display: "none",
       },
@@ -91,20 +74,6 @@ const Navbar = (props: NavbarProps) => {
         display: "block",
       },
     },
-    menu: {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[8]
-          : theme.colors.gray[1],
-      [theme.fn.largerThan("sm")]: {
-        display: "none",
-      },
-      position: "fixed",
-      width: "100%",
-      padding: 15,
-      zIndex: 1,
-      top: 105,
-    },
   }));
 
   const { classes } = useStyles();
@@ -115,116 +84,44 @@ const Navbar = (props: NavbarProps) => {
     { path: "/dashboard/cloud-based-licensing", label: "Dashboard" },
   ];
 
-  type MenuButtonProps = {
-    icon: React.ReactNode;
-    onClick?: () => void;
-    show: boolean;
-    label: string;
-    link: string;
-  };
-
-  const menuButtons: MenuButtonProps[] = [
-    {
-      icon: <IconHome size="1.1rem" />,
-      link: "/",
-      label: "Home",
-      show: true,
-    },
-    {
-      icon: <IconFileDescription size="1.1rem" />,
-      link: "/documentation",
-      label: "Documentation",
-      show: true,
-    },
-    {
-      icon: <IconLayoutDashboard size="1.1rem" />,
-      link: "/dashboard",
-      label: "Dashboard",
-      show: true,
-    },
-    {
-      icon: <IconLogin size="1.1rem" />,
-      link: "/signin",
-      label: "Sign In",
-      show: !props.isAuthenticated(),
-    },
-    {
-      icon: <IconUserPlus size="1.1rem" />,
-      link: "/signup",
-      label: "Sign Up",
-      show: !props.isAuthenticated(),
-    },
-    {
-      icon: <IconUser size="1.1rem" />,
-      link: "/profile/edit",
-      label: "Profile",
-      show: props.isAuthenticated(),
-    },
-    {
-      icon: <IconLogout size="1.1rem" />,
-      link: "/",
-      label: "Sign Out",
-      show: props.isAuthenticated(),
-      onClick: () => props.signOut(),
-    },
-  ];
   return (
     <>
-      <Header hidden={false} height={"max-content"} className={classes.navbar}>
-        <Group className={classes.navbarGroup}>
-          <Group>
-            <Box className={classes.links}>
-              {links.map((link) => (
-                <Link
-                  className={classes.link}
-                  label={link.label}
-                  path={link.path}
-                  key={link.path}
+      <Group className={classes.navbar}>
+        <Group className={classes.navbarItems}>
+          {links.map((link) => (
+            <Link
+              className={classes.link}
+              label={link.label}
+              path={link.path}
+              key={link.path}
+            />
+          ))}
+          {!isAuthenticated() ? (
+            <Box className={classes.buttons} ml={"auto"}>
+              {buttons.map((button) => (
+                <Button
+                  variant={button.variant}
+                  label={button.label}
+                  path={button.path}
+                  key={button.path}
                 />
               ))}
             </Box>
-          </Group>
-          <Group ml={"auto"}>
-            {!props.isAuthenticated() && (
-              <Box className={classes.buttons}>
-                {buttons.map((button) => (
-                  <Button
-                    variant={button.variant}
-                    label={button.label}
-                    path={button.path}
-                    key={button.path}
-                  />
-                ))}
-              </Box>
-            )}
-            {props.isAuthenticated() && <UserMenu />}
-          </Group>
+          ) : (
+            <UserMenu />
+          )}
         </Group>
         <Burger
           onClick={() => setOpened((o) => !o)}
           className={classes.burger}
           opened={opened}
         />
-      </Header>
-      <Transition mounted={opened} transition="slide-down" duration={750}>
-        {(styles) => (
-          <Box className={classes.menu} style={styles}>
-            {menuButtons.map((button, index) => (
-              <div key={index}>
-                {button.show && (
-                  <MenuButton
-                    onClick={button.onClick}
-                    setOpened={setOpened}
-                    label={button.label}
-                    icon={button.icon}
-                    path={button.link}
-                  />
-                )}
-              </div>
-            ))}
-          </Box>
-        )}
-      </Transition>
+      </Group>
+      <Menu
+        opened={opened}
+        setOpened={setOpened}
+        isAuthenticated={isAuthenticated}
+      />
     </>
   );
 };

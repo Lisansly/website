@@ -1,21 +1,8 @@
 import CloudBasedLicensing from "./cloud_based_licensing/CloudBasedLicensing";
 import { Icon, IconCloudComputing } from "@tabler/icons-react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createStyles } from "@mantine/core";
 import { useEffect } from "react";
 import Sidebar from "./Sidebar";
-
-const useStyles = createStyles((theme) => ({
-  dashboard: {
-    minHeight: "100vh",
-    [theme.fn.smallerThan("sm")]: {
-      marginLeft: "67.5px",
-    },
-    [theme.fn.largerThan("sm")]: {
-      marginLeft: "310px",
-    },
-  },
-}));
 
 export type TabProps = {
   component: JSX.Element;
@@ -26,7 +13,6 @@ export type TabProps = {
 
 const Dashboard = () => {
   const { tabValue, projectName } = useParams();
-  const { classes } = useStyles();
   const navigate = useNavigate();
 
   const tabs: TabProps[] = [
@@ -51,8 +37,8 @@ const Dashboard = () => {
   }, [tabValue]);
 
   return (
-    <div className={classes.dashboard}>
-      <Sidebar tabValue={tabValue} tabs={tabs} />
+    <div style={{ minHeight: "100vh", display: "flex" }}>
+      <Sidebar tabValue={tabValue} tabs={tabs} navigate={navigate} />
       {tabs.find((tab) => tab.path === tabValue)?.component}
     </div>
   );

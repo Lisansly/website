@@ -1,12 +1,7 @@
 import { IconBrandGithub } from "@tabler/icons-react";
 import SwitchTheme from "./SwitchTheme";
 import Logo from "../Logo";
-import {
-  Header as MantineHeader,
-  createStyles,
-  ActionIcon,
-  Group,
-} from "@mantine/core";
+import { createStyles, ActionIcon, Group } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -16,9 +11,9 @@ const useStyles = createStyles((theme) => ({
         : theme.colors.gray[3],
     display: "flex",
     flexWrap: "nowrap",
-    height: "100%",
-    paddingRight: theme.spacing.xl,
-    paddingLeft: theme.spacing.xl,
+    height: "max-content",
+    padding: theme.spacing.md,
+    width: "100%",
     backgroundColor:
       theme.colorScheme === "dark"
         ? theme.colors.dark[9]
@@ -30,7 +25,7 @@ const Header = () => {
   const { classes } = useStyles();
 
   return (
-    <MantineHeader height={60} className={classes.header}>
+    <Group className={classes.header}>
       <Group position="apart" w="100%">
         <ActionIcon
           href="https://github.com/Lisansly"
@@ -44,7 +39,7 @@ const Header = () => {
         <Logo />
         <SwitchTheme />
       </Group>
-    </MantineHeader>
+    </Group>
   );
 };
 

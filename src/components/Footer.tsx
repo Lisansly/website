@@ -5,7 +5,6 @@ const useStyles = createStyles((theme) => ({
     position: "sticky",
     display: "flex",
     width: "100%",
-    marginTop: 100,
     padding: theme.spacing.xs,
     paddingRight: theme.spacing.xl,
     borderTop: `1px solid ${
