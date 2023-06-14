@@ -1,7 +1,7 @@
 import { Box, Transition, createStyles } from "@mantine/core";
-import React from "react";
-import MenuButton from "./MenuButton";
 import { useSignOut } from "react-auth-kit";
+import MenuButton from "./MenuButton";
+import React from "react";
 import {
   IconFileDescription,
   IconLayoutDashboard,
@@ -92,15 +92,15 @@ const Menu = (props: MenuProps) => {
   const { classes } = useStyles();
 
   return (
-    <Transition mounted={props.opened} transition="fade" duration={500}>
+    <Transition mounted={props.opened} transition="slide-left" duration={500}>
       {(styles) => (
         <Box className={classes.menu} style={styles}>
           {menuButtons.map((button, index) => (
             <div key={index}>
               {button.show && (
                 <MenuButton
-                  onClick={button.onClick}
                   setOpened={props.setOpened}
+                  onClick={button.onClick}
                   label={button.label}
                   icon={button.icon}
                   path={button.link}
