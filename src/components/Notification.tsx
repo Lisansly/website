@@ -1,21 +1,46 @@
-import { IconCheck, IconExclamationMark } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
+import {
+  IconExclamationMark,
+  IconInfoSmall,
+  IconCheck,
+} from "@tabler/icons-react";
+
+type NotificationProps = {
+  color: string;
+  message: string;
+  icon: React.ReactNode;
+};
 
 class Notification {
-  show(color: string, message: string, icon: React.ReactNode) {
+  show(props: NotificationProps) {
     return notifications.show({
       withBorder: true,
       radius: "lg",
-      message,
-      color,
-      icon,
+      message: props.message,
+      color: props.color,
+      icon: props.icon,
+    });
+  }
+  public success(message: string) {
+    return this.show({
+      color: "teal",
+      message: message,
+      icon: <IconCheck size="1rem" />,
+    });
+  }
+  public info(message: string) {
+    return this.show({
+      color: "yellow",
+      message: message,
+      icon: <IconInfoSmall size="2rem" />,
     });
   }
   public error(message: string) {
-    return this.show("red", message, <IconExclamationMark size="1.5rem" />);
-  }
-  public success(message: string) {
-    return this.show("green", message, <IconCheck size="1rem" />);
+    return this.show({
+      color: "red",
+      message: message,
+      icon: <IconExclamationMark size="1.3rem" />,
+    });
   }
 }
 
