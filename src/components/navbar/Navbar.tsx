@@ -20,7 +20,7 @@ const buttons = [
 ];
 
 const Navbar = () => {
-  const [opened, setOpened] = useState(false);
+  const [opened, setOpened] = useState<boolean>(false);
   const isAuthenticated = useIsAuthenticated();
   const useStyles = createStyles((theme) => ({
     buttons: {

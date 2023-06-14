@@ -42,7 +42,7 @@ const EditProfile = () => {
     console.log(values);
   };
 
-  const [loading] = useState(false);
+  const [loading] = useState<boolean>(false);
   return (
     <Tabs.Panel value="edit" pt="xs">
       <Group position="center" mt="xl">

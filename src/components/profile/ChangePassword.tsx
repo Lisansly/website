@@ -23,7 +23,7 @@ type ChangePasswordProps = {
 };
 
 const ChangePassword = () => {
-  const [loading] = useState(false);
+  const [loading] = useState<boolean>(false);
 
   const form = useForm<ChangePasswordProps>({
     initialValues: {

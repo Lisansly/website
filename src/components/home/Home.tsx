@@ -5,7 +5,7 @@ import { HeroHeader } from "./HeroHeader";
 import Helper from "./Helper";
 
 const Home = () => {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState<boolean>(false);
   const navigate = useNavigate();
 
   useEffect(() => {

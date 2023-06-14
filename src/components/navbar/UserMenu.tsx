@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function UserMenu() {
-  const [opened, setOpened] = useState(false);
+  const [opened, setOpened] = useState<boolean>(false);
   const { classes } = useStyles();
   const userData = useAuthUser();
   const signOut = useSignOut();

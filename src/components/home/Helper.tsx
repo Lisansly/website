@@ -23,7 +23,7 @@ const Helper = () => {
     "Hello! do you have a question?"
   );
   const [typedAnswer, setTypedAnswer] = useState<string>("");
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
     setMounted(true);
