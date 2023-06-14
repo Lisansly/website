@@ -1,6 +1,6 @@
 import { createStyles, Navbar } from "@mantine/core";
-import SideBarLink from "./SideBarLink";
 import { TabProps } from "./Dashboard";
+import SidebarLink from "./SidebarLink";
 
 const useStyles = createStyles((theme) => ({
   sidebar: {
@@ -23,19 +23,19 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-type SideBarProps = {
+type SidebarProps = {
   tabValue: string | undefined;
   tabs: TabProps[];
 };
 
-export function SideBar(props: SideBarProps) {
+export default function Sidebar(props: SidebarProps) {
   const { classes } = useStyles();
 
   return (
     <Navbar className={classes.sidebar}>
       <Navbar.Section grow>
         {props.tabs.map((tab) => (
-          <SideBarLink tabValue={props.tabValue} key={tab.path} item={tab} />
+          <SidebarLink tabValue={props.tabValue} key={tab.path} item={tab} />
         ))}
       </Navbar.Section>
     </Navbar>

@@ -1,7 +1,7 @@
 import { createStyles, getStylesRef } from "@mantine/core";
 import { Link } from "react-router-dom";
 
-type SideBarLinkProps = {
+type SidebarLinkProps = {
   item: {
     label: string;
     path: string;
@@ -62,7 +62,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const SideBarLink = (props: SideBarLinkProps) => {
+const SidebarLink = (props: SidebarLinkProps) => {
   const { classes, cx } = useStyles();
   return (
     <Link to={"/dashboard/" + props.item.path}>
@@ -79,4 +79,4 @@ const SideBarLink = (props: SideBarLinkProps) => {
   );
 };
 
-export default SideBarLink;
+export default SidebarLink;

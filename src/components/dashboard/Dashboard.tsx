@@ -2,8 +2,8 @@ import CloudBasedLicensing from "./cloud_based_licensing/CloudBasedLicensing";
 import { Icon, IconCloudComputing } from "@tabler/icons-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { createStyles } from "@mantine/core";
-import { SideBar } from "./SideBar";
 import { useEffect } from "react";
+import Sidebar from "./Sidebar";
 
 const useStyles = createStyles((theme) => ({
   dashboard: {
@@ -52,7 +52,7 @@ const Dashboard = () => {
 
   return (
     <div className={classes.dashboard}>
-      <SideBar tabValue={tabValue} tabs={tabs} />
+      <Sidebar tabValue={tabValue} tabs={tabs} />
       {tabs.find((tab) => tab.path === tabValue)?.component}
     </div>
   );
