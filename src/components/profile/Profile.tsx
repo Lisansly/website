@@ -27,9 +27,9 @@ const Profile = () => {
 
   return (
     <Tabs
-      mih="100vh"
-      value={tabValue}
       onTabChange={(value) => navigate(`/profile/${value}`)}
+      value={tabValue}
+      mih="100vh"
     >
       <Tabs.List position="center">
         <Tabs.Tab value="edit">Edit Profile</Tabs.Tab>

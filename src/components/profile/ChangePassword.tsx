@@ -1,8 +1,8 @@
 import PasswordInput, { PasswordInputProps } from "../PasswordInput";
 import { Group, Paper, Tabs } from "@mantine/core";
+import { hasLength, useForm } from "@mantine/form";
 import { useState } from "react";
 import Button from "../Button";
-import { hasLength, useForm } from "@mantine/form";
 
 const passwordInputs: PasswordInputProps[] = [
   {
@@ -55,12 +55,12 @@ const ChangePassword = () => {
         <Paper
           onSubmit={form.onSubmit((values) => onSubmit(values))}
           component="form"
+          maw="400px"
+          radius="md"
+          withBorder
+          w="100%"
           p="md"
           m="xs"
-          withBorder
-          radius="md"
-          maw="400px"
-          w="100%"
         >
           {passwordInputs.map((input) => (
             <PasswordInput

@@ -1,14 +1,15 @@
+import EditLisanceKeysButton from "./EditLisanceKeysButton";
+import BackButton from "../BackButton";
+
 import {
-  Badge,
-  Box,
-  Center,
   CopyButton,
+  Center,
+  Badge,
   Group,
   Paper,
   Text,
+  Box,
 } from "@mantine/core";
-import BackButton from "../BackButton";
-import EditLisanceKeysButton from "./EditLisanceKeysButton";
 
 type ManageProjectProps = {
   projectName: string | undefined;

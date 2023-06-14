@@ -5,10 +5,6 @@ import { createStyles, ActionIcon, Group } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   header: {
-    borderColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[5]
-        : theme.colors.gray[3],
     display: "flex",
     flexWrap: "nowrap",
     height: "max-content",

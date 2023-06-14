@@ -1,5 +1,5 @@
-import { Text } from "@mantine/core";
 import { Link as ReactRouterDomLink } from "react-router-dom";
+import { Text } from "@mantine/core";
 
 type LinkProps = {
   className: any;

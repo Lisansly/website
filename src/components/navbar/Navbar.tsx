@@ -1,9 +1,9 @@
 import { Box, Burger, Group, createStyles } from "@mantine/core";
+import { useIsAuthenticated } from "react-auth-kit";
 import UserMenu from "./UserMenu";
 import { useState } from "react";
 import Button from "./Button";
 import Link from "./Link";
-import { useIsAuthenticated } from "react-auth-kit";
 import Menu from "./Menu";
 
 const buttons = [
@@ -25,11 +25,6 @@ const Navbar = () => {
   const useStyles = createStyles((theme) => ({
     buttons: {
       gap: theme.spacing.md,
-      alignItems: "center",
-      display: "flex",
-    },
-    links: {
-      gap: theme.spacing.xl,
       alignItems: "center",
       display: "flex",
     },

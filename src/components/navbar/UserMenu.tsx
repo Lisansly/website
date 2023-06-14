@@ -1,4 +1,5 @@
 import { Group, Menu, createStyles } from "@mantine/core";
+import { useAuthUser, useSignOut } from "react-auth-kit";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Avatar from "../Avatar";
@@ -8,7 +9,6 @@ import {
   IconUserCircle,
   IconLogout,
 } from "@tabler/icons-react";
-import { useAuthUser, useSignOut } from "react-auth-kit";
 
 const useStyles = createStyles((theme) => ({
   menuTarget: {

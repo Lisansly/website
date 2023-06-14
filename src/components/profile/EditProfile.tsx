@@ -49,12 +49,12 @@ const EditProfile = () => {
         <Paper
           onSubmit={form.onSubmit((values) => onSubmit(values))}
           component="form"
+          maw="400px"
+          radius="md"
+          withBorder
+          w="100%"
           p="md"
           m="xs"
-          withBorder
-          radius="md"
-          maw="400px"
-          w="100%"
         >
           {textInputs.map((input) => (
             <TextInput

@@ -34,9 +34,9 @@ const SidebarButton = (props: SidebarLinkProps) => {
   return (
     <Button
       variant={props.item.path === props.tabValue ? "filled" : "default"}
-      size="md"
-      className={classes.button}
       onClick={() => props.navigate("/dashboard/" + props.item.path)}
+      className={classes.button}
+      size="md"
     >
       <props.item.icon size="1.25rem" />
       <Text className={classes.label}>{props.item.label}</Text>

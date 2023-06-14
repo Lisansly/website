@@ -1,14 +1,14 @@
-import {
-  Autocomplete,
-  Group,
-  Paper,
-  Code,
-  Select,
-  Transition,
-} from "@mantine/core";
 import { useAuthUser } from "react-auth-kit";
 import { useState, useEffect } from "react";
 import Avatar from "../Avatar";
+import {
+  Autocomplete,
+  Transition,
+  Group,
+  Paper,
+  Select,
+  Code,
+} from "@mantine/core";
 
 const questions = [
   {

@@ -25,14 +25,15 @@ const useStyles = createStyles((theme) => ({
 
 export default function Sidebar(props: SidebarProps) {
   const { classes } = useStyles();
+
   return (
     <Box className={classes.sidebar}>
       {props.tabs.map((tab) => (
         <SidebarButton
           tabValue={props.tabValue}
+          navigate={props.navigate}
           key={tab.path}
           item={tab}
-          navigate={props.navigate}
         />
       ))}
     </Box>
