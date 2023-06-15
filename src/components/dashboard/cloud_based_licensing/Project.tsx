@@ -1,4 +1,4 @@
-import { Paper, Text, createStyles } from "@mantine/core";
+import { Paper, Skeleton, Text, createStyles } from "@mantine/core";
 import { NavigateFunction } from "react-router-dom";
 
 export type ProjectProps = {
@@ -9,11 +9,12 @@ export type ProjectProps = {
 
 const Project = ({
   navigate,
+  loading,
   props,
 }: {
-  projectsCount: number;
   navigate: NavigateFunction;
   props: ProjectProps;
+  loading: boolean;
 }) => {
   const useStyles = createStyles((theme) => ({
     project: {
@@ -40,18 +41,20 @@ const Project = ({
   }));
   const { classes } = useStyles();
   return (
-    <Paper
-      onClick={() => navigate(props.path)}
-      className={classes.project}
-      withBorder
-    >
-      <Text size="xl" className={classes.name}>
-        {props.name}
-      </Text>
-      <Text size="sm" c="dimmed">
-        have {props.keyCount} lisance keys
-      </Text>
-    </Paper>
+    <Skeleton visible={loading}>
+      <Paper
+        onClick={() => navigate(props.path)}
+        className={classes.project}
+        withBorder
+      >
+        <Text size="xl" className={classes.name}>
+          {props.name}
+        </Text>
+        <Text size="sm" c="dimmed">
+          have {props.keyCount} lisance keys
+        </Text>
+      </Paper>
+    </Skeleton>
   );
 };
 

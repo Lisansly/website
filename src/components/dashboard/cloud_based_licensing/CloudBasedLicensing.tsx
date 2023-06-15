@@ -4,8 +4,19 @@ import Project, { ProjectProps } from "./Project";
 import { useNavigate } from "react-router-dom";
 import SearchProject from "./SearchProject";
 import ManageProject from "./ManageProject";
+import { useState } from "react";
 
 const projects: ProjectProps[] = [
+  {
+    name: "Lisansly",
+    keyCount: 12,
+    path: "proje1",
+  },
+  {
+    name: "Lisansly",
+    keyCount: 12,
+    path: "proje1",
+  },
   {
     name: "Lisansly",
     keyCount: 12,
@@ -39,6 +50,7 @@ type CloudBasedLicensingProps = {
 
 const CloudBasedLicensing = (props: CloudBasedLicensingProps) => {
   const navigate = useNavigate();
+  const [loading] = useState(false);
   return (
     <>
       {props.projectName === undefined ? (
@@ -61,8 +73,8 @@ const CloudBasedLicensing = (props: CloudBasedLicensingProps) => {
                 >
                   {projects.map((project, index) => (
                     <Project
-                      projectsCount={projects.length}
                       navigate={navigate}
+                      loading={loading}
                       props={project}
                       key={index}
                     />
