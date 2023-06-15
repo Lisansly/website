@@ -1,17 +1,17 @@
+import Project, { ProjectProps } from "./Project";
+import { useNavigate } from "react-router-dom";
+import SearchInput from "../../SearchInput";
+import ManageProject from "./ManageProject";
+import NewProject from "./NewProject";
+import { useState } from "react";
 import {
-  Box,
-  Center,
-  Group,
   Pagination,
   SimpleGrid,
   Skeleton,
+  Center,
+  Group,
+  Box,
 } from "@mantine/core";
-import NewProjectButton from "./NewProject";
-import Project, { ProjectProps } from "./Project";
-import { useNavigate } from "react-router-dom";
-import ManageProject from "./ManageProject";
-import { useState } from "react";
-import SearchInput from "../../SearchInput";
 
 const projects: ProjectProps[] = [
   {
@@ -66,7 +66,7 @@ const CloudBasedLicensing = (props: CloudBasedLicensingProps) => {
             <Group display="grid" spacing="xl">
               <Group style={{ display: "flew", flexWrap: "nowrap" }}>
                 <SearchInput placeholder="Search Project" />
-                <NewProjectButton />
+                <NewProject />
               </Group>
               <Box mih={"70vh"}>
                 <SimpleGrid
