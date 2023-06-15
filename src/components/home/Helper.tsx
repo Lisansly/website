@@ -56,14 +56,10 @@ const Helper = () => {
     return () => clearInterval(interval);
   }, [answer, typedAnswer]);
 
-  const [trails] = useTrail(
-    1,
-    () => ({
-      from: { opacity: 0, x: 1000 },
-      to: { opacity: 10, x: 0 },
-    }),
-    []
-  );
+  const trails = useTrail(1, {
+    from: { opacity: 0, x: 1000 },
+    to: { opacity: 10, x: 0 },
+  });
 
   return (
     <>
