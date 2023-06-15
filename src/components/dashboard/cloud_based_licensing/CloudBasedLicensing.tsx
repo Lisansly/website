@@ -1,5 +1,5 @@
 import { Box, Center, Group, Pagination, SimpleGrid } from "@mantine/core";
-import NewProjectButton from "./NewProjectButton";
+import NewProjectButton from "./NewProject";
 import Project, { ProjectProps } from "./Project";
 import { useNavigate } from "react-router-dom";
 import SearchProject from "./SearchProject";

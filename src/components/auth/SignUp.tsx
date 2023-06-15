@@ -156,7 +156,9 @@ export default function SignUp() {
             key={input.key as string}
           />
         ))}
-        <Button label="Sign Up" loading={loading} />
+        <Button loading={loading} fullWidth mt="xl">
+          Sign Up
+        </Button>
       </Paper>
     </Container>
   );

@@ -64,7 +64,9 @@ const EditProfile = () => {
               key={input.key}
             />
           ))}
-          <Button loading={loading} label="Save" />
+          <Button loading={loading} fullWidth mt="xl">
+            Save
+          </Button>
         </Paper>
       </Group>
     </Tabs.Panel>

@@ -110,7 +110,9 @@ export default function SignIn() {
             key={input.key}
           />
         ))}
-        <Button loading={loading} label="Sign In" />
+        <Button loading={loading} fullWidth mt="xl">
+          Sign In
+        </Button>
       </Paper>
     </Container>
   );

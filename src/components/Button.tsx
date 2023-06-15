@@ -1,20 +1,24 @@
 import { Button as MantineButton } from "@mantine/core";
 
 type ButtonProps = {
+  children: React.ReactNode;
+  onClick?: () => void;
+  fullWidth?: boolean;
   loading?: boolean;
-  label: string;
+  mt?: string;
 };
 
 const Button = (props: ButtonProps) => {
   return (
     <MantineButton
       loading={props.loading}
+      onClick={props.onClick}
       type="submit"
       radius="sm"
-      fullWidth
-      mt="xl"
+      mt={props.mt}
+      fullWidth={props.fullWidth}
     >
-      {props.label}
+      {props.children}
     </MantineButton>
   );
 };

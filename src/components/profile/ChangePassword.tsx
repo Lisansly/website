@@ -70,7 +70,9 @@ const ChangePassword = () => {
               key={input.key as string}
             />
           ))}
-          <Button loading={loading} label="Save" />
+          <Button loading={loading} fullWidth mt="xl">
+            Save
+          </Button>
         </Paper>
       </Group>
     </Tabs.Panel>
