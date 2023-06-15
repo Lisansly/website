@@ -1,14 +1,18 @@
 import { IconSearch } from "@tabler/icons-react";
 import { TextInput } from "@mantine/core";
 
-const SearchProject = () => {
+type SearchInputProps = {
+  placeholder: string;
+};
+
+const SearchInput = (props: SearchInputProps) => {
   return (
     <TextInput
       w={"100%"}
       icon={<IconSearch size="1rem" />}
-      placeholder="Search project"
+      placeholder={props.placeholder}
     />
   );
 };
 
-export default SearchProject;
+export default SearchInput;

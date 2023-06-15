@@ -9,9 +9,9 @@ import {
 import NewProjectButton from "./NewProject";
 import Project, { ProjectProps } from "./Project";
 import { useNavigate } from "react-router-dom";
-import SearchProject from "./SearchProject";
 import ManageProject from "./ManageProject";
 import { useState } from "react";
+import SearchInput from "../../SearchInput";
 
 const projects: ProjectProps[] = [
   {
@@ -65,7 +65,7 @@ const CloudBasedLicensing = (props: CloudBasedLicensingProps) => {
           <Center>
             <Group display="grid" spacing="xl">
               <Group style={{ display: "flew", flexWrap: "nowrap" }}>
-                <SearchProject />
+                <SearchInput placeholder="Search Project" />
                 <NewProjectButton />
               </Group>
               <Box mih={"70vh"}>
