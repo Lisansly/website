@@ -1,4 +1,5 @@
 import { Box, Transition, createStyles } from "@mantine/core";
+import { useClickOutside } from "@mantine/hooks";
 import { useSignOut } from "react-auth-kit";
 import MenuButton from "./MenuButton";
 import React from "react";
@@ -77,7 +78,7 @@ const Menu = (props: MenuProps) => {
   const useStyles = createStyles((theme) => ({
     menu: {
       position: "sticky",
-      top: 60,
+      top: 61,
       zIndex: 2,
       backgroundColor:
         theme.colorScheme === "dark"
@@ -88,15 +89,15 @@ const Menu = (props: MenuProps) => {
       },
       width: "100%",
       padding: 15,
-      paddingTop: 0,
     },
   }));
   const { classes } = useStyles();
+  const ref = useClickOutside(() => props.setOpened(false));
 
   return (
-    <Transition mounted={props.opened} transition="slide-down" duration={500}>
+    <Transition mounted={props.opened} transition="slide-down" duration={333}>
       {(styles) => (
-        <Box className={classes.menu} style={styles}>
+        <Box ref={ref} className={classes.menu} style={styles}>
           {menuButtons.map((button, index) => (
             <div key={index}>
               {button.show && (
