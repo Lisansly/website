@@ -4,7 +4,6 @@ import Avatar from "../Avatar";
 import {
   Autocomplete,
   createStyles,
-  Transition,
   Group,
   Paper,
   Select,
@@ -44,11 +43,6 @@ const Helper = () => {
     "Hello! do you have a question?"
   );
   const [typedAnswer, setTypedAnswer] = useState<string>("");
-  const [mounted, setMounted] = useState<boolean>(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -62,39 +56,35 @@ const Helper = () => {
   }, [answer, typedAnswer]);
 
   return (
-    <Transition mounted={mounted} transition="slide-up" duration={1500}>
-      {(styles) => (
-        <Paper style={styles} withBorder className={classes.card}>
-          <Group position="center">
-            <Group position="center" spacing={"xl"}>
-              <Avatar name={userData()?.name} size="100px" />
-              <Select
-                label="Select the category related to your question"
-                data={["All", "Account"]}
-                defaultValue={"All"}
-                variant="filled"
-                size="xs"
-              />
-            </Group>
-            <Code className={classes.code} color={"blue"}>
-              {typedAnswer}
-            </Code>
-            <Autocomplete
-              data={questions.map((question) => question.question)}
-              onChange={(value) => {
-                const question = questions.find(
-                  (question) => question.question === value
-                );
-                setAnswer(question?.answer || "...");
-                setTypedAnswer("");
-              }}
-              placeholder="Write your question"
-              w={"100%"}
-            />
-          </Group>
-        </Paper>
-      )}
-    </Transition>
+    <Paper withBorder className={classes.card}>
+      <Group position="center">
+        <Group position="center" spacing={"xl"}>
+          <Avatar name={userData()?.name} size="100px" />
+          <Select
+            label="Select the category related to your question"
+            data={["All", "Account"]}
+            defaultValue={"All"}
+            variant="filled"
+            size="xs"
+          />
+        </Group>
+        <Code className={classes.code} color={"blue"}>
+          {typedAnswer}
+        </Code>
+        <Autocomplete
+          data={questions.map((question) => question.question)}
+          onChange={(value) => {
+            const question = questions.find(
+              (question) => question.question === value
+            );
+            setAnswer(question?.answer || "...");
+            setTypedAnswer("");
+          }}
+          placeholder="Write your question"
+          w={"100%"}
+        />
+      </Group>
+    </Paper>
   );
 };
 
