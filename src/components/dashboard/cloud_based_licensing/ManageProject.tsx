@@ -1,61 +1,74 @@
-import EditLisanceKeysButton from "./EditLisanceKeysButton";
+import SearchInput from "../../SearchInput";
 import BackButton from "../BackButton";
-
+import { useState } from "react";
 import {
-  CopyButton,
+  Pagination,
+  Skeleton,
   Center,
-  Badge,
   Group,
-  Paper,
   Text,
   Box,
+  ActionIcon,
+  SimpleGrid,
 } from "@mantine/core";
+import { IconEdit } from "@tabler/icons-react";
+import NewLicenseKey from "./NewLicenseKey";
+import LicenseKey from "./LicenseKey";
 
 type ManageProjectProps = {
   projectName: string | undefined;
 };
 
+const keys = [
+  "39d1c0af-350a-4d9f-802e",
+  "39d1c0af-350a-4d9f-802e",
+  "39d1c0af-350a-4d9f-802e",
+  "39d1c0af-350a-4d9f-802e",
+];
+
 const ManageProject = (props: ManageProjectProps) => {
+  const [loading] = useState(false);
+
   return (
     <Box w={"100%"} m={"xs"}>
       <Center>
         <Group display="grid" spacing="xl" maw={"1000px"}>
           <Group>
             <BackButton path="/dashboard/cloud-based-licensing" />
-            <Box>
+            <div>
               <Text fw={700}>{props.projectName}</Text>
               <Text c="dimmed" size="xs">
                 have 12 lisance keys
               </Text>
-            </Box>
+            </div>
+            <ActionIcon variant="default" ml={"auto"}>
+              <IconEdit size="0.9rem" />
+            </ActionIcon>
           </Group>
-          <Paper p="md" radius="sm" withBorder maw="500px">
-            <Group position="apart" mb="md">
-              <Box>
-                <Text fw={700}>Lisance Keys</Text>
-              </Box>
-              <EditLisanceKeysButton />
-            </Group>
-            <Group>
-              <CopyButton value="https://mantine.dev">
-                {({ copied, copy }) => (
-                  <Badge
-                    color={copied ? "teal" : "blue"}
-                    sx={{ cursor: "pointer" }}
-                    variant="light"
-                    onClick={copy}
-                    radius={"sm"}
-                    w={"100%"}
-                    p={"md"}
-                  >
-                    {copied
-                      ? "Copied lisance key"
-                      : " 42h6srh6-24h6sr5h6256-ash62456h246-h2645h246"}
-                  </Badge>
-                )}
-              </CopyButton>
-            </Group>
-          </Paper>
+          <Group style={{ display: "flew", flexWrap: "nowrap" }}>
+            <SearchInput placeholder="Search License Key" />
+            <NewLicenseKey />
+          </Group>
+          <div style={{ minHeight: "63.4vh" }}>
+            <SimpleGrid
+              cols={3}
+              spacing="lg"
+              breakpoints={[
+                { maxWidth: "md", cols: 3, spacing: "md" },
+                { maxWidth: "sm", cols: 2, spacing: "sm" },
+                { maxWidth: "xs", cols: 1, spacing: "sm" },
+              ]}
+            >
+              {keys.map((key) => (
+                <LicenseKey value={key} />
+              ))}
+            </SimpleGrid>
+          </div>
+          <Skeleton visible={loading}>
+            <Center>
+              <Pagination total={3} />
+            </Center>
+          </Skeleton>
         </Group>
       </Center>
     </Box>
