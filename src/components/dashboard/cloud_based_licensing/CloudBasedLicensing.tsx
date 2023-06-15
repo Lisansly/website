@@ -1,4 +1,11 @@
-import { Box, Center, Group, Pagination, SimpleGrid } from "@mantine/core";
+import {
+  Box,
+  Center,
+  Group,
+  Pagination,
+  SimpleGrid,
+  Skeleton,
+} from "@mantine/core";
 import NewProjectButton from "./NewProject";
 import Project, { ProjectProps } from "./Project";
 import { useNavigate } from "react-router-dom";
@@ -81,9 +88,11 @@ const CloudBasedLicensing = (props: CloudBasedLicensingProps) => {
                   ))}
                 </SimpleGrid>
               </Box>
-              <Center>
-                <Pagination total={3} />
-              </Center>
+              <Skeleton visible={loading}>
+                <Center>
+                  <Pagination total={3} />
+                </Center>
+              </Skeleton>
             </Group>
           </Center>
         </Box>
