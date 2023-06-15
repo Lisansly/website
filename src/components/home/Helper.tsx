@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Avatar from "../Avatar";
 import {
   Autocomplete,
+  createStyles,
   Transition,
   Group,
   Paper,
@@ -17,8 +18,28 @@ const questions = [
   },
 ];
 
+const useStyles = createStyles((theme) => ({
+  card: {
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[9]
+        : theme.colors.gray[0],
+    margin: theme.spacing.xs,
+    borderRadius: theme.radius.lg,
+    maxWidth: "450px",
+    padding: theme.spacing.md,
+  },
+  code: {
+    width: "100%",
+    minHeight: "100px",
+    padding: theme.spacing.sm,
+    wordBreak: "break-word",
+  },
+}));
+
 const Helper = () => {
   const userData = useAuthUser();
+  const { classes } = useStyles();
   const [answer, setAnswer] = useState<string>(
     "Hello! do you have a question?"
   );
@@ -43,28 +64,19 @@ const Helper = () => {
   return (
     <Transition mounted={mounted} transition="slide-up" duration={1500}>
       {(styles) => (
-        <Paper style={styles} p="md" withBorder maw="450px" radius="lg" m="xs">
+        <Paper style={styles} withBorder className={classes.card}>
           <Group position="center">
-            <Avatar name={userData()?.name} size="100px" />
-            <Select
-              sx={(theme) => ({
-                [theme.fn.largerThan("xs")]: {
-                  marginLeft: theme.spacing.lg,
-                },
-              })}
-              label="Select the category related to your question"
-              data={["All", "Account"]}
-              defaultValue={"All"}
-              variant="filled"
-              size="xs"
-            />
-            <Code
-              sx={{ wordBreak: "break-word" }}
-              color={"blue"}
-              w={"100%"}
-              mih={100}
-              p={"sm"}
-            >
+            <Group position="center" spacing={"xl"}>
+              <Avatar name={userData()?.name} size="100px" />
+              <Select
+                label="Select the category related to your question"
+                data={["All", "Account"]}
+                defaultValue={"All"}
+                variant="filled"
+                size="xs"
+              />
+            </Group>
+            <Code className={classes.code} color={"blue"}>
               {typedAnswer}
             </Code>
             <Autocomplete
