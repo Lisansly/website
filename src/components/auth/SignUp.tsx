@@ -4,6 +4,7 @@ import SignForm, { handleSuccess } from "./SignForm";
 import AuthClient from "../../clients/auth/Client";
 import { TextInputProps } from "../TextInput";
 import Notification from "../Notification";
+import SignTitle from "./SignTitle";
 
 const textInputs: TextInputProps[] = [
   {
@@ -84,17 +85,20 @@ export default function SignUp() {
   };
 
   return (
-    <SignForm
-      description="Do you already have an account?"
-      passwordInputs={passwordInputs}
-      descriptionLink="/signin"
-      title="Create a account"
-      textInputs={textInputs}
-      buttonText="Sign Up"
-      onSubmit={onSubmit}
-      linkText="Sign In"
-      key="signin"
-      form={form}
-    />
+    <>
+      <SignTitle
+        description="Already have an account?"
+        descriptionLink="/signin"
+        linkText="Sign In"
+        title="Create an account"
+      />
+      <SignForm
+        passwordInputs={passwordInputs}
+        textInputs={textInputs}
+        buttonText="Sign Up"
+        onSubmit={onSubmit}
+        form={form}
+      />
+    </>
   );
 }

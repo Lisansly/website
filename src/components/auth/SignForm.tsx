@@ -1,7 +1,7 @@
-import { Paper, Title, Text, Container, createStyles } from "@mantine/core";
+import { Paper, Container, createStyles } from "@mantine/core";
 import PasswordInput, { PasswordInputProps } from "../PasswordInput";
 import TextInput, { TextInputProps } from "../TextInput";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSignIn } from "react-auth-kit";
 import { useState } from "react";
 import Button from "../Button";
@@ -31,12 +31,8 @@ const handleSuccess = (accessToken: string, refreshToken: string) => {
 type SignFormProps = {
   passwordInputs: PasswordInputProps[];
   textInputs: TextInputProps[];
-  descriptionLink: string;
-  description: string;
   buttonText: string;
-  linkText: string;
   onSubmit: any;
-  title: string;
   form: any;
 };
 
@@ -63,14 +59,7 @@ const SignForm = (props: SignFormProps) => {
   };
 
   return (
-    <Container size={420} my={50} mih="100vh">
-      <Title align="center" fw={900}>
-        {props.title}
-      </Title>
-      <Text color="dimmed" size="sm" align="center" mt={5}>
-        {props.description}{" "}
-        <Link to={props.descriptionLink}>{props.linkText}</Link>
-      </Text>
+    <Container size={420} mih="100vh">
       <Paper
         onSubmit={props.form.onSubmit((values: any) => onSubmit(values))}
         component="form"

@@ -5,6 +5,7 @@ import { useForm, isNotEmpty } from "@mantine/form";
 import AuthClient from "../../clients/auth/Client";
 import { TextInputProps } from "../TextInput";
 import Notification from "../Notification";
+import SignTitle from "./SignTitle";
 
 const textInputs: TextInputProps[] = [
   {
@@ -52,17 +53,20 @@ export default function SignIn() {
   };
 
   return (
-    <SignForm
-      description="Do not have an account yet?"
-      passwordInputs={passwordInputs}
-      title="Welcome to Lisansly!"
-      descriptionLink="/signup"
-      textInputs={textInputs}
-      buttonText="Sign In"
-      onSubmit={onSubmit}
-      linkText="Sign Up"
-      key="signin"
-      form={form}
-    />
+    <>
+      <SignTitle
+        description="Don't have an account?"
+        descriptionLink="/signup"
+        linkText="Sign Up"
+        title="Welcome to Lisansly!"
+      />
+      <SignForm
+        passwordInputs={passwordInputs}
+        textInputs={textInputs}
+        buttonText="Sign In"
+        onSubmit={onSubmit}
+        form={form}
+      />
+    </>
   );
 }
