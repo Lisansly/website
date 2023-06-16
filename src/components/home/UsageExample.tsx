@@ -39,7 +39,7 @@ const useStyles = createStyles((theme) => ({
     height: "300px",
     width: "400px",
     [theme.fn.smallerThan("xs")]: {
-      width: "100%",
+      maxWidth: "300px",
     },
   },
 }));
