@@ -1,4 +1,11 @@
-import { Button, Text, createStyles } from "@mantine/core";
+import {
+  Group,
+  Text,
+  ThemeIcon,
+  UnstyledButton,
+  createStyles,
+  getStylesRef,
+} from "@mantine/core";
 import { NavigateFunction } from "react-router-dom";
 
 type SidebarLinkProps = {
@@ -14,34 +21,69 @@ type SidebarLinkProps = {
 const useStyles = createStyles((theme) => ({
   label: {
     marginLeft: theme.spacing.xs,
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan("md")]: {
       display: "none",
     },
   },
+
   button: {
+    display: "flex",
+    flexWrap: "nowrap",
     marginBottom: theme.spacing.xs,
+    fontSize: theme.fontSizes.sm,
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[1]
+        : theme.colors.gray[7],
+    padding: theme.spacing.xs,
+    [theme.fn.smallerThan("md")]: {
+      padding: "max-content",
+    },
+    borderRadius: theme.radius.sm,
+    fontWeight: 500,
     width: "100%",
-    [theme.fn.smallerThan("sm")]: {
-      padding: 0,
-      width: "40px",
-      height: "40px",
+
+    "&:hover": {
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[8]
+          : theme.colors.gray[1],
+      color: theme.colorScheme === "dark" ? theme.white : theme.black,
+
+      [`& .${getStylesRef("icon")}`]: {
+        color: theme.colorScheme === "dark" ? theme.white : theme.black,
+      },
+    },
+  },
+
+  activeButton: {
+    "&, &:hover": {
+      backgroundColor: theme.fn.variant({
+        variant: "light",
+        color: theme.primaryColor,
+      }).background,
+      color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
+        .color,
     },
   },
 }));
 
 const SidebarButton = (props: SidebarLinkProps) => {
-  const { classes } = useStyles();
+  const { classes, cx } = useStyles();
   return (
-    <Button
-      variant={props.item.path === props.tabValue ? "filled" : "subtle"}
+    <UnstyledButton
+      className={cx(classes.button, {
+        [classes.activeButton]: props.item.path === props.tabValue,
+      })}
       onClick={() => props.navigate("/dashboard/" + props.item.path)}
-      className={classes.button}
-      size="sm"
-      radius={"xs"}
     >
-      <props.item.icon size="1.25rem" />
-      <Text className={classes.label}>{props.item.label}</Text>
-    </Button>
+      <Group spacing={"xs"}>
+        <ThemeIcon size={"lg"}>
+          <props.item.icon size="0.95rem" />
+        </ThemeIcon>
+        <Text className={classes.label}>{props.item.label}</Text>
+      </Group>
+    </UnstyledButton>
   );
 };
 

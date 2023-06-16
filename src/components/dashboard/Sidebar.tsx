@@ -21,8 +21,8 @@ const useStyles = createStyles((theme) => ({
     borderRight: `1px solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[3]
     }`,
-    [theme.fn.smallerThan("sm")]: {
-      width: "60px",
+    [theme.fn.smallerThan("md")]: {
+      width: "75px",
     },
   },
 }));
