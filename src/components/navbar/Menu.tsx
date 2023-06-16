@@ -96,7 +96,6 @@ const Menu = (props: MenuProps) => {
   const [spring] = useSpring(
     () => ({
       x: props.opened ? 0 : 1000,
-      config: { mass: 5, tension: 500, friction: 80 },
     }),
     [props.opened]
   );
