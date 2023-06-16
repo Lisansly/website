@@ -17,10 +17,16 @@ const Project = ({
   loading: boolean;
 }) => {
   const useStyles = createStyles((theme) => ({
-    project: {
+    paper: {
       padding: theme.spacing.lg,
-      height: "200px",
+      paddingRight: 110,
+      paddingBottom: 125,
       transition: "all 200ms ease",
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[9]
+          : theme.colors.gray[0],
+
       "&:hover": {
         cursor: "pointer",
         boxShadow: `0px 2px 30px 0px ${
@@ -43,9 +49,9 @@ const Project = ({
   return (
     <Skeleton visible={loading}>
       <Paper
-        onClick={() => navigate(props.path)}
-        className={classes.project}
         withBorder
+        onClick={() => navigate(props.path)}
+        className={classes.paper}
       >
         <Text size="xl" className={classes.name}>
           {props.name}
