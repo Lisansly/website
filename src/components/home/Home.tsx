@@ -4,6 +4,7 @@ import { Group, Paper, createStyles } from "@mantine/core";
 import { HeroHeader } from "./HeroHeader";
 import UsageExample from "./UsageExample";
 import Helper from "./Helper";
+import Features from "./Features";
 
 const useStyles = createStyles((theme) => ({
   paper: {
@@ -35,10 +36,10 @@ const Home = () => {
   return (
     <div
       style={{
-        minHeight: "100vh",
-        gap: "200px",
-        display: "grid",
         marginBottom: "300px",
+        minHeight: "100vh",
+        display: "grid",
+        gap: "300px",
       }}
     >
       <Group position="center" spacing={100}>
@@ -51,6 +52,7 @@ const Home = () => {
           <UsageExample />
         </Group>
       </Paper>
+      <Features />
     </div>
   );
 };
