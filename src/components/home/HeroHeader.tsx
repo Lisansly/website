@@ -1,5 +1,5 @@
 import { IconBrandGithub } from "@tabler/icons-react";
-import { NavigateFunction } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   createStyles,
   Container,
@@ -73,12 +73,9 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-type HeroHeaderProps = {
-  navigate: NavigateFunction;
-};
-
-export function HeroHeader(props: HeroHeaderProps) {
+export function HeroHeader() {
   const { classes } = useStyles();
+  const navigate = useNavigate();
 
   return (
     <div className={classes.wrapper}>
@@ -95,7 +92,7 @@ export function HeroHeader(props: HeroHeaderProps) {
 
         <Group className={classes.controls}>
           <Button
-            onClick={() => props.navigate("/documentation")}
+            onClick={() => navigate("/documentation")}
             gradient={{ from: "blue", to: "#4DABF7" }}
             className={classes.control}
             variant="gradient"

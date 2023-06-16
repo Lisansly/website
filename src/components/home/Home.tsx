@@ -1,12 +1,17 @@
-import { DashboardCard } from "./DashboardCard";
-import { useNavigate } from "react-router-dom";
 import { Group, Paper, createStyles } from "@mantine/core";
+import { DashboardCard } from "./DashboardCard";
 import { HeroHeader } from "./HeroHeader";
 import UsageExample from "./UsageExample";
 import Helper from "./Helper";
 import Features from "./Features";
 
 const useStyles = createStyles((theme) => ({
+  home: {
+    marginBottom: "300px",
+    minHeight: "100vh",
+    display: "grid",
+    gap: "300px",
+  },
   paper: {
     borderRadius: 0,
     paddingBlock: "50px",
@@ -30,20 +35,12 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Home = () => {
-  const navigate = useNavigate();
   const { classes } = useStyles();
 
   return (
-    <div
-      style={{
-        marginBottom: "300px",
-        minHeight: "100vh",
-        display: "grid",
-        gap: "300px",
-      }}
-    >
+    <div className={classes.home}>
       <Group position="center" spacing={100}>
-        <HeroHeader navigate={navigate} />
+        <HeroHeader />
         <Helper />
       </Group>
       <Paper className={classes.paper}>
