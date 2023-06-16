@@ -24,7 +24,7 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark"
         ? theme.colors.dark[9]
         : theme.colors.gray[0],
-    margin: theme.spacing.xs,
+    margin: theme.spacing.xl,
     borderRadius: theme.radius.lg,
     maxWidth: "450px",
     padding: theme.spacing.md,
