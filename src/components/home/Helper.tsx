@@ -68,16 +68,14 @@ const Helper = () => {
         <animated.div style={props}>
           <Paper withBorder className={classes.card}>
             <Group position="center">
-              <Group position="center" spacing={"xl"}>
-                <Avatar name={userData()?.name} size="100px" />
-                <Select
-                  label="Select the category related to your question"
-                  data={["All", "Account"]}
-                  defaultValue={"All"}
-                  variant="filled"
-                  size="xs"
-                />
-              </Group>
+              <Select
+                label="Select the category related to your question"
+                data={["All", "Account"]}
+                defaultValue={"All"}
+                variant="filled"
+                size="xs"
+                w={"100%"}
+              />
               <Code className={classes.code} color={"blue"}>
                 {typedAnswer}
               </Code>
