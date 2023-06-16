@@ -41,7 +41,7 @@ const Helper = () => {
   const userData = useAuthUser();
   const { classes } = useStyles();
   const [answer, setAnswer] = useState<string>(
-    "Hello! do you have a question?"
+    "Upsss! Hello, do you have a question?"
   );
   const [typedAnswer, setTypedAnswer] = useState<string>("");
 
@@ -59,6 +59,7 @@ const Helper = () => {
   const trails = useTrail(1, {
     from: { opacity: 0, x: 1000 },
     to: { opacity: 10, x: 0 },
+    config: { mass: 9, tension: 1000, friction: 100 },
   });
 
   return (
