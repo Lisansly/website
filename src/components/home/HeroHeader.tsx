@@ -13,7 +13,7 @@ const useStyles = createStyles((theme) => ({
   wrapper: {
     position: "relative",
     boxSizing: "border-box",
-    margin: theme.spacing.xl,
+    margin: theme.spacing.xs,
   },
 
   inner: {

@@ -41,7 +41,7 @@ const Home = () => {
         marginBottom: "300px",
       }}
     >
-      <Group position="center" spacing={"xl"}>
+      <Group position="center" spacing={100}>
         <HeroHeader navigate={navigate} />
         <Helper />
       </Group>
