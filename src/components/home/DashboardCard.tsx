@@ -37,7 +37,7 @@ export function DashboardCard() {
   const { classes } = useStyles();
 
   return (
-    <Paper withBorder className={classes.card}>
+    <Paper className={classes.card}>
       <div>
         <Title order={3} className={classes.title}>
           Create project from dashboard to license your application 🔒
