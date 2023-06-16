@@ -84,6 +84,7 @@ const Menu = (props: MenuProps) => {
         theme.colorScheme === "dark"
           ? theme.colors.dark[8]
           : theme.colors.gray[1],
+
       [theme.fn.largerThan("md")]: {
         display: "none",
       },
@@ -95,7 +96,7 @@ const Menu = (props: MenuProps) => {
 
   const [spring] = useSpring(
     () => ({
-      x: props.opened ? 0 : 1000,
+      x: props.opened ? 0 : -1000,
     }),
     [props.opened]
   );
@@ -108,22 +109,20 @@ const Menu = (props: MenuProps) => {
         zIndex: 2,
       }}
     >
-      <animated.div style={spring}>
-        <div className={classes.menu}>
-          {menuButtons.map((button, index) => (
-            <div key={index}>
-              {button.show && (
-                <MenuButton
-                  setOpened={props.setOpened}
-                  onClick={button.onClick}
-                  label={button.label}
-                  icon={button.icon}
-                  path={button.link}
-                />
-              )}
-            </div>
-          ))}
-        </div>
+      <animated.div className={classes.menu} style={spring}>
+        {menuButtons.map((button, index) => (
+          <div key={index}>
+            {button.show && (
+              <MenuButton
+                setOpened={props.setOpened}
+                onClick={button.onClick}
+                label={button.label}
+                icon={button.icon}
+                path={button.link}
+              />
+            )}
+          </div>
+        ))}
       </animated.div>
     </div>
   );

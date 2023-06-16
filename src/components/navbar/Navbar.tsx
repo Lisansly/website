@@ -63,8 +63,7 @@ const Navbar = () => {
       },
     },
     burger: {
-      marginRight: theme.spacing.lg,
-      marginLeft: "auto",
+      marginLeft: 10,
       [theme.fn.largerThan("md")]: {
         display: "none",
       },
