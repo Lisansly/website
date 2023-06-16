@@ -1,7 +1,5 @@
 import { useTrail, animated } from "@react-spring/web";
-import { useAuthUser } from "react-auth-kit";
 import { useState, useEffect } from "react";
-import Avatar from "../Avatar";
 import {
   Autocomplete,
   createStyles,
@@ -38,7 +36,6 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Helper = () => {
-  const userData = useAuthUser();
   const { classes } = useStyles();
   const [answer, setAnswer] = useState<string>(
     "Upsss! Hello, do you have a question?"
