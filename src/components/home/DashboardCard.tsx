@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 const useStyles = createStyles((theme) => ({
   card: {
     height: "500px",
+    [theme.fn.smallerThan("md")]: {
+      height: "400px",
+    },
     maxWidth: "400px",
     margin: theme.spacing.xs,
     display: "flex",
@@ -23,6 +26,9 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 900,
     lineHeight: 1.2,
     fontSize: rem(34),
+    [theme.fn.smallerThan("md")]: {
+      fontSize: rem(24),
+    },
     marginTop: theme.spacing.xs,
   },
 }));
