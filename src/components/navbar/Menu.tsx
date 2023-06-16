@@ -1,5 +1,5 @@
-import { Box, Transition, createStyles } from "@mantine/core";
-import { useClickOutside } from "@mantine/hooks";
+import { createStyles } from "@mantine/core";
+import { useSpring, animated } from "@react-spring/web";
 import { useSignOut } from "react-auth-kit";
 import MenuButton from "./MenuButton";
 import React from "react";
@@ -77,8 +77,8 @@ const Menu = (props: MenuProps) => {
 
   const useStyles = createStyles((theme) => ({
     menu: {
-      position: "sticky",
-      top: 61,
+      position: "absolute",
+      height: "100vh",
       zIndex: 2,
       backgroundColor:
         theme.colorScheme === "dark"
@@ -92,12 +92,25 @@ const Menu = (props: MenuProps) => {
     },
   }));
   const { classes } = useStyles();
-  const ref = useClickOutside(() => props.setOpened(false));
+
+  const [spring] = useSpring(
+    () => ({
+      x: props.opened ? 0 : 1000,
+      config: { mass: 5, tension: 500, friction: 80 },
+    }),
+    [props.opened]
+  );
 
   return (
-    <Transition mounted={props.opened} transition="slide-down" duration={333}>
-      {(styles) => (
-        <Box ref={ref} className={classes.menu} style={styles}>
+    <div
+      style={{
+        position: "sticky",
+        top: 61,
+        zIndex: 2,
+      }}
+    >
+      <animated.div style={spring}>
+        <div className={classes.menu}>
           {menuButtons.map((button, index) => (
             <div key={index}>
               {button.show && (
@@ -111,9 +124,9 @@ const Menu = (props: MenuProps) => {
               )}
             </div>
           ))}
-        </Box>
-      )}
-    </Transition>
+        </div>
+      </animated.div>
+    </div>
   );
 };
 
