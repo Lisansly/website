@@ -1,6 +1,6 @@
 import { isEmail, isNotEmpty, useForm } from "@mantine/form";
 import TextInput, { TextInputProps } from "../TextInput";
-import { Group, Paper, Tabs } from "@mantine/core";
+import { Group, Paper, Tabs, createStyles } from "@mantine/core";
 import { useAuthUser } from "react-auth-kit";
 import { useState } from "react";
 import Button from "../Button";
@@ -23,8 +23,23 @@ type EditProfileProps = {
   email: string;
 };
 
+const useStyles = createStyles((theme) => ({
+  paper: {
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[9]
+        : theme.colors.gray[0],
+    margin: theme.spacing.xs,
+    padding: theme.spacing.md,
+    width: "100%",
+    borderRadius: theme.radius.md,
+    maxWidth: "400px",
+  },
+}));
+
 const EditProfile = () => {
   const userData = useAuthUser();
+  const { classes } = useStyles();
 
   const form = useForm<EditProfileProps>({
     initialValues: {
@@ -48,13 +63,9 @@ const EditProfile = () => {
       <Group position="center" mt="xl">
         <Paper
           onSubmit={form.onSubmit((values) => onSubmit(values))}
+          className={classes.paper}
           component="form"
-          maw="400px"
-          radius="md"
           withBorder
-          w="100%"
-          p="md"
-          m="xs"
         >
           {textInputs.map((input) => (
             <TextInput
