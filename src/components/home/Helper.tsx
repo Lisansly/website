@@ -1,4 +1,4 @@
-import { useTrail, animated } from "@react-spring/web";
+import { useSpring, animated } from "@react-spring/web";
 import { useState, useEffect } from "react";
 import {
   Autocomplete,
@@ -53,46 +53,42 @@ const Helper = () => {
     return () => clearInterval(interval);
   }, [answer, typedAnswer]);
 
-  const trails = useTrail(1, {
-    from: { opacity: 0, x: 1000 },
-    to: { opacity: 10, x: 0 },
+  const spring = useSpring({
+    from: { x: 1000 },
+    to: { x: 0 },
     config: { mass: 9, tension: 1000, friction: 100 },
   });
 
   return (
-    <>
-      {trails.map((props) => (
-        <animated.div style={props}>
-          <Paper withBorder className={classes.card}>
-            <Group position="center">
-              <Select
-                label="Select the category related to your question"
-                data={["All", "Account"]}
-                defaultValue={"All"}
-                variant="filled"
-                size="xs"
-                w={"100%"}
-              />
-              <Code className={classes.code} color={"blue"}>
-                {typedAnswer}
-              </Code>
-              <Autocomplete
-                data={questions.map((question) => question.question)}
-                onChange={(value) => {
-                  const question = questions.find(
-                    (question) => question.question === value
-                  );
-                  setAnswer(question?.answer || "...");
-                  setTypedAnswer("");
-                }}
-                placeholder="Write your question"
-                w={"100%"}
-              />
-            </Group>
-          </Paper>
-        </animated.div>
-      ))}
-    </>
+    <animated.div style={spring}>
+      <Paper withBorder className={classes.card}>
+        <Group position="center">
+          <Select
+            label="Select the category related to your question"
+            data={["All", "Account"]}
+            defaultValue={"All"}
+            variant="filled"
+            size="xs"
+            w={"100%"}
+          />
+          <Code className={classes.code} color={"blue"}>
+            {typedAnswer}
+          </Code>
+          <Autocomplete
+            data={questions.map((question) => question.question)}
+            onChange={(value) => {
+              const question = questions.find(
+                (question) => question.question === value
+              );
+              setAnswer(question?.answer || "...");
+              setTypedAnswer("");
+            }}
+            placeholder="Write your question"
+            w={"100%"}
+          />
+        </Group>
+      </Paper>
+    </animated.div>
   );
 };
 
