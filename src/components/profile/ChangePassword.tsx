@@ -1,5 +1,5 @@
 import PasswordInput, { PasswordInputProps } from "../PasswordInput";
-import { Group, Paper, Tabs } from "@mantine/core";
+import { Group, Paper, Tabs, createStyles } from "@mantine/core";
 import { hasLength, useForm } from "@mantine/form";
 import { useState } from "react";
 import Button from "../Button";
@@ -22,8 +22,23 @@ type ChangePasswordProps = {
   confirmPassword: string;
 };
 
+const useStyles = createStyles((theme) => ({
+  paper: {
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[9]
+        : theme.colors.gray[0],
+    margin: theme.spacing.xs,
+    padding: theme.spacing.md,
+    width: "100%",
+    borderRadius: theme.radius.md,
+    maxWidth: "400px",
+  },
+}));
+
 const ChangePassword = () => {
   const [loading] = useState<boolean>(false);
+  const { classes } = useStyles();
 
   const form = useForm<ChangePasswordProps>({
     initialValues: {
@@ -54,13 +69,9 @@ const ChangePassword = () => {
       <Group position="center" mt="xl">
         <Paper
           onSubmit={form.onSubmit((values) => onSubmit(values))}
+          className={classes.paper}
           component="form"
-          maw="400px"
-          radius="md"
           withBorder
-          w="100%"
-          p="md"
-          m="xs"
         >
           {passwordInputs.map((input) => (
             <PasswordInput
