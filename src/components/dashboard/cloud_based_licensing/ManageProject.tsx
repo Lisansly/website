@@ -21,9 +21,9 @@ type ManageProjectProps = {
 
 const keys = [
   "39d1c0af-350a-4d9f-802e",
-  "39d1c0af-350a-4d9f-802e",
-  "39d1c0af-350a-4d9f-802e",
-  "39d1c0af-350a-4d9f-802e",
+  "39d1c0af-350a-4d9f-802a",
+  "39d1c0af-350a-4d9f-802c",
+  "39d1c0af-350a-4d9f-802f",
 ];
 
 const ManageProject = (props: ManageProjectProps) => {
@@ -60,7 +60,7 @@ const ManageProject = (props: ManageProjectProps) => {
               ]}
             >
               {keys.map((key) => (
-                <LicenseKey value={key} />
+                <LicenseKey value={key} key={key} />
               ))}
             </SimpleGrid>
           </div>

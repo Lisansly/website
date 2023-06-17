@@ -55,7 +55,7 @@ const UsageExample = () => {
       </Tabs.List>
 
       {examples.map((example) => (
-        <Tabs.Panel value={example.language} pt="xs">
+        <Tabs.Panel value={example.language} key={example.language} pt="xs">
           <Prism withLineNumbers language="go" style={{ zIndex: 0 }}>
             {example.code}
           </Prism>

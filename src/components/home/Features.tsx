@@ -31,15 +31,15 @@ const features = [
   },
   {
     icon: IconCloudComputing,
-    title: "Cloud Based Licensing",
+    title: "Cloud Based Licensing 2",
     description: "License your application in the cloud with ease and speed.",
-    path: "cloud-based-licensing",
+    path: "cloud-based-licensing-2",
   },
   {
     icon: IconCloudComputing,
-    title: "Cloud Based Licensing",
+    title: "Cloud Based Licensing 3",
     description: "License your application in the cloud with ease and speed.",
-    path: "cloud-based-licensing",
+    path: "cloud-based-licensing-3",
   },
 ];
 
@@ -117,10 +117,11 @@ const Features = () => {
       >
         {features.map((feature) => (
           <Feature
-            icon={feature.icon}
-            title={feature.title}
             description={feature.description}
+            title={feature.title}
+            icon={feature.icon}
             path={feature.path}
+            key={feature.path}
             classes={classes}
           />
         ))}
