@@ -18,7 +18,7 @@ const useStyles = createStyles((theme) => ({
     height: "max-content",
     backgroundColor:
       theme.colorScheme === "dark"
-        ? theme.colors.blue[9]
+        ? theme.colors.blue[6]
         : theme.colors.blue[2],
 
     [theme.fn.largerThan("md")]: {
