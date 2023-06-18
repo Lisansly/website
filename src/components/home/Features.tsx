@@ -54,11 +54,14 @@ const useStyles = createStyles((theme) => ({
   },
   paper: {
     zIndex: 1,
+    borderRadius: 20,
+
     position: "relative",
-    borderRadius: theme.radius.md,
-    padding: theme.spacing.lg,
+    padding: theme.spacing.xl,
   },
   overlay: {
+    borderRadius: 20,
+
     zIndex: -1,
     backgroundColor: theme.colorScheme === "dark" ? "#00000080" : "#ffffff80",
   },
@@ -79,8 +82,7 @@ const useStyles = createStyles((theme) => ({
     position: "absolute",
     width: "50%",
     height: 160,
-
-    borderRadius: 200,
+    borderRadius: 20,
     zIndex: -2,
     backgroundColor:
       theme.colorScheme === "dark"
