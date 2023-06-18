@@ -5,23 +5,7 @@ import { useForm, isNotEmpty } from "@mantine/form";
 import AuthClient from "../../clients/auth/Client";
 import { TextInputProps } from "../TextInput";
 import Notification from "../Notification";
-import SignTitle from "./SignTitle";
-
-const textInputs: TextInputProps[] = [
-  {
-    placeholder: "example@mail.com",
-    label: "Email",
-    key: "email",
-  },
-];
-
-const passwordInputs: PasswordInputProps[] = [
-  {
-    placeholder: "Your password",
-    label: "Password",
-    key: "password",
-  },
-];
+import { Group, Text } from "@mantine/core";
 
 export default function SignIn() {
   const notification: Notification = new Notification();
@@ -39,11 +23,28 @@ export default function SignIn() {
     validateInputOnChange: true,
   });
 
+  const textInputs: TextInputProps[] = [
+    {
+      placeholder: "example@mail.com",
+      validation: form.getInputProps("email"),
+      label: "Email",
+    },
+  ];
+
+  const passwordInputs: PasswordInputProps[] = [
+    {
+      placeholder: "Your password",
+      validation: form.getInputProps("password"),
+
+      label: "Password",
+    },
+  ];
+
   const onSubmit = async (values: SignInPathParams) => {
     var response = await authClient.signIn(values);
     if (response.statusCode !== 200) {
       notification.error(
-        response.statusCode === 401
+        response.statusCode === 400
           ? "Wrong email or password"
           : "Please try again later"
       );
@@ -53,20 +54,19 @@ export default function SignIn() {
   };
 
   return (
-    <>
-      <SignTitle
-        description="Don't have an account?"
-        descriptionLink="/signup"
-        linkText="Sign Up"
-        title="Welcome to Lisansly!"
-      />
-      <SignForm
-        passwordInputs={passwordInputs}
-        textInputs={textInputs}
-        buttonText="Sign In"
-        onSubmit={onSubmit}
-        form={form}
-      />
-    </>
+    <SignForm
+      passwordInputs={passwordInputs}
+      textInputs={textInputs}
+      buttonText="Sign In"
+      onSubmit={onSubmit}
+      form={form}
+      afterButton={
+        <Group mt={"md"}>
+          <Text size={"xs"} ml={"auto"}>
+            <a href="/">Forgot your password?</a>
+          </Text>
+        </Group>
+      }
+    />
   );
 }

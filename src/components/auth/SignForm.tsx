@@ -30,6 +30,8 @@ const handleSuccess = (accessToken: string, refreshToken: string) => {
 
 type SignFormProps = {
   passwordInputs: PasswordInputProps[];
+  beforeButton?: React.ReactNode;
+  afterButton?: React.ReactNode;
   textInputs: TextInputProps[];
   buttonText: string;
   onSubmit: any;
@@ -39,7 +41,7 @@ type SignFormProps = {
 const useStyles = createStyles((theme) => ({
   paper: {
     borderRadius: theme.fn.radius("lg"),
-    marginTop: 30,
+    marginTop: 100,
     padding: 30,
     backgroundColor:
       theme.colorScheme === "dark"
@@ -61,30 +63,31 @@ const SignForm = (props: SignFormProps) => {
   return (
     <Container size={420} mih="100vh">
       <Paper
-        withBorder
         onSubmit={props.form.onSubmit((values: any) => onSubmit(values))}
-        component="form"
         className={classes.paper}
+        component="form"
       >
         {props.textInputs.map((input) => (
           <TextInput
-            validation={props.form.getInputProps(input.key as string)}
+            validation={input.validation}
             placeholder={input.placeholder as string}
             label={input.label as string}
-            key={input.key}
+            key={input.label}
           />
         ))}
         {props.passwordInputs.map((input) => (
           <PasswordInput
-            validation={props.form.getInputProps(input.key as string)}
+            validation={input.validation}
             placeholder={input.placeholder as string}
             label={input.label as string}
-            key={input.key}
+            key={input.label}
           />
         ))}
+        {props.beforeButton}
         <Button loading={loading} fullWidth mt="xl">
           {props.buttonText}
         </Button>
+        {props.afterButton}
       </Paper>
     </Container>
   );
