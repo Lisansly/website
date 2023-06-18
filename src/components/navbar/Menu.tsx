@@ -104,7 +104,7 @@ const Menu = (props: MenuProps) => {
       style={{
         position: "sticky",
         top: 60,
-        zIndex: 2,
+        zIndex: 3,
       }}
     >
       <animated.div className={classes.menu} style={spring}>
