@@ -12,9 +12,8 @@ type NotificationProps = {
 };
 
 class Notification {
-  show(props: NotificationProps) {
+  public show(props: NotificationProps) {
     return notifications.show({
-      withBorder: true,
       radius: "lg",
       message: props.message,
       color: props.color,
