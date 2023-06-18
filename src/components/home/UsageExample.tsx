@@ -47,7 +47,12 @@ const useStyles = createStyles((theme) => ({
 const UsageExample = () => {
   const { classes } = useStyles();
   return (
-    <Tabs variant="pills" defaultValue="go" className={classes.tabs}>
+    <Tabs
+      variant="pills"
+      defaultValue="go"
+      radius={12}
+      className={classes.tabs}
+    >
       <Tabs.List>
         <Tabs.Tab value="go">Go</Tabs.Tab>
         <Tabs.Tab value="javascript">JavaScript</Tabs.Tab>

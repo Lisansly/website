@@ -1,4 +1,4 @@
-import { Group, Paper, createStyles } from "@mantine/core";
+import { Group, Overlay, Paper, createStyles } from "@mantine/core";
 import { DashboardCard } from "./DashboardCard";
 import { HeroHeader } from "./HeroHeader";
 import UsageExample from "./UsageExample";
@@ -7,10 +7,11 @@ import Features from "./Features";
 
 const useStyles = createStyles((theme) => ({
   home: {
-    marginBottom: "300px",
+    marginTop: "100px",
+    marginBottom: "400px",
     minHeight: "100vh",
     display: "grid",
-    gap: "300px",
+    gap: "205px",
   },
   paper: {
     borderRadius: 0,
@@ -32,6 +33,11 @@ const useStyles = createStyles((theme) => ({
       transform: "rotate(-1deg)",
     },
   },
+  overlay: {
+    position: "fixed",
+    zIndex: -1,
+    backgroundColor: theme.colorScheme === "dark" ? "#00000080" : "#ffffff80",
+  },
 }));
 
 const Home = () => {
@@ -39,16 +45,19 @@ const Home = () => {
 
   return (
     <div className={classes.home}>
+      <Overlay blur={200} className={classes.overlay} />
       <Group position="center" spacing={100}>
         <HeroHeader />
         <Helper />
       </Group>
+
       <Paper className={classes.paper}>
         <Group position="center" spacing={"100px"} className={classes.group}>
           <DashboardCard />
           <UsageExample />
         </Group>
       </Paper>
+
       <Features />
     </div>
   );

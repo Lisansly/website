@@ -7,7 +7,9 @@ import {
   Group,
   Text,
   rem,
+  Box,
 } from "@mantine/core";
+import { Prism } from "@mantine/prism";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -29,7 +31,7 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    fontSize: rem(62),
+    fontSize: rem(50),
     fontWeight: 900,
     lineHeight: 1.1,
     margin: 0,
@@ -43,7 +45,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   description: {
-    marginTop: theme.spacing.xl,
+    marginTop: theme.spacing.sm,
     fontSize: rem(24),
 
     [theme.fn.smallerThan("sm")]: {
@@ -60,6 +62,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   control: {
+    borderRadius: theme.radius.lg,
     height: rem(54),
     paddingLeft: rem(38),
     paddingRight: rem(38),
@@ -79,16 +82,33 @@ export function HeroHeader() {
 
   return (
     <div className={classes.wrapper}>
+      <Box
+        pos={"absolute"}
+        w={"100%"}
+        maw={"900px"}
+        left={"70%"}
+        top={-175}
+        h={"600px"}
+        sx={(theme) => ({
+          zIndex: -2,
+          borderRadius: "100%",
+          backgroundImage: theme.fn.gradient({
+            from: theme.colors.blue[7],
+            to: theme.colors.grape[9],
+          }),
+        })}
+      />
       <Container size={700} className={classes.inner}>
         <h1 className={classes.title}>
           License your application with Lisansly
         </h1>
 
         <Text className={classes.description} color="dimmed">
-          Lisansly is a platform that developers can use to license web or
-          desktop applications. This platform simplifies the license management
-          process, saving developers time and effort.
+          Save your time and effort.
         </Text>
+        <Prism radius={"md"} mt={"xl"} language="bash" w={"210px"}>
+          npm install lisansly
+        </Prism>
 
         <Group className={classes.controls}>
           <Button
@@ -104,7 +124,7 @@ export function HeroHeader() {
             href="https://github.com/Lisansly"
             leftIcon={<IconBrandGithub />}
             className={classes.control}
-            variant="default"
+            variant="light"
             target="_blank"
             component="a"
             size="xl"
@@ -113,6 +133,22 @@ export function HeroHeader() {
           </Button>
         </Group>
       </Container>
+      <Box
+        pos={"absolute"}
+        w={"100%"}
+        maw={"600px"}
+        left={-350}
+        top={475}
+        h={"600px"}
+        sx={(theme) => ({
+          zIndex: -2,
+          borderRadius: "100%",
+          backgroundImage: theme.fn.gradient({
+            from: theme.colors.blue[4],
+            to: theme.colors.blue[9],
+          }),
+        })}
+      />
     </div>
   );
 }

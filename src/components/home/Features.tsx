@@ -1,7 +1,7 @@
 import {
   Center,
   Group,
-  Paper,
+  Overlay,
   SimpleGrid,
   Text,
   ThemeIcon,
@@ -45,18 +45,16 @@ const features = [
 
 const useStyles = createStyles((theme) => ({
   title: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 700,
     textAlign: "center",
     marginBottom: 50,
   },
-  card: {
+  overlay: {
+    position: "relative",
     borderRadius: theme.radius.md,
     padding: theme.spacing.lg,
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[9]
-        : theme.colors.gray[0],
+    backgroundColor: theme.colorScheme === "dark" ? "#00000080" : "#ffffff80",
   },
   description: {
     fontSize: 16,
@@ -71,14 +69,21 @@ const useStyles = createStyles((theme) => ({
     display: "grid",
     margin: theme.spacing.xl,
   },
+  background: {
+    position: "absolute",
+    width: "97%",
+    height: "400px",
+    zIndex: -2,
+    backgroundColor: theme.colors.blue[9],
+  },
 }));
 
 const Feature = (props: FeatureProps) => {
   return (
-    <Paper withBorder className={props.classes.card}>
+    <Overlay blur={100} opacity={0.1} className={props.classes.overlay}>
       <Group display={"grid"} position="center">
         <Group>
-          <ThemeIcon size={"xl"}>
+          <ThemeIcon radius={"md"} size={"xl"}>
             <props.icon size="1.2rem" />
           </ThemeIcon>
           <Text fw={700}>{props.title}</Text>
@@ -93,7 +98,7 @@ const Feature = (props: FeatureProps) => {
           </Group>
         </Link>
       </Group>
-    </Paper>
+    </Overlay>
   );
 };
 
@@ -126,6 +131,7 @@ const Features = () => {
           />
         ))}
       </SimpleGrid>
+      <div className={classes.background} />
     </Center>
   );
 };

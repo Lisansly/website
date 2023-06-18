@@ -4,9 +4,9 @@ import {
   Autocomplete,
   createStyles,
   Group,
-  Paper,
   Select,
   Code,
+  Paper,
 } from "@mantine/core";
 
 const questions = [
@@ -17,15 +17,16 @@ const questions = [
 ];
 
 const useStyles = createStyles((theme) => ({
-  card: {
+  paper: {
+    borderRadius: theme.radius.lg,
+    maxWidth: "450px",
+    position: "relative",
+    padding: theme.spacing.md,
+    margin: theme.spacing.xl,
     backgroundColor:
       theme.colorScheme === "dark"
         ? theme.colors.dark[9]
         : theme.colors.gray[0],
-    margin: theme.spacing.xl,
-    borderRadius: theme.radius.lg,
-    maxWidth: "450px",
-    padding: theme.spacing.md,
   },
   code: {
     width: "100%",
@@ -56,12 +57,12 @@ const Helper = () => {
   const spring = useSpring({
     from: { x: 1000 },
     to: { x: 0 },
-    config: { mass: 9, tension: 1000, friction: 100 },
+    config: { mass: 13, tension: 1000, friction: 100 },
   });
 
   return (
     <animated.div style={spring}>
-      <Paper withBorder className={classes.card}>
+      <Paper className={classes.paper}>
         <Group position="center">
           <Select
             label="Select the category related to your question"
