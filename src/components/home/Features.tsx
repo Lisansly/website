@@ -75,7 +75,7 @@ const useStyles = createStyles((theme) => ({
 
 const Feature = (props: FeatureProps) => {
   return (
-    <Paper className={props.classes.card}>
+    <Paper withBorder className={props.classes.card}>
       <Group display={"grid"} position="center">
         <Group>
           <ThemeIcon size={"xl"}>

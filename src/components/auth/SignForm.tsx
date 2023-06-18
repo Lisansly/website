@@ -61,6 +61,7 @@ const SignForm = (props: SignFormProps) => {
   return (
     <Container size={420} mih="100vh">
       <Paper
+        withBorder
         onSubmit={props.form.onSubmit((values: any) => onSubmit(values))}
         component="form"
         className={classes.paper}
