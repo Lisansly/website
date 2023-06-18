@@ -5,19 +5,6 @@ import { useAuthUser } from "react-auth-kit";
 import { useState } from "react";
 import Button from "../Button";
 
-const textInputs: TextInputProps[] = [
-  {
-    placeholder: "New name",
-    label: "Name",
-    key: "name",
-  },
-  {
-    placeholder: "example@mail.com",
-    label: "Email",
-    key: "email",
-  },
-];
-
 type EditProfileProps = {
   name: string;
   email: string;
@@ -53,6 +40,19 @@ const EditProfile = () => {
     validateInputOnChange: true,
   });
 
+  const textInputs: TextInputProps[] = [
+    {
+      placeholder: "New name",
+      label: "Name",
+      validation: form.getInputProps("name"),
+    },
+    {
+      placeholder: "example@mail.com",
+      label: "Email",
+      validation: form.getInputProps("email"),
+    },
+  ];
+
   const onSubmit = (values: EditProfileProps) => {
     console.log(values);
   };
@@ -69,10 +69,10 @@ const EditProfile = () => {
         >
           {textInputs.map((input) => (
             <TextInput
-              validation={form.getInputProps(input.key as string)}
+              validation={input.validation}
               placeholder={input.placeholder as string}
               label={input.label as string}
-              key={input.key}
+              key={input.label}
             />
           ))}
           <Button loading={loading} fullWidth mt="xl">

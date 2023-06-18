@@ -4,19 +4,6 @@ import { hasLength, useForm } from "@mantine/form";
 import { useState } from "react";
 import Button from "../Button";
 
-const passwordInputs: PasswordInputProps[] = [
-  {
-    placeholder: "New password",
-    label: "Password",
-    key: "password",
-  },
-  {
-    placeholder: "Confirm new password",
-    label: "Confirm Password",
-    key: "confirmPassword",
-  },
-];
-
 type ChangePasswordProps = {
   password: string;
   confirmPassword: string;
@@ -60,6 +47,19 @@ const ChangePassword = () => {
     validateInputOnChange: true,
   });
 
+  const passwordInputs: PasswordInputProps[] = [
+    {
+      placeholder: "New password",
+      label: "Password",
+      validation: form.getInputProps("password"),
+    },
+    {
+      placeholder: "Confirm new password",
+      label: "Confirm Password",
+      validation: form.getInputProps("confirmPassword"),
+    },
+  ];
+
   const onSubmit = (values: ChangePasswordProps) => {
     console.log(values);
   };
@@ -75,10 +75,10 @@ const ChangePassword = () => {
         >
           {passwordInputs.map((input) => (
             <PasswordInput
-              validation={form.getInputProps(input.key as string)}
+              validation={input.validation}
               placeholder={input.placeholder as string}
               label={input.label as string}
-              key={input.key as string}
+              key={input.label}
             />
           ))}
           <Button loading={loading} fullWidth mt="xl">
