@@ -1,7 +1,9 @@
 import {
+  Box,
   Center,
   Group,
   Overlay,
+  Paper,
   SimpleGrid,
   Text,
   ThemeIcon,
@@ -50,11 +52,14 @@ const useStyles = createStyles((theme) => ({
     textAlign: "center",
     marginBottom: 50,
   },
-  overlay: {
+  paper: {
     zIndex: 1,
     position: "relative",
     borderRadius: theme.radius.md,
     padding: theme.spacing.lg,
+  },
+  overlay: {
+    zIndex: -1,
     backgroundColor: theme.colorScheme === "dark" ? "#00000080" : "#ffffff80",
   },
   description: {
@@ -72,19 +77,26 @@ const useStyles = createStyles((theme) => ({
   },
   background: {
     position: "absolute",
-    width: "100%",
-    height: "400px",
+    width: "50%",
+    height: 160,
+
+    borderRadius: 200,
     zIndex: -2,
-    backgroundColor: theme.colors.blue[9],
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.blue[9]
+        : theme.colors.blue[3],
   },
 }));
 
 const Feature = (props: FeatureProps) => {
   return (
-    <Overlay blur={100} opacity={0.1} className={props.classes.overlay}>
+    <Paper className={props.classes.paper}>
+      <Overlay blur={65} className={props.classes.overlay} />
+      <div className={props.classes.background} />
       <Group display={"grid"} position="center">
         <Group>
-          <ThemeIcon radius={"md"} size={"xl"}>
+          <ThemeIcon radius={"md"} variant="default" size={"xl"}>
             <props.icon size="1.2rem" />
           </ThemeIcon>
           <Text fw={700}>{props.title}</Text>
@@ -99,7 +111,7 @@ const Feature = (props: FeatureProps) => {
           </Group>
         </Link>
       </Group>
-    </Overlay>
+    </Paper>
   );
 };
 
@@ -111,6 +123,23 @@ const Features = () => {
         <Text className={classes.title}>
           Choose the licensing method most suitable for your application
         </Text>
+      </Center>
+      <Center>
+        <Box
+          sx={(theme) => ({
+            position: "absolute",
+            backgroundImage: theme.fn.gradient({
+              from: theme.colors.blue[9],
+              to: theme.colors.violet[4],
+            }),
+            width: "100%",
+            maxWidth: 1200,
+            height: "100%",
+            maxHeight: 300,
+            marginTop: 200,
+            zIndex: -2,
+          })}
+        />
       </Center>
       <SimpleGrid
         cols={3}
@@ -132,9 +161,6 @@ const Features = () => {
           />
         ))}
       </SimpleGrid>
-      <Center>
-        <div className={classes.background} />
-      </Center>
     </Center>
   );
 };
