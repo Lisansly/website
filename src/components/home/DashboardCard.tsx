@@ -46,7 +46,7 @@ const useStyles = createStyles((theme) => ({
     width: "100%",
   },
   background: {
-    width: "320px",
+    width: "300px",
     height: "270px",
     borderRadius: 500,
     top: 30,

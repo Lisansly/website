@@ -7,7 +7,6 @@ import {
   Group,
   Text,
   rem,
-  Box,
 } from "@mantine/core";
 import { Prism } from "@mantine/prism";
 
@@ -47,7 +46,7 @@ const useStyles = createStyles((theme) => ({
   description: {
     marginTop: theme.spacing.sm,
     fontSize: rem(24),
-
+    fontWeight: 500,
     [theme.fn.smallerThan("sm")]: {
       fontSize: rem(18),
     },
@@ -74,6 +73,20 @@ const useStyles = createStyles((theme) => ({
       flex: 1,
     },
   },
+  background: {
+    position: "absolute",
+    width: "100%",
+    maxWidth: "900px",
+    top: 300,
+    left: -200,
+    height: "600px",
+    zIndex: -2,
+    borderRadius: "100%",
+    backgroundImage: theme.fn.gradient({
+      from: theme.colors.blue[7],
+      to: theme.colors.grape[9],
+    }),
+  },
 }));
 
 export function HeroHeader() {
@@ -82,22 +95,7 @@ export function HeroHeader() {
 
   return (
     <div className={classes.wrapper}>
-      <Box
-        pos={"absolute"}
-        w={"100%"}
-        maw={"900px"}
-        left={"70%"}
-        top={-175}
-        h={"600px"}
-        sx={(theme) => ({
-          zIndex: -2,
-          borderRadius: "100%",
-          backgroundImage: theme.fn.gradient({
-            from: theme.colors.blue[7],
-            to: theme.colors.grape[9],
-          }),
-        })}
-      />
+      <div className={classes.background} />
       <Container size={700} className={classes.inner}>
         <h1 className={classes.title}>
           License your application with Lisansly
@@ -133,22 +131,6 @@ export function HeroHeader() {
           </Button>
         </Group>
       </Container>
-      <Box
-        pos={"absolute"}
-        w={"100%"}
-        maw={"600px"}
-        left={-350}
-        top={475}
-        h={"600px"}
-        sx={(theme) => ({
-          zIndex: -2,
-          borderRadius: "100%",
-          backgroundImage: theme.fn.gradient({
-            from: theme.colors.blue[4],
-            to: theme.colors.blue[9],
-          }),
-        })}
-      />
     </div>
   );
 }

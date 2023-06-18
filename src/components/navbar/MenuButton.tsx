@@ -45,7 +45,7 @@ const MenuButton = (props: ButtonProps) => {
         className={classes.button}
       >
         <Group>
-          <ThemeIcon variant="default">{props.icon}</ThemeIcon>
+          <ThemeIcon variant="light">{props.icon}</ThemeIcon>
           <Text size="sm">{props.label}</Text>
         </Group>
       </UnstyledButton>

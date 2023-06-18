@@ -51,6 +51,7 @@ const useStyles = createStyles((theme) => ({
     marginBottom: 50,
   },
   overlay: {
+    zIndex: 1,
     position: "relative",
     borderRadius: theme.radius.md,
     padding: theme.spacing.lg,
@@ -71,7 +72,7 @@ const useStyles = createStyles((theme) => ({
   },
   background: {
     position: "absolute",
-    width: "97%",
+    width: "100%",
     height: "400px",
     zIndex: -2,
     backgroundColor: theme.colors.blue[9],
@@ -131,7 +132,9 @@ const Features = () => {
           />
         ))}
       </SimpleGrid>
-      <div className={classes.background} />
+      <Center>
+        <div className={classes.background} />
+      </Center>
     </Center>
   );
 };

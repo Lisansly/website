@@ -57,7 +57,6 @@ const Home = () => {
           <UsageExample />
         </Group>
       </Paper>
-
       <Features />
     </div>
   );

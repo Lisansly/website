@@ -34,6 +34,17 @@ const useStyles = createStyles((theme) => ({
     padding: theme.spacing.sm,
     wordBreak: "break-word",
   },
+  background: {
+    position: "absolute",
+    width: "100%",
+    height: "600px",
+    maxWidth: "900px",
+    top: -200,
+    zIndex: -2,
+    borderRadius: "100%",
+    right: 0,
+    backgroundColor: theme.colors.blue[7],
+  },
 }));
 
 const Helper = () => {
@@ -61,35 +72,39 @@ const Helper = () => {
   });
 
   return (
-    <animated.div style={spring}>
-      <Paper className={classes.paper}>
-        <Group position="center">
-          <Select
-            label="Select the category related to your question"
-            data={["All", "Account"]}
-            defaultValue={"All"}
-            variant="filled"
-            size="xs"
-            w={"100%"}
-          />
-          <Code className={classes.code} color={"blue"}>
-            {typedAnswer}
-          </Code>
-          <Autocomplete
-            data={questions.map((question) => question.question)}
-            onChange={(value) => {
-              const question = questions.find(
-                (question) => question.question === value
-              );
-              setAnswer(question?.answer || "...");
-              setTypedAnswer("");
-            }}
-            placeholder="Write your question"
-            w={"100%"}
-          />
-        </Group>
-      </Paper>
-    </animated.div>
+    <>
+      <animated.div style={spring}>
+        <Paper className={classes.paper}>
+          <Group position="center">
+            <Select
+              label="Select the category related to your question"
+              data={["All", "Account"]}
+              defaultValue={"All"}
+              variant="filled"
+              size="xs"
+              w={"100%"}
+            />
+            <Code className={classes.code} color={"blue"}>
+              {typedAnswer}
+            </Code>
+            <Autocomplete
+              data={questions.map((question) => question.question)}
+              onChange={(value) => {
+                const question = questions.find(
+                  (question) => question.question === value
+                );
+                setAnswer(question?.answer || "...");
+                setTypedAnswer("");
+              }}
+              placeholder="Write your question"
+              w={"100%"}
+            />
+          </Group>
+        </Paper>
+      </animated.div>
+
+      <div className={classes.background} />
+    </>
   );
 };
 
