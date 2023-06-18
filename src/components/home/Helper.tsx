@@ -43,7 +43,10 @@ const useStyles = createStyles((theme) => ({
     zIndex: -2,
     borderRadius: "100%",
     right: 0,
-    backgroundColor: theme.colors.blue[7],
+    backgroundImage: theme.fn.gradient({
+      from: theme.colors.blue[7],
+      to: theme.colors.violet[9],
+    }),
   },
 }));
 

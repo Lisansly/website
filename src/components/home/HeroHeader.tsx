@@ -83,8 +83,8 @@ const useStyles = createStyles((theme) => ({
     zIndex: -2,
     borderRadius: "100%",
     backgroundImage: theme.fn.gradient({
-      from: theme.colors.blue[7],
-      to: theme.colors.grape[9],
+      from: theme.colors.violet[9],
+      to: theme.colors.blue[7],
     }),
   },
 }));
@@ -102,9 +102,9 @@ export function HeroHeader() {
         </h1>
 
         <Text className={classes.description} color="dimmed">
-          Save your time and effort.
+          Save your cost and time.
         </Text>
-        <Prism radius={"md"} mt={"xl"} language="bash" w={"210px"}>
+        <Prism radius={"md"} mt={"xl"} language="bash" maw={"300px"}>
           npm install lisansly
         </Prism>
 
