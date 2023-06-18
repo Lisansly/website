@@ -35,6 +35,10 @@ export function Root() {
           colorScheme,
           globalStyles(theme) {
             return {
+              body: {
+                backgroundColor:
+                  theme.colorScheme === "dark" ? theme.black : theme.white,
+              },
               a: {
                 color: theme.colorScheme === "dark" ? theme.white : theme.black,
                 ":hover": {

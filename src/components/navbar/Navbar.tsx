@@ -51,7 +51,7 @@ const Navbar = () => {
       position: "sticky",
       top: 0,
       padding: theme.spacing.xl,
-      zIndex: 2,
+      zIndex: 3,
       height: "max-content",
       [theme.fn.largerThan("md")]: {
         paddingInline: "16.7%",
