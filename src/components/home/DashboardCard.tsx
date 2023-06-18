@@ -17,8 +17,8 @@ const useStyles = createStyles((theme) => ({
     padding: theme.spacing.xl,
     backgroundColor:
       theme.colorScheme === "dark"
-        ? theme.colors.dark[9]
-        : theme.colors.gray[0],
+        ? theme.colors.dark[8]
+        : theme.colors.blue[1],
   },
 
   title: {
