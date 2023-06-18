@@ -1,4 +1,4 @@
-import { Box, Burger, Group, createStyles } from "@mantine/core";
+import { Box, Burger, Group, Overlay, createStyles } from "@mantine/core";
 import { useIsAuthenticated } from "react-auth-kit";
 import UserMenu from "./UserMenu";
 import { useState } from "react";
@@ -41,17 +41,9 @@ const Navbar = () => {
       top: 0,
       position: "sticky",
       padding: theme.spacing.md,
-      borderBottom: `1px solid ${
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[5]
-          : theme.colors.gray[3]
-      }`,
+
       zIndex: 2,
       height: "max-content",
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[8]
-          : theme.colors.gray[1],
       [theme.fn.largerThan("md")]: {
         paddingInline: "19.4%",
       },
@@ -68,6 +60,9 @@ const Navbar = () => {
         display: "none",
       },
     },
+    overlay: {
+      backgroundColor: theme.colorScheme === "dark" ? "#00000080" : "#ffffff80",
+    },
   }));
 
   const { classes } = useStyles();
@@ -81,6 +76,7 @@ const Navbar = () => {
   return (
     <>
       <Group className={classes.navbar}>
+        <Overlay blur={10} zIndex={-1} className={classes.overlay} />
         <Group className={classes.navbarItems}>
           {links.map((link) => (
             <Link

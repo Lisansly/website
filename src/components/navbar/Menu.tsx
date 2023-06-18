@@ -1,4 +1,4 @@
-import { createStyles } from "@mantine/core";
+import { Overlay, createStyles } from "@mantine/core";
 import { useSpring, animated } from "@react-spring/web";
 import { useSignOut } from "react-auth-kit";
 import MenuButton from "./MenuButton";
@@ -80,16 +80,14 @@ const Menu = (props: MenuProps) => {
       position: "absolute",
       height: "100vh",
       zIndex: 2,
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[8]
-          : theme.colors.gray[1],
-
       [theme.fn.largerThan("md")]: {
         display: "none",
       },
       width: "100%",
       padding: 15,
+    },
+    overlay: {
+      backgroundColor: theme.colorScheme === "dark" ? "#00000080" : "#ffffff80",
     },
   }));
   const { classes } = useStyles();
@@ -105,11 +103,13 @@ const Menu = (props: MenuProps) => {
     <div
       style={{
         position: "sticky",
-        top: 61,
+        top: 60,
         zIndex: 2,
       }}
     >
       <animated.div className={classes.menu} style={spring}>
+        <Overlay blur={10} zIndex={-1} className={classes.overlay} />
+
         {menuButtons.map((button, index) => (
           <div key={index}>
             {button.show && (
