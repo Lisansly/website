@@ -91,6 +91,7 @@ const Helper = () => {
               {typedAnswer}
             </Code>
             <Autocomplete
+              variant="filled"
               data={questions.map((question) => question.question)}
               onChange={(value) => {
                 const question = questions.find(
