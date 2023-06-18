@@ -1,14 +1,24 @@
-import { Box, Burger, Group, Overlay, createStyles } from "@mantine/core";
+import {
+  ActionIcon,
+  Box,
+  Burger,
+  Group,
+  Overlay,
+  createStyles,
+} from "@mantine/core";
 import { useIsAuthenticated } from "react-auth-kit";
 import UserMenu from "./UserMenu";
 import { useState } from "react";
 import Button from "./Button";
 import Link from "./Link";
 import Menu from "./Menu";
+import Logo from "./Logo";
+import { IconBrandGithub } from "@tabler/icons-react";
+import SwitchTheme from "./SwitchTheme";
 
 const buttons = [
   {
-    variant: "default",
+    variant: "subtle",
     path: "/signin",
     label: "Sign In",
   },
@@ -38,14 +48,13 @@ const Navbar = () => {
       },
     },
     navbar: {
-      top: 0,
       position: "sticky",
-      padding: theme.spacing.md,
-
+      top: 0,
+      padding: theme.spacing.xl,
       zIndex: 2,
       height: "max-content",
       [theme.fn.largerThan("md")]: {
-        paddingInline: "19.4%",
+        paddingInline: "16.7%",
       },
     },
     navbarItems: {
@@ -78,6 +87,7 @@ const Navbar = () => {
       <Group className={classes.navbar}>
         <Overlay blur={10} zIndex={-1} className={classes.overlay} />
         <Group className={classes.navbarItems}>
+          <Logo />
           {links.map((link) => (
             <Link
               className={classes.link}
@@ -100,6 +110,17 @@ const Navbar = () => {
               ))}
             </Box>
           )}
+          <ActionIcon
+            href="https://github.com/Lisansly"
+            variant="subtle"
+            target="_blank"
+            component="a"
+            radius="md"
+            size="lg"
+          >
+            <IconBrandGithub />
+          </ActionIcon>
+          <SwitchTheme />
         </Group>
         <Burger
           size="sm"

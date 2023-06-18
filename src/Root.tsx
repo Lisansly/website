@@ -1,5 +1,4 @@
 import { Notifications } from "@mantine/notifications";
-import Header from "./components/header/Header.tsx";
 import Navbar from "./components/navbar/Navbar.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "react-auth-kit";
@@ -55,7 +54,6 @@ export function Root() {
           refresh={refreshToken}
         >
           <BrowserRouter>
-            <Header />
             <Navbar />
             <Routes />
             <Footer />

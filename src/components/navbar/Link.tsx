@@ -10,7 +10,7 @@ type LinkProps = {
 const Link = (props: LinkProps) => {
   return (
     <ReactRouterDomLink to={props.path}>
-      <Text fw={700} size="sm" className={props.className}>
+      <Text fw={700} size="md" className={props.className}>
         {props.label}
       </Text>
     </ReactRouterDomLink>
