@@ -14,7 +14,7 @@ const Button = (props: ButtonProps) => {
       loading={props.loading}
       onClick={props.onClick}
       type="submit"
-      radius="sm"
+      radius={10}
       mt={props.mt}
       fullWidth={props.fullWidth}
     >

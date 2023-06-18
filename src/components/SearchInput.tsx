@@ -11,6 +11,8 @@ const SearchInput = (props: SearchInputProps) => {
       w={"100%"}
       icon={<IconSearch size="1rem" />}
       placeholder={props.placeholder}
+      variant="filled"
+      radius={10}
     />
   );
 };
