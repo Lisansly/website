@@ -23,11 +23,9 @@ const useStyles = createStyles((theme) => ({
     padding: theme.spacing.xs,
     borderRadius: theme.radius.sm,
     color: theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black,
-    "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[7]
-          : theme.colors.gray[2],
+    ":hover": {
+      color:
+        theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 4 : 6],
     },
   },
 }));
