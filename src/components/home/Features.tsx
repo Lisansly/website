@@ -1,28 +1,20 @@
+import { Link } from "react-router-dom";
 import {
-  Box,
+  createStyles,
+  SimpleGrid,
+  ThemeIcon,
+  Overlay,
   Center,
   Group,
-  Overlay,
   Paper,
-  SimpleGrid,
+  Box,
   Text,
-  ThemeIcon,
-  createStyles,
 } from "@mantine/core";
 import {
-  Icon,
   IconArrowNarrowRight,
   IconCloudComputing,
+  Icon,
 } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
-
-type FeatureProps = {
-  icon: Icon;
-  title: string;
-  description: string;
-  path: string;
-  classes: any;
-};
 
 const features = [
   {
@@ -90,6 +82,14 @@ const useStyles = createStyles((theme) => ({
         : theme.colors.blue[3],
   },
 }));
+
+type FeatureProps = {
+  description: string;
+  title: string;
+  path: string;
+  classes: any;
+  icon: Icon;
+};
 
 const Feature = (props: FeatureProps) => {
   return (

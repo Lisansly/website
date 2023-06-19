@@ -1,13 +1,6 @@
+import { Autocomplete, createStyles, Group, Code } from "@mantine/core";
 import { useSpring, animated } from "@react-spring/web";
 import { useState, useEffect } from "react";
-import {
-  Autocomplete,
-  createStyles,
-  Group,
-  Select,
-  Code,
-  Paper,
-} from "@mantine/core";
 
 const questions = [
   {
@@ -17,22 +10,26 @@ const questions = [
 ];
 
 const useStyles = createStyles((theme) => ({
-  paper: {
-    borderRadius: theme.radius.lg,
-    maxWidth: "450px",
+  code: {
+    minHeight: "250px",
+    wordBreak: "break-word",
+    borderRadius: theme.radius.md,
     position: "relative",
     padding: theme.spacing.md,
-    margin: theme.spacing.xl,
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[9]
-        : theme.colors.gray[0],
+    margin: theme.spacing.lg,
+    width: "450px",
+    [theme.fn.smallerThan("xs")]: {
+      width: "270px",
+    },
   },
-  code: {
-    width: "100%",
-    minHeight: "100px",
-    padding: theme.spacing.sm,
-    wordBreak: "break-word",
+  autocomplete: {
+    position: "absolute",
+    bottom: 25,
+    marginInline: 35,
+    width: "430px",
+    [theme.fn.smallerThan("xs")]: {
+      width: "255px",
+    },
   },
   background: {
     position: "absolute",
@@ -40,7 +37,6 @@ const useStyles = createStyles((theme) => ({
     height: "500px",
     top: -100,
     zIndex: -2,
-    borderRadius: "100%",
     backgroundImage: theme.fn.gradient({
       from: theme.colors.blue[7],
       to: theme.colors.violet[9],
@@ -75,34 +71,25 @@ const Helper = () => {
   return (
     <div style={{ position: "relative" }}>
       <animated.div style={spring}>
-        <Paper className={classes.paper}>
-          <Group position="center">
-            <Select
-              label="Select the category related to your question"
-              data={["All", "Account"]}
-              defaultValue={"All"}
-              variant="filled"
-              size="xs"
-              w={"100%"}
-            />
-            <Code className={classes.code} color={"blue"}>
-              {typedAnswer}
-            </Code>
-            <Autocomplete
-              variant="filled"
-              data={questions.map((question) => question.question)}
-              onChange={(value) => {
-                const question = questions.find(
-                  (question) => question.question === value
-                );
-                setAnswer(question?.answer || "...");
-                setTypedAnswer("");
-              }}
-              placeholder="Write your question"
-              w={"100%"}
-            />
-          </Group>
-        </Paper>
+        <Group position="center" display={"grid"}>
+          <Code className={classes.code} color={"blue"}>
+            {typedAnswer}
+          </Code>
+
+          <Autocomplete
+            variant="unstyled"
+            className={classes.autocomplete}
+            data={questions.map((question) => question.question)}
+            onChange={(value) => {
+              const question = questions.find(
+                (question) => question.question === value
+              );
+              setAnswer(question?.answer || "...");
+              setTypedAnswer("");
+            }}
+            placeholder="Write your question"
+          />
+        </Group>
       </animated.div>
 
       <div className={classes.background} />

@@ -1,5 +1,6 @@
 import { IconBrandGithub } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
+import { Prism } from "@mantine/prism";
 import {
   createStyles,
   Container,
@@ -8,7 +9,6 @@ import {
   Text,
   rem,
 } from "@mantine/core";
-import { Prism } from "@mantine/prism";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -76,11 +76,13 @@ const useStyles = createStyles((theme) => ({
   background: {
     position: "absolute",
     width: "100%",
-    top: 400,
-    left: -350,
+    top: 550,
+    left: -300,
     height: "600px",
     zIndex: -2,
     borderRadius: "100%",
+    borderBottomLeftRadius: 0,
+    borderTopLeftRadius: 0,
     backgroundImage: theme.fn.gradient({
       from: theme.colors.violet[9],
       to: theme.colors.blue[7],

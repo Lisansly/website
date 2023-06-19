@@ -1,4 +1,4 @@
-import { Tabs, createStyles } from "@mantine/core";
+import { Center, Tabs, createStyles } from "@mantine/core";
 import { Prism } from "@mantine/prism";
 
 const examples = [
@@ -49,19 +49,26 @@ const UsageExample = () => {
   return (
     <Tabs
       variant="pills"
-      defaultValue="go"
+      defaultValue="clike"
       radius={12}
       className={classes.tabs}
     >
-      <Tabs.List>
-        <Tabs.Tab value="go">Go</Tabs.Tab>
-        <Tabs.Tab value="javascript">JavaScript</Tabs.Tab>
-        <Tabs.Tab value="clike">C#</Tabs.Tab>
-      </Tabs.List>
+      <Center>
+        <Tabs.List>
+          <Tabs.Tab value="clike">C#</Tabs.Tab>
+          <Tabs.Tab value="go">Go</Tabs.Tab>
+          <Tabs.Tab value="javascript">JavaScript</Tabs.Tab>
+        </Tabs.List>
+      </Center>
 
       {examples.map((example) => (
-        <Tabs.Panel value={example.language} key={example.language} pt="xs">
-          <Prism withLineNumbers language="go" style={{ zIndex: 0 }}>
+        <Tabs.Panel value={example.language} key={example.language} mt="xs">
+          <Prism
+            withLineNumbers
+            language="go"
+            style={{ zIndex: 0 }}
+            radius={"lg"}
+          >
             {example.code}
           </Prism>
         </Tabs.Panel>

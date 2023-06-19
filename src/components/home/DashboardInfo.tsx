@@ -1,12 +1,4 @@
-import {
-  createStyles,
-  Paper,
-  Title,
-  Button,
-  rem,
-  Overlay,
-  Center,
-} from "@mantine/core";
+import { createStyles, Paper, Title, Button, rem, Center } from "@mantine/core";
 import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
@@ -15,12 +7,9 @@ const useStyles = createStyles((theme) => ({
     height: "300px",
     maxWidth: "400px",
     margin: theme.spacing.xs,
-    borderRadius: 200,
+    borderRadius: theme.radius.lg,
     paddingInline: theme.spacing.xl,
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[8]
-        : theme.colors.blue[1],
+    backgroundColor: "transparent",
   },
 
   title: {
@@ -46,29 +35,21 @@ const useStyles = createStyles((theme) => ({
     width: "100%",
   },
   background: {
-    width: "300px",
-    height: "270px",
-    borderRadius: 500,
-    top: 30,
-    [theme.fn.smallerThan("md")]: {
-      height: "220px",
-    },
-    right: 0,
-    position: "absolute",
+    position: "relative",
+    height: "400px",
     backgroundImage: theme.fn.gradient({
-      from: theme.colorScheme === "dark" ? "black" : "white",
-      to: theme.colorScheme === "dark" ? "blue" : "darkblue",
-      deg: 45,
+      from: theme.colors.violet[9],
+      to: theme.colors.blue[7],
     }),
+    bottom: 250,
+    zIndex: -2,
   },
 }));
-
-export function DashboardCard() {
+const DashboardInfo = () => {
   const { classes } = useStyles();
 
   return (
     <Paper className={classes.paper}>
-      <Overlay zIndex={1} blur={100} className={classes.overlay} />
       <Center h={"100%"} display={"grid"}>
         <Title order={3} className={classes.title}>
           Create project from dashboard to license your application 🔒
@@ -83,4 +64,6 @@ export function DashboardCard() {
       <div className={classes.background} />
     </Paper>
   );
-}
+};
+
+export default DashboardInfo;
