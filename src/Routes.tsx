@@ -3,7 +3,7 @@ import {
   Routes as ReactRouterDomRouters,
   useLocation,
 } from "react-router-dom";
-import { RequireAuth, useIsAuthenticated } from "react-auth-kit";
+import { useIsAuthenticated } from "react-auth-kit";
 import Dashboard from "./components/dashboard/Dashboard";
 import PageNotFound from "./components/PageNotFound";
 import Profile from "./components/profile/Profile";
@@ -30,21 +30,10 @@ const Routes = () => {
         path="/signin"
         element={isAuthenticated() ? <Home /> : <SignIn />}
       />
-      <Route
-        path="/profile/:tabValue?"
-        element={
-          <RequireAuth loginPath={"/signin"}>
-            <Profile />
-          </RequireAuth>
-        }
-      />
+      <Route path="/profile/:tabValue?" element={<Profile />} />
       <Route
         path="/dashboard/:tabValue?/:projectName?"
-        element={
-          <RequireAuth loginPath={"/signin"}>
-            <Dashboard />
-          </RequireAuth>
-        }
+        element={<Dashboard />}
       />
       <Route path="/" element={<Home />} />
       <Route path="/*" element={<PageNotFound />} />
