@@ -1,12 +1,5 @@
 import { Link as ReactRouterDomLink } from "react-router-dom";
-import {
-  createStyles,
-  Overlay,
-  Anchor,
-  Center,
-  Group,
-  Text,
-} from "@mantine/core";
+import { createStyles, Overlay, Center, Group, Text } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   footer: {
