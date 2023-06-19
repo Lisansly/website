@@ -16,14 +16,12 @@ import {
 
 export function Root() {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
-    (localStorage.getItem("theme") as ColorScheme) || "light"
+    (localStorage.getItem("theme") as ColorScheme) || "dark"
   );
-  const toggleColorScheme = (value?: ColorScheme) => {
-    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
-    localStorage.setItem(
-      "theme",
-      value || (colorScheme === "dark" ? "light" : "dark")
-    );
+  const toggleColorScheme = () => {
+    const theme: ColorScheme = colorScheme === "dark" ? "light" : "dark";
+    setColorScheme(theme);
+    localStorage.setItem("theme", theme);
   };
 
   return (
