@@ -76,9 +76,8 @@ const useStyles = createStyles((theme) => ({
   background: {
     position: "absolute",
     width: "100%",
-    maxWidth: "900px",
-    top: 300,
-    left: -200,
+    top: 400,
+    left: -350,
     height: "600px",
     zIndex: -2,
     borderRadius: "100%",

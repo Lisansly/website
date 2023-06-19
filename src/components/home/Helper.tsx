@@ -37,12 +37,10 @@ const useStyles = createStyles((theme) => ({
   background: {
     position: "absolute",
     width: "100%",
-    height: "600px",
-    maxWidth: "900px",
-    top: -200,
+    height: "500px",
+    top: -100,
     zIndex: -2,
     borderRadius: "100%",
-    right: 0,
     backgroundImage: theme.fn.gradient({
       from: theme.colors.blue[7],
       to: theme.colors.violet[9],
@@ -75,7 +73,7 @@ const Helper = () => {
   });
 
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <animated.div style={spring}>
         <Paper className={classes.paper}>
           <Group position="center">
@@ -108,7 +106,7 @@ const Helper = () => {
       </animated.div>
 
       <div className={classes.background} />
-    </>
+    </div>
   );
 };
 
