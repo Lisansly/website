@@ -29,7 +29,6 @@ const useStyles = createStyles((theme) => ({
   button: {
     display: "flex",
     flexWrap: "nowrap",
-    marginBottom: theme.spacing.xs,
     fontSize: theme.fontSizes.sm,
     color:
       theme.colorScheme === "dark"
