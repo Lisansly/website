@@ -11,6 +11,7 @@ import {
   ColorSchemeProvider,
   MantineProvider,
   ColorScheme,
+  Overlay,
 } from "@mantine/core";
 
 export function Root() {
@@ -58,6 +59,15 @@ export function Root() {
           refresh={refreshToken}
         >
           <BrowserRouter>
+            <Overlay
+              blur={200}
+              sx={(theme) => ({
+                position: "fixed",
+                zIndex: -1,
+                backgroundColor:
+                  theme.colorScheme === "dark" ? "#00000080" : "#ffffff80",
+              })}
+            />
             <Navbar />
             <Routes />
             <Footer />

@@ -1,5 +1,5 @@
 import { Link as ReactRouterDomLink } from "react-router-dom";
-import { createStyles, Overlay, Center, Group, Text } from "@mantine/core";
+import { createStyles, Center, Group, Text } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -18,13 +18,10 @@ const useStyles = createStyles((theme) => ({
     }),
     marginBottom: theme.spacing.xl,
   },
-  overlay: {
-    backgroundColor: theme.colorScheme === "dark" ? "#00000080" : "#ffffff80",
-  },
   background: {
     borderTopRightRadius: "100%",
     borderTopLeftRadius: "100%",
-    zIndex: -1,
+    zIndex: -2,
     position: "absolute",
     bottom: "0px",
     backgroundImage: theme.fn.gradient({
@@ -76,7 +73,6 @@ const Footer = () => {
 
   return (
     <Group position="center" className={classes.footer}>
-      <Overlay blur={100} zIndex={0} className={classes.overlay} />
       <Group display={"grid"} style={{ zIndex: 1 }}>
         <Group>
           {links.map((link) => (
