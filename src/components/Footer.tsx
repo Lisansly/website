@@ -76,7 +76,7 @@ const Footer = () => {
       <Group display={"grid"} style={{ zIndex: 1 }}>
         <Group>
           {links.map((link) => (
-            <Link text={link.text} path={link.path} />
+            <Link text={link.text} path={link.path} key={link.path} />
           ))}
         </Group>
         <div className={classes.divider} />
