@@ -2,7 +2,7 @@ import { Box, Image, useMantineTheme } from "@mantine/core";
 
 const DashboardImage = () => {
   const theme = useMantineTheme();
-  const imagePath = `${theme.colorScheme}-dashboard.png`;
+  const imagePath = `/${theme.colorScheme}-dashboard.png`;
   return (
     <Box
       sx={(theme) => ({
