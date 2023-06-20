@@ -3,14 +3,25 @@ import ChangePassword from "./ChangePassword";
 import EditProfile from "./EditProfile";
 import { Tabs } from "@mantine/core";
 import { useEffect } from "react";
+import UserClient from "../../clients/user/Client";
+import { useSignIn } from "react-auth-kit";
+import Notification from "../Notification";
 
 const Profile = () => {
+  const notification = new Notification();
+  const userClient = new UserClient();
   const { tabValue } = useParams();
   const navigate = useNavigate();
-
+  const signIn = useSignIn();
   const tabs = [
     {
-      component: <EditProfile />,
+      component: (
+        <EditProfile
+          notification={notification}
+          userClient={userClient}
+          signIn={signIn}
+        />
+      ),
       path: "edit",
     },
     {
