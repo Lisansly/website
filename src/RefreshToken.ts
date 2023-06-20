@@ -6,7 +6,7 @@ const refreshToken = createRefresh({
   refreshApiCallback: async ({ refreshToken, authUserState }): Promise<any> => {
     const authClient: AuthClient = new AuthClient();
     const response = await authClient.refreshToken({
-      refreshToken: refreshToken || "",
+      refreshToken: refreshToken as string,
       userId: authUserState?.id,
     });
     if (response.statusCode !== 200) {
@@ -15,7 +15,7 @@ const refreshToken = createRefresh({
       };
     }
     const decodedAccessToken = JSON.parse(
-      atob(response.accessToken!.split(".")[1])
+      atob(response.accessToken.split(".")[1])
     );
     //const decodedRefreshToken = JSON.parse(atob(response.data.refreshToken.split(".")[1]));
     return {
