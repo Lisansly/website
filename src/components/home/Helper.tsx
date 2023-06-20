@@ -25,10 +25,10 @@ const useStyles = createStyles((theme) => ({
   autocomplete: {
     position: "absolute",
     bottom: 25,
-    marginInline: 35,
-    width: "430px",
+    paddingLeft: 32.5,
+    width: "457.5px",
     [theme.fn.smallerThan("xs")]: {
-      width: "255px",
+      width: "277.5px",
     },
   },
   background: {
