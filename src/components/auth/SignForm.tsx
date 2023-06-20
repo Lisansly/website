@@ -1,32 +1,8 @@
-import { Paper, Container, createStyles } from "@mantine/core";
 import PasswordInput, { PasswordInputProps } from "../PasswordInput";
+import { Paper, Container, createStyles } from "@mantine/core";
 import TextInput, { TextInputProps } from "../TextInput";
-import { useNavigate } from "react-router-dom";
-import { useSignIn } from "react-auth-kit";
 import { useState } from "react";
 import Button from "../Button";
-
-const handleSuccess = (accessToken: string, refreshToken: string) => {
-  const navigate = useNavigate();
-  const signIn = useSignIn();
-
-  const decodedAccessToken = JSON.parse(atob(accessToken.split(".")[1]));
-  const decodedRefreshToken = JSON.parse(atob(refreshToken.split(".")[1]));
-
-  signIn({
-    token: accessToken,
-    expiresIn: decodedAccessToken.exp,
-    tokenType: "Bearer",
-    refreshToken: refreshToken,
-    refreshTokenExpireIn: decodedRefreshToken.exp,
-    authState: {
-      id: decodedAccessToken.sub,
-      name: decodedAccessToken.name,
-      email: decodedAccessToken.email,
-    },
-  });
-  navigate("/");
-};
 
 type SignFormProps = {
   passwordInputs: PasswordInputProps[];
@@ -94,5 +70,3 @@ const SignForm = (props: SignFormProps) => {
 };
 
 export default SignForm;
-
-export { handleSuccess };

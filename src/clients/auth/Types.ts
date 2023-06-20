@@ -11,8 +11,8 @@ type SignUpBody = {
 
 type SignResponse = {
   statusCode: number;
-  accessToken?: string;
-  refreshToken?: string;
+  accessToken: string;
+  refreshToken: string;
 };
 
 type RefreshTokenPathParams = {
@@ -22,7 +22,7 @@ type RefreshTokenPathParams = {
 
 type RefreshTokenResponse = {
   statusCode: number;
-  accessToken?: string;
+  accessToken: string;
 };
 
 export type {

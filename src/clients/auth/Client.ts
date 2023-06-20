@@ -28,6 +28,8 @@ class AuthClient {
       if (error instanceof AxiosError) {
         return {
           statusCode: error.response?.status as number,
+          accessToken: "",
+          refreshToken: "",
         };
       }
       throw error;
@@ -50,6 +52,8 @@ class AuthClient {
       if (error instanceof AxiosError) {
         return {
           statusCode: error.response?.status as number,
+          accessToken: "",
+          refreshToken: "",
         };
       }
       throw error;
@@ -71,6 +75,7 @@ class AuthClient {
       if (error instanceof AxiosError) {
         return {
           statusCode: error.response?.status as number,
+          accessToken: "",
         };
       }
       throw error;

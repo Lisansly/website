@@ -1,15 +1,49 @@
+import { signInFunctionParams } from "react-auth-kit/dist/types";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useForm, isNotEmpty, isEmail } from "@mantine/form";
 import { SignInPathParams } from "../../clients/auth/Types";
 import { PasswordInputProps } from "../PasswordInput";
-import SignForm, { handleSuccess } from "./SignForm";
-import { useForm, isNotEmpty } from "@mantine/form";
 import AuthClient from "../../clients/auth/Client";
 import { TextInputProps } from "../TextInput";
-import Notification from "../Notification";
 import { Group, Text } from "@mantine/core";
+import Notification from "../Notification";
+import { useSignIn } from "react-auth-kit";
+import SignForm from "./SignForm";
 
-export default function SignIn() {
-  const notification: Notification = new Notification();
-  const authClient: AuthClient = new AuthClient();
+type handleSuccessProps = {
+  response: {
+    accessToken: string;
+    refreshToken: string;
+  };
+  navigate: NavigateFunction;
+  signIn: (signInConfig: signInFunctionParams) => boolean;
+};
+
+const handleSuccess = (props: handleSuccessProps) => {
+  const { accessToken, refreshToken } = props.response;
+  const decodedAccessToken = JSON.parse(atob(accessToken.split(".")[1]));
+  const decodedRefreshToken = JSON.parse(atob(refreshToken.split(".")[1]));
+
+  props.signIn({
+    token: accessToken,
+    expiresIn: decodedAccessToken.exp,
+    tokenType: "Bearer",
+    refreshToken: refreshToken,
+    refreshTokenExpireIn: decodedRefreshToken.exp,
+    authState: {
+      id: decodedAccessToken.sub,
+      name: decodedAccessToken.name,
+      email: decodedAccessToken.email,
+    },
+  });
+  props.navigate("/");
+};
+
+const SignIn = () => {
+  const notification = new Notification();
+  const authClient = new AuthClient();
+  const navigate = useNavigate();
+  const signIn = useSignIn();
 
   const form = useForm<SignInPathParams>({
     initialValues: {
@@ -17,7 +51,7 @@ export default function SignIn() {
       password: "",
     },
     validate: {
-      email: isNotEmpty("Email is required"),
+      email: isEmail("Email must be valid"),
       password: isNotEmpty("Password is required"),
     },
     validateInputOnChange: true,
@@ -49,7 +83,7 @@ export default function SignIn() {
           : "Please try again later"
       );
     } else {
-      handleSuccess(response.accessToken!, response.refreshToken!);
+      handleSuccess({ response, signIn, navigate });
     }
   };
 
@@ -69,4 +103,7 @@ export default function SignIn() {
       }
     />
   );
-}
+};
+
+export default SignIn;
+export { handleSuccess };

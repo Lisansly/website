@@ -1,10 +1,13 @@
 import { isNotEmpty, hasLength, useForm, isEmail } from "@mantine/form";
 import { PasswordInputProps } from "../PasswordInput";
-import SignForm, { handleSuccess } from "./SignForm";
 import AuthClient from "../../clients/auth/Client";
+import { Checkbox, Group } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 import { TextInputProps } from "../TextInput";
 import Notification from "../Notification";
-import { Checkbox, Group } from "@mantine/core";
+import { useSignIn } from "react-auth-kit";
+import { handleSuccess } from "./SignIn";
+import SignForm from "./SignForm";
 
 type SignUpFormProps = {
   name: string;
@@ -15,8 +18,10 @@ type SignUpFormProps = {
 };
 
 export default function SignUp() {
-  const notification: Notification = new Notification();
-  const authClient: AuthClient = new AuthClient();
+  const notification = new Notification();
+  const authClient = new AuthClient();
+  const navigate = useNavigate();
+  const signIn = useSignIn();
 
   const form = useForm<SignUpFormProps>({
     initialValues: {
@@ -84,7 +89,7 @@ export default function SignUp() {
           : "Please try again later"
       );
     } else {
-      handleSuccess(response.accessToken!, response.refreshToken!);
+      handleSuccess({ response, signIn, navigate });
     }
   };
 
