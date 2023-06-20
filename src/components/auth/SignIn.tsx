@@ -11,7 +11,7 @@ import { useSignIn } from "react-auth-kit";
 import SignForm from "./SignForm";
 
 type AuthenticateProps = {
-  response: {
+  tokens: {
     accessToken: string;
     refreshToken: string;
   };
@@ -20,7 +20,7 @@ type AuthenticateProps = {
 };
 
 const authenticate = (props: AuthenticateProps) => {
-  const { accessToken, refreshToken } = props.response;
+  const { accessToken, refreshToken } = props.tokens;
   const decodedAccessToken = JSON.parse(atob(accessToken.split(".")[1]));
   const decodedRefreshToken = JSON.parse(atob(refreshToken.split(".")[1]));
 
@@ -76,7 +76,7 @@ const SignIn = () => {
   const onSubmit = async (values: SignInPathParams) => {
     var response = await authClient.signIn(values);
     if (response.statusCode === 200) {
-      authenticate({ response, signIn, navigate });
+      authenticate({ tokens: response, signIn, navigate });
     } else {
       notification.error(
         response.statusCode === 401

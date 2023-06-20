@@ -83,7 +83,7 @@ export default function SignUp() {
       password: values.password,
     });
     if (response.statusCode === 201) {
-      authenticate({ response, signIn, navigate });
+      authenticate({ tokens: response, signIn, navigate });
     } else {
       notification.error(
         response.statusCode === 409
