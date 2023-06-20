@@ -10,7 +10,7 @@ import Notification from "../Notification";
 import { useSignIn } from "react-auth-kit";
 import SignForm from "./SignForm";
 
-type handleSuccessProps = {
+type AuthenticateProps = {
   response: {
     accessToken: string;
     refreshToken: string;
@@ -19,7 +19,7 @@ type handleSuccessProps = {
   signIn: (signInConfig: signInFunctionParams) => boolean;
 };
 
-const handleSuccess = (props: handleSuccessProps) => {
+const authenticate = (props: AuthenticateProps) => {
   const { accessToken, refreshToken } = props.response;
   const decodedAccessToken = JSON.parse(atob(accessToken.split(".")[1]));
   const decodedRefreshToken = JSON.parse(atob(refreshToken.split(".")[1]));
@@ -69,7 +69,6 @@ const SignIn = () => {
     {
       placeholder: "Your password",
       validation: form.getInputProps("password"),
-
       label: "Password",
     },
   ];
@@ -78,12 +77,12 @@ const SignIn = () => {
     var response = await authClient.signIn(values);
     if (response.statusCode !== 200) {
       notification.error(
-        response.statusCode === 400
+        response.statusCode === 401
           ? "Wrong email or password"
           : "Please try again later"
       );
     } else {
-      handleSuccess({ response, signIn, navigate });
+      authenticate({ response, signIn, navigate });
     }
   };
 
@@ -106,4 +105,4 @@ const SignIn = () => {
 };
 
 export default SignIn;
-export { handleSuccess };
+export { authenticate };

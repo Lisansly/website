@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { TextInputProps } from "../TextInput";
 import Notification from "../Notification";
 import { useSignIn } from "react-auth-kit";
-import { handleSuccess } from "./SignIn";
+import { authenticate } from "./SignIn";
 import SignForm from "./SignForm";
 
 type SignUpFormProps = {
@@ -89,7 +89,7 @@ export default function SignUp() {
           : "Please try again later"
       );
     } else {
-      handleSuccess({ response, signIn, navigate });
+      authenticate({ response, signIn, navigate });
     }
   };
 
