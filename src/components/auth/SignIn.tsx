@@ -15,7 +15,7 @@ type AuthenticateProps = {
     accessToken: string;
     refreshToken: string;
   };
-  navigate: NavigateFunction;
+  navigate?: NavigateFunction;
   signIn: (signInConfig: signInFunctionParams) => boolean;
 };
 
@@ -36,7 +36,7 @@ const authenticate = (props: AuthenticateProps) => {
       email: decodedAccessToken.email,
     },
   });
-  props.navigate("/");
+  props.navigate && props.navigate("/");
 };
 
 const SignIn = () => {
@@ -75,14 +75,14 @@ const SignIn = () => {
 
   const onSubmit = async (values: SignInPathParams) => {
     var response = await authClient.signIn(values);
-    if (response.statusCode !== 200) {
+    if (response.statusCode === 200) {
+      authenticate({ response, signIn, navigate });
+    } else {
       notification.error(
         response.statusCode === 401
           ? "Wrong email or password"
           : "Please try again later"
       );
-    } else {
-      authenticate({ response, signIn, navigate });
     }
   };
 

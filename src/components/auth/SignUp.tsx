@@ -82,14 +82,14 @@ export default function SignUp() {
       email: values.email,
       password: values.password,
     });
-    if (response.statusCode !== 201) {
+    if (response.statusCode === 201) {
+      authenticate({ response, signIn, navigate });
+    } else {
       notification.error(
         response.statusCode === 409
           ? "Email already used"
           : "Please try again later"
       );
-    } else {
-      authenticate({ response, signIn, navigate });
     }
   };
 
