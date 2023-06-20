@@ -25,7 +25,13 @@ const Profile = () => {
       path: "edit",
     },
     {
-      component: <ChangePassword />,
+      component: (
+        <ChangePassword
+          notification={notification}
+          userClient={userClient}
+          signIn={signIn}
+        />
+      ),
       path: "change-password",
     },
   ];

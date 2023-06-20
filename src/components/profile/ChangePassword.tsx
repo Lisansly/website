@@ -2,14 +2,24 @@ import { PasswordInputProps } from "../PasswordInput";
 import { hasLength, useForm } from "@mantine/form";
 import UpdateForm from "./UpdateForm";
 import { Tabs } from "@mantine/core";
+import { authenticate } from "../auth/SignIn";
+import UserClient from "../../clients/user/Client";
+import { signInFunctionParams } from "react-auth-kit/dist/types";
+import Notification from "../Notification";
 
 type ChangePasswordProps = {
+  signIn: (signInConfig: signInFunctionParams) => boolean;
+  notification: Notification;
+  userClient: UserClient;
+};
+
+type ChangePasswordFormProps = {
   password: string;
   confirmPassword: string;
 };
 
-const ChangePassword = () => {
-  const form = useForm<ChangePasswordProps>({
+const ChangePassword = (props: ChangePasswordProps) => {
+  const form = useForm<ChangePasswordFormProps>({
     initialValues: {
       password: "",
       confirmPassword: "",
@@ -42,8 +52,19 @@ const ChangePassword = () => {
     },
   ];
 
-  const onSubmit = (values: ChangePasswordProps) => {
-    console.log(values);
+  const onSubmit = async (values: ChangePasswordFormProps) => {
+    const response = await props.userClient.update({
+      password: values.password,
+    });
+    if (response.statusCode === 200) {
+      authenticate({
+        tokens: response,
+        signIn: props.signIn,
+      });
+      props.notification.success("Password updated");
+    } else {
+      props.notification.error("Please try again");
+    }
   };
 
   return (
