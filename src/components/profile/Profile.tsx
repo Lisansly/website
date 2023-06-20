@@ -31,7 +31,7 @@ const Profile = () => {
       value={tabValue}
       mih="100vh"
     >
-      <Tabs.List position="center">
+      <Tabs.List position="center" mb={"xl"}>
         <Tabs.Tab value="edit">Edit Profile</Tabs.Tab>
         <Tabs.Tab value="change-password">Change Password</Tabs.Tab>
       </Tabs.List>
