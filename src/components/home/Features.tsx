@@ -7,7 +7,6 @@ import {
   Center,
   Group,
   Paper,
-  Box,
   Text,
 } from "@mantine/core";
 import {
@@ -70,7 +69,7 @@ const useStyles = createStyles((theme) => ({
     display: "grid",
     margin: theme.spacing.xl,
   },
-  background: {
+  featureBackground: {
     position: "absolute",
     width: "50%",
     height: 160,
@@ -80,6 +79,19 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark"
         ? theme.colors.blue[9]
         : theme.colors.blue[3],
+  },
+  featuresBackground: {
+    position: "absolute",
+    backgroundImage: theme.fn.gradient({
+      from: theme.colors.blue[9],
+      to: theme.colors.violet[4],
+    }),
+    width: "100%",
+    maxWidth: 1200,
+    height: "50%",
+    maxHeight: 300,
+    marginTop: 200,
+    zIndex: -2,
   },
 }));
 
@@ -95,7 +107,7 @@ const Feature = (props: FeatureProps) => {
   return (
     <Paper className={props.classes.paper}>
       <Overlay blur={65} className={props.classes.overlay} />
-      <div className={props.classes.background} />
+      <div className={props.classes.featureBackground} />
       <Group display={"grid"} position="center">
         <Group>
           <ThemeIcon radius={"md"} variant="default" size={"xl"}>
@@ -127,21 +139,7 @@ const Features = () => {
         </Text>
       </Center>
       <Center>
-        <Box
-          sx={(theme) => ({
-            position: "absolute",
-            backgroundImage: theme.fn.gradient({
-              from: theme.colors.blue[9],
-              to: theme.colors.violet[4],
-            }),
-            width: "100%",
-            maxWidth: 1200,
-            height: "100%",
-            maxHeight: 300,
-            marginTop: 200,
-            zIndex: -2,
-          })}
-        />
+        <div className={classes.featuresBackground} />
       </Center>
       <SimpleGrid
         cols={3}
