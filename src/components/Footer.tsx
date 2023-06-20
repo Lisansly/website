@@ -28,8 +28,11 @@ const useStyles = createStyles((theme) => ({
       from: theme.colors.violet[9],
       to: theme.colors.blue[7],
     }),
-    width: "40%",
     height: "45%",
+    width: "40%",
+    [theme.fn.smallerThan("xs")]: {
+      width: "300px",
+    },
   },
   link: {
     transition: "200ms ease",
