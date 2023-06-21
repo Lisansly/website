@@ -1,5 +1,5 @@
+import { RequireAuth, useIsAuthenticated, useSignOut } from "react-auth-kit";
 import Dashboard from "./components/dashboard/Dashboard";
-import { RequireAuth, useIsAuthenticated } from "react-auth-kit";
 import PageNotFound from "./components/PageNotFound";
 import Profile from "./components/profile/Profile";
 import SignUp from "./components/auth/SignUp";
@@ -11,9 +11,19 @@ import {
   useLocation,
   Route,
 } from "react-router-dom";
+import { useIdle } from "@mantine/hooks";
+
 const Routes = () => {
   const isAuthenticated = useIsAuthenticated();
   const { pathname } = useLocation();
+  const signOut = useSignOut();
+  const idle = useIdle(300000);
+
+  useEffect(() => {
+    if (idle && isAuthenticated()) {
+      signOut();
+    }
+  }, [idle]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
