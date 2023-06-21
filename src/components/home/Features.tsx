@@ -3,7 +3,6 @@ import {
   createStyles,
   SimpleGrid,
   ThemeIcon,
-  Overlay,
   Center,
   Group,
   Paper,
@@ -46,15 +45,11 @@ const useStyles = createStyles((theme) => ({
   paper: {
     zIndex: 1,
     borderRadius: 20,
-
+    backgroundColor: "rgba(255, 255, 255, 0.01)",
+    boxShadow: theme.shadows.xl,
+    backdropFilter: "saturate(150%)",
     position: "relative",
     padding: theme.spacing.xl,
-  },
-  overlay: {
-    borderRadius: 20,
-
-    zIndex: -1,
-    backgroundColor: theme.colorScheme === "dark" ? "#00000080" : "#ffffff80",
   },
   description: {
     fontSize: 16,
@@ -69,17 +64,6 @@ const useStyles = createStyles((theme) => ({
     display: "grid",
     margin: theme.spacing.xl,
   },
-  featureBackground: {
-    position: "absolute",
-    width: "50%",
-    height: 160,
-    borderRadius: 20,
-    zIndex: -2,
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.blue[9]
-        : theme.colors.blue[3],
-  },
   featuresBackground: {
     position: "absolute",
     backgroundImage: theme.fn.gradient({
@@ -92,6 +76,13 @@ const useStyles = createStyles((theme) => ({
     maxHeight: 300,
     marginTop: 200,
     zIndex: -2,
+  },
+  themeIcon: {
+    backgroundColor: "transparent",
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[0]
+        : theme.colors.gray[9],
   },
 }));
 
@@ -106,12 +97,15 @@ type FeatureProps = {
 const Feature = (props: FeatureProps) => {
   return (
     <Paper className={props.classes.paper}>
-      <Overlay blur={65} className={props.classes.overlay} />
-      <div className={props.classes.featureBackground} />
       <Group display={"grid"} position="center">
         <Group>
-          <ThemeIcon radius={"md"} variant="default" size={"xl"}>
-            <props.icon size="1.2rem" />
+          <ThemeIcon
+            variant="light"
+            radius={"md"}
+            size={"md"}
+            className={props.classes.themeIcon}
+          >
+            <props.icon size="2rem" />
           </ThemeIcon>
           <Text fw={700}>{props.title}</Text>
         </Group>
