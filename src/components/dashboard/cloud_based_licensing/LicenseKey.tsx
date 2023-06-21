@@ -17,6 +17,9 @@ type LicenseKeyProps = {
 const useStyles = createStyles((theme) => ({
   paper: {
     paddingBlock: 5,
+    borderRadius: theme.radius.md,
+    boxShadow: theme.shadows.xs,
+
     paddingInline: theme.spacing.sm,
     display: "flex",
     backgroundColor:
@@ -32,7 +35,7 @@ const useStyles = createStyles((theme) => ({
 const LicenseKey = (props: LicenseKeyProps) => {
   const { classes } = useStyles();
   return (
-    <Paper withBorder className={classes.paper}>
+    <Paper className={classes.paper}>
       <Group
         spacing={"xs"}
         style={{ display: "flex", width: "100%", flexWrap: "nowrap" }}

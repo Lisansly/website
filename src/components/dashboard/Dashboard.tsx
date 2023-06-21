@@ -3,6 +3,7 @@ import { Icon, IconCloudComputing } from "@tabler/icons-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import Sidebar from "./Sidebar";
+import { Box } from "@mantine/core";
 
 export type TabProps = {
   component: JSX.Element;
@@ -22,6 +23,12 @@ const Dashboard = () => {
       path: "cloud-based-licensing",
       icon: IconCloudComputing,
     },
+    {
+      component: <CloudBasedLicensing projectName={projectName} />,
+      label: "Cloud Based Licensing",
+      path: "cloud-based-licensin2g",
+      icon: IconCloudComputing,
+    },
   ];
 
   useEffect(() => {
@@ -33,6 +40,20 @@ const Dashboard = () => {
   return (
     <div style={{ minHeight: "100vh", display: "flex" }}>
       <Sidebar tabValue={tabValue} tabs={tabs} navigate={navigate} />
+      <Box
+        sx={(theme) => ({
+          backgroundImage: theme.fn.gradient({
+            from: theme.colors.violet[9],
+            to: theme.colors.blue[7],
+          }),
+          zIndex: -2,
+          position: "absolute",
+          width: "40%",
+          top: "30%",
+          left: "10%",
+          height: "50%",
+        })}
+      />
       {tabs.find((tab) => tab.path === tabValue)?.component}
     </div>
   );

@@ -20,7 +20,7 @@ type SidebarLinkProps = {
 
 const useStyles = createStyles((theme) => ({
   label: {
-    marginLeft: theme.spacing.xs,
+    marginLeft: 5,
     [theme.fn.smallerThan("md")]: {
       display: "none",
     },
@@ -29,6 +29,7 @@ const useStyles = createStyles((theme) => ({
   button: {
     display: "flex",
     flexWrap: "nowrap",
+    marginBottom: 5,
     fontSize: theme.fontSizes.sm,
     color:
       theme.colorScheme === "dark"
@@ -45,9 +46,8 @@ const useStyles = createStyles((theme) => ({
     "&:hover": {
       backgroundColor:
         theme.colorScheme === "dark"
-          ? theme.colors.dark[8]
+          ? theme.colors.dark[9]
           : theme.colors.gray[1],
-      color: theme.colorScheme === "dark" ? theme.white : theme.black,
 
       [`& .${getStylesRef("icon")}`]: {
         color: theme.colorScheme === "dark" ? theme.white : theme.black,
@@ -77,8 +77,12 @@ const SidebarButton = (props: SidebarLinkProps) => {
       onClick={() => props.navigate("/dashboard/" + props.item.path)}
     >
       <Group spacing={"xs"}>
-        <ThemeIcon size={"lg"}>
-          <props.item.icon size="0.95rem" />
+        <ThemeIcon
+          size={"md"}
+          variant="light"
+          style={{ backgroundColor: "transparent" }}
+        >
+          <props.item.icon size="1.2rem" />
         </ThemeIcon>
         <Text className={classes.label}>{props.item.label}</Text>
       </Group>

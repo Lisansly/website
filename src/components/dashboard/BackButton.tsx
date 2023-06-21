@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const BackButton = ({ path }: { path: string }) => {
   return (
     <Link to={path}>
-      <ActionIcon variant="default">
+      <ActionIcon radius={"md"}>
         <IconChevronLeft size="1.125rem" />
       </ActionIcon>
     </Link>

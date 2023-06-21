@@ -14,13 +14,6 @@ const useStyles = createStyles((theme) => ({
     padding: theme.spacing.xs,
     width: "350px",
     paddingTop: theme.spacing.md,
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[9]
-        : theme.colors.gray[2],
-    borderRight: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[3]
-    }`,
     [theme.fn.smallerThan("md")]: {
       width: "75px",
     },

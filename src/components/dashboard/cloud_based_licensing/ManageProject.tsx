@@ -41,7 +41,7 @@ const ManageProject = (props: ManageProjectProps) => {
                 have 12 lisance keys
               </Text>
             </div>
-            <ActionIcon variant="default" ml={"auto"}>
+            <ActionIcon ml={"auto"}>
               <IconEdit size="0.9rem" />
             </ActionIcon>
           </Group>

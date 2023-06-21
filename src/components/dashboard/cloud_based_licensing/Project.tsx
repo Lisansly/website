@@ -18,6 +18,8 @@ const Project = ({
 }) => {
   const useStyles = createStyles((theme) => ({
     paper: {
+      borderRadius: theme.radius.lg,
+      boxShadow: theme.shadows.xs,
       padding: theme.spacing.lg,
       paddingRight: 110,
       paddingBottom: 125,
@@ -26,14 +28,9 @@ const Project = ({
         theme.colorScheme === "dark"
           ? theme.colors.dark[9]
           : theme.colors.gray[0],
-
       "&:hover": {
         cursor: "pointer",
-        boxShadow: `0px 2px 30px 0px ${
-          theme.colorScheme === "dark"
-            ? theme.colors.dark[5]
-            : theme.colors.gray[2]
-        }`,
+        transform: "scale(1.05)",
         borderColor:
           theme.colorScheme === "dark"
             ? theme.colors.dark[2]
@@ -48,11 +45,7 @@ const Project = ({
   const { classes } = useStyles();
   return (
     <Skeleton visible={loading}>
-      <Paper
-        withBorder
-        onClick={() => navigate(props.path)}
-        className={classes.paper}
-      >
+      <Paper onClick={() => navigate(props.path)} className={classes.paper}>
         <Text size="xl" className={classes.name}>
           {props.name}
         </Text>

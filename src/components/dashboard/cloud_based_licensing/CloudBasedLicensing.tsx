@@ -49,6 +49,16 @@ const projects: ProjectProps[] = [
     keyCount: 12,
     path: "proje1",
   },
+  {
+    name: "Lisansly",
+    keyCount: 12,
+    path: "proje1",
+  },
+  {
+    name: "Lisansly",
+    keyCount: 12,
+    path: "proje1",
+  },
 ];
 
 type CloudBasedLicensingProps = {
