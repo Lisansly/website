@@ -5,7 +5,7 @@ import { SignInPathParams } from "../../clients/auth/Types";
 import { PasswordInputProps } from "../PasswordInput";
 import AuthClient from "../../clients/auth/Client";
 import { TextInputProps } from "../TextInput";
-import { Group, Text } from "@mantine/core";
+import ForgotPassword from "./ForgotPassword";
 import Notification from "../Notification";
 import { useSignIn } from "react-auth-kit";
 import SignForm from "./SignForm";
@@ -93,13 +93,7 @@ const SignIn = () => {
       buttonText="Sign In"
       onSubmit={onSubmit}
       form={form}
-      afterButton={
-        <Group mt={"md"}>
-          <Text size={"xs"} ml={"auto"}>
-            <a href="/">Forgot your password?</a>
-          </Text>
-        </Group>
-      }
+      afterButton={<ForgotPassword />}
     />
   );
 };
