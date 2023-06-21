@@ -8,11 +8,17 @@ type SearchInputProps = {
 const SearchInput = (props: SearchInputProps) => {
   return (
     <TextInput
-      w={"100%"}
       icon={<IconSearch size="1rem" />}
       placeholder={props.placeholder}
-      variant="filled"
-      radius={10}
+      variant="unstyled"
+      sx={(theme) => ({
+        width: "100%",
+        backgroundColor:
+          theme.colorScheme === "dark"
+            ? theme.colors.dark[9]
+            : theme.colors.gray[0],
+        borderRadius: theme.radius.md,
+      })}
     />
   );
 };
