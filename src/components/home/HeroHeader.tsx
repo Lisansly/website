@@ -1,6 +1,5 @@
 import { IconBrandGithub } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
-import { Prism } from "@mantine/prism";
 import {
   createStyles,
   Container,
@@ -9,6 +8,7 @@ import {
   Text,
   rem,
 } from "@mantine/core";
+import InstallCommands from "./InstallCommands";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -105,9 +105,7 @@ export function HeroHeader() {
         <Text className={classes.description} color="dimmed">
           Save your cost and time.
         </Text>
-        <Prism radius={"md"} mt={"xl"} language="bash" maw={"300px"}>
-          npm install lisansly
-        </Prism>
+        <InstallCommands />
 
         <Group className={classes.controls}>
           <Button
