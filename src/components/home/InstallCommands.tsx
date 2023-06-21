@@ -89,7 +89,7 @@ const InstallCommands = () => {
       </Tabs.List>
 
       {commands.map((command) => (
-        <Tabs.Panel value={command.value} pt="xs">
+        <Tabs.Panel value={command.value} pt="xs" key={command.value}>
           <InstallCommand
             coloredTextColor={command.coloredTextColor}
             coloredText={command.coloredText}
