@@ -1,22 +1,21 @@
-import {
-  ActionIcon,
-  Box,
-  Burger,
-  Group,
-  Overlay,
-  createStyles,
-} from "@mantine/core";
+import { Box, Burger, Group, Overlay, createStyles } from "@mantine/core";
 import { useIsAuthenticated } from "react-auth-kit";
+import SwitchTheme from "./SwitchTheme";
 import UserMenu from "./UserMenu";
 import { useState } from "react";
 import Button from "./Button";
+import Github from "./Github";
 import Link from "./Link";
 import Menu from "./Menu";
 import Logo from "./Logo";
-import { IconBrandGithub } from "@tabler/icons-react";
-import SwitchTheme from "./SwitchTheme";
 
-const buttons = [
+type ButtonProps = {
+  variant: "subtle" | "filled";
+  path: string;
+  label: string;
+};
+
+const buttons: ButtonProps[] = [
   {
     variant: "subtle",
     path: "/signin",
@@ -27,6 +26,17 @@ const buttons = [
     label: "Sign Up",
     path: "/signup",
   },
+];
+
+type LinkProps = {
+  label: string;
+  path: string;
+};
+
+const links: LinkProps[] = [
+  { path: "/", label: "Home" },
+  { path: "/documentation", label: "Documentation" },
+  { path: "/dashboard/cloud-based-licensing", label: "Dashboard" },
 ];
 
 const Navbar = () => {
@@ -59,80 +69,69 @@ const Navbar = () => {
     },
     navbarItems: {
       width: "100%",
-      [theme.fn.smallerThan("md")]: {
-        display: "none",
-      },
     },
-    burger: {
-      marginLeft: 10,
-      [theme.fn.largerThan("md")]: {
+    middleItems: {
+      width: "calc(100% - 100px)",
+      [theme.fn.smallerThan("md")]: {
         display: "none",
       },
     },
     overlay: {
       backgroundColor: theme.colorScheme === "dark" ? "#00000080" : "#ffffff80",
     },
+    burger: {
+      [theme.fn.largerThan("md")]: {
+        display: "none",
+      },
+    },
   }));
 
   const { classes } = useStyles();
-
-  const links = [
-    { path: "/", label: "Home" },
-    { path: "/documentation", label: "Documentation" },
-    { path: "/dashboard/cloud-based-licensing", label: "Dashboard" },
-  ];
 
   return (
     <>
       <Group className={classes.navbar}>
         <Overlay blur={10} zIndex={-1} className={classes.overlay} />
         <Group className={classes.navbarItems}>
-          <Logo />
-          {links.map((link) => (
-            <Link
-              className={classes.link}
-              label={link.label}
-              path={link.path}
-              key={link.path}
-            />
-          ))}
-          {isAuthenticated() ? (
-            <UserMenu />
-          ) : (
-            <Box className={classes.buttons} ml={"auto"}>
-              {buttons.map((button) => (
-                <Button
-                  variant={button.variant}
-                  label={button.label}
-                  path={button.path}
-                  key={button.path}
-                />
-              ))}
-            </Box>
-          )}
-          <ActionIcon
-            href="https://github.com/Lisansly"
-            variant="subtle"
-            target="_blank"
-            component="a"
-            radius="md"
-            size="lg"
-          >
-            <IconBrandGithub />
-          </ActionIcon>
+          <Burger
+            onClick={() => setOpened((o) => !o)}
+            className={classes.burger}
+            opened={opened}
+            size="sm"
+          />
+          <Group className={classes.middleItems}>
+            <Logo />
+            {links.map((link) => (
+              <Link
+                className={classes.link}
+                label={link.label}
+                path={link.path}
+                key={link.path}
+              />
+            ))}
+            {isAuthenticated() ? (
+              <UserMenu />
+            ) : (
+              <Box className={classes.buttons} ml={"auto"}>
+                {buttons.map((button) => (
+                  <Button
+                    variant={button.variant}
+                    label={button.label}
+                    path={button.path}
+                    key={button.path}
+                  />
+                ))}
+              </Box>
+            )}
+          </Group>
+          <Github />
           <SwitchTheme />
         </Group>
-        <Burger
-          size="sm"
-          onClick={() => setOpened((o) => !o)}
-          className={classes.burger}
-          opened={opened}
-        />
       </Group>
       <Menu
-        opened={opened}
-        setOpened={setOpened}
         isAuthenticated={isAuthenticated}
+        setOpened={setOpened}
+        opened={opened}
       />
     </>
   );
