@@ -15,7 +15,7 @@ import {
 import { useIdle } from "@mantine/hooks";
 
 const Routes = () => {
-  const idle = useIdle(1000, { initialState: false });
+  const idle = useIdle(300000, { initialState: false });
   const isAuthenticated = useIsAuthenticated();
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -26,7 +26,8 @@ const Routes = () => {
       navigate("/");
       setTimeout(() => {
         signOut();
-      }, 1000);
+      }, 500);
+      navigate("/signin");
     }
   }, [idle]);
 
