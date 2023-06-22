@@ -46,9 +46,7 @@ const useStyles = createStyles((theme) => ({
 
 const Helper = () => {
   const { classes } = useStyles();
-  const [answer, setAnswer] = useState<string>(
-    "Upsss! Hello, do you have a question?"
-  );
+  const [answer, setAnswer] = useState<string>("Upsss!");
   const [typedAnswer, setTypedAnswer] = useState<string>("");
 
   useEffect(() => {
@@ -66,6 +64,9 @@ const Helper = () => {
     from: { x: 1000 },
     to: { x: 0 },
     config: { mass: 13, tension: 1000, friction: 100 },
+    onRest: () => {
+      setAnswer("Hello, do you have a question?");
+    },
   });
 
   return (
@@ -84,7 +85,11 @@ const Helper = () => {
               const question = questions.find(
                 (question) => question.question === value
               );
-              setAnswer(question?.answer || "...");
+              setAnswer(
+                question?.answer || value.length > 0
+                  ? "..."
+                  : "Do you have a question?"
+              );
               setTypedAnswer("");
             }}
             placeholder="Write your question"
