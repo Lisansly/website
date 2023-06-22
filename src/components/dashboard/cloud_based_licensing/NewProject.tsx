@@ -14,6 +14,7 @@ const NewProject = () => {
         opened={opened}
         withCloseButton={false}
         size={"md"}
+        radius={"lg"}
         onClose={() => {
           setOpened(false);
         }}
