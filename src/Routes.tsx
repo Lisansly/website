@@ -9,19 +9,24 @@ import { useEffect } from "react";
 import {
   Routes as ReactRouterDomRouters,
   useLocation,
+  useNavigate,
   Route,
 } from "react-router-dom";
 import { useIdle } from "@mantine/hooks";
 
 const Routes = () => {
+  const idle = useIdle(1000, { initialState: false });
   const isAuthenticated = useIsAuthenticated();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const signOut = useSignOut();
-  const idle = useIdle(300000, { initialState: false });
 
   useEffect(() => {
     if (idle && isAuthenticated()) {
-      signOut();
+      navigate("/");
+      setTimeout(() => {
+        signOut();
+      }, 1000);
     }
   }, [idle]);
 
