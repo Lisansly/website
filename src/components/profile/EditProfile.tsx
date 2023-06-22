@@ -1,15 +1,18 @@
 import { isEmail, isNotEmpty, useForm } from "@mantine/form";
 import { TextInputProps } from "../TextInput";
-import { useAuthUser } from "react-auth-kit";
 import UpdateForm from "./UpdateForm";
 import { Tabs } from "@mantine/core";
 import UserClient from "../../clients/user/Client";
 import { authenticate } from "../auth/SignIn";
-import { signInFunctionParams } from "react-auth-kit/dist/types";
+import {
+  AuthStateUserObject,
+  signInFunctionParams,
+} from "react-auth-kit/dist/types";
 import Notification from "../Notification";
 
 type EditProfileProps = {
   signIn: (signInConfig: signInFunctionParams) => boolean;
+  userData: () => AuthStateUserObject | null;
   notification: Notification;
   userClient: UserClient;
 };
@@ -20,12 +23,10 @@ type EditProfileFormProps = {
 };
 
 const EditProfile = (props: EditProfileProps) => {
-  const userData = useAuthUser();
-
   const form = useForm<EditProfileFormProps>({
     initialValues: {
-      name: userData()?.name,
-      email: userData()?.email,
+      name: props.userData()?.name,
+      email: props.userData()?.email,
     },
     validate: {
       name: isNotEmpty("Name is required"),
@@ -49,10 +50,10 @@ const EditProfile = (props: EditProfileProps) => {
 
   const onSubmit = async (values: EditProfileFormProps) => {
     let body = {};
-    if (values.name !== userData()?.name) {
+    if (values.name !== props.userData()?.name) {
       body = { ...body, name: values.name };
     }
-    if (values.email !== userData()?.email) {
+    if (values.email !== props.userData()?.email) {
       body = { ...body, email: values.email };
     }
     const response = await props.userClient.update(body);

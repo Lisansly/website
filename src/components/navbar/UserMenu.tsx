@@ -23,10 +23,6 @@ const useStyles = createStyles((theme) => ({
     padding: 5,
   },
   name: {
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[5]
-        : theme.colors.gray[0],
     textAlign: "center",
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
   },
@@ -39,7 +35,7 @@ export default function UserMenu() {
   const signOut = useSignOut();
   return (
     <Group className={classes.menu}>
-      <Menu withArrow opened={opened} onChange={setOpened}>
+      <Menu radius={"md"} withArrow opened={opened} onChange={setOpened}>
         <Menu.Target>
           <Group className={classes.menuTarget}>
             <Avatar size="30px" />
@@ -52,7 +48,7 @@ export default function UserMenu() {
         </Menu.Target>
         <Menu.Dropdown className={classes.menuDropdown}>
           <Menu.Label className={classes.name}>{userData()?.name}</Menu.Label>
-          <Link to="/profile/edit">
+          <Link to="/profile/details">
             <Menu.Item icon={<IconUserCircle size={14} />}>Profile</Menu.Item>
           </Link>
           <Link to="/">
