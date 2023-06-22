@@ -4,6 +4,7 @@ import { useForm, isNotEmpty, isEmail } from "@mantine/form";
 import { SignInPathParams } from "../../clients/auth/Types";
 import { PasswordInputProps } from "../PasswordInput";
 import AuthClient from "../../clients/auth/Client";
+import { useDocumentTitle } from "@mantine/hooks";
 import { TextInputProps } from "../TextInput";
 import ForgotPassword from "./ForgotPassword";
 import Notification from "../Notification";
@@ -40,6 +41,7 @@ const authenticate = (props: AuthenticateProps) => {
 };
 
 const SignIn = () => {
+  useDocumentTitle("Sign In | Lisansly");
   const notification = new Notification();
   const authClient = new AuthClient();
   const navigate = useNavigate();
@@ -85,7 +87,6 @@ const SignIn = () => {
       );
     }
   };
-
   return (
     <SignForm
       passwordInputs={passwordInputs}

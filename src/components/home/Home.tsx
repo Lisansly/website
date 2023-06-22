@@ -1,3 +1,4 @@
+import { useDocumentTitle } from "@mantine/hooks";
 import DashboardImage from "./DashboardImage";
 import DashboardInfo from "./DashboardInfo";
 import { HeroHeader } from "./HeroHeader";
@@ -7,6 +8,7 @@ import Features from "./Features";
 import Helper from "./Helper";
 
 const Home = () => {
+  useDocumentTitle("Lisansly");
   return (
     <div
       style={{

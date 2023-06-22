@@ -1,13 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
+import UserClient from "../../clients/user/Client";
+import { useDocumentTitle } from "@mantine/hooks";
 import ChangePassword from "./ChangePassword";
+import { useSignIn } from "react-auth-kit";
+import Notification from "../Notification";
 import EditProfile from "./EditProfile";
 import { Tabs } from "@mantine/core";
 import { useEffect } from "react";
-import UserClient from "../../clients/user/Client";
-import { useSignIn } from "react-auth-kit";
-import Notification from "../Notification";
 
 const Profile = () => {
+  useDocumentTitle("Profile | Lisansly");
   const notification = new Notification();
   const userClient = new UserClient();
   const { tabValue } = useParams();

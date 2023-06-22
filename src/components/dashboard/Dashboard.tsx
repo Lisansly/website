@@ -1,9 +1,10 @@
 import CloudBasedLicensing from "./cloud_based_licensing/CloudBasedLicensing";
 import { Icon, IconCloudComputing } from "@tabler/icons-react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useDocumentTitle } from "@mantine/hooks";
+import { Box } from "@mantine/core";
 import { useEffect } from "react";
 import Sidebar from "./Sidebar";
-import { Box } from "@mantine/core";
 
 export type TabProps = {
   component: JSX.Element;
@@ -13,6 +14,7 @@ export type TabProps = {
 };
 
 const Dashboard = () => {
+  useDocumentTitle("Dashboard | Lisansly");
   const { tabValue, projectName } = useParams();
   const navigate = useNavigate();
 

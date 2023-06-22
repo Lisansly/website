@@ -1,6 +1,7 @@
 import { isNotEmpty, hasLength, useForm, isEmail } from "@mantine/form";
 import { PasswordInputProps } from "../PasswordInput";
 import AuthClient from "../../clients/auth/Client";
+import { useDocumentTitle } from "@mantine/hooks";
 import { Checkbox, Group } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { TextInputProps } from "../TextInput";
@@ -18,6 +19,7 @@ type SignUpFormProps = {
 };
 
 export default function SignUp() {
+  useDocumentTitle("Sign Up | Lisansly");
   const notification = new Notification();
   const authClient = new AuthClient();
   const navigate = useNavigate();
