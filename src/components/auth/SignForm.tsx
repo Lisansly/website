@@ -17,6 +17,7 @@ type SignFormProps = {
 const useStyles = createStyles((theme) => ({
   paper: {
     borderRadius: theme.fn.radius("lg"),
+    margin: theme.spacing.xs,
     marginTop: 100,
     padding: 30,
     backgroundColor:

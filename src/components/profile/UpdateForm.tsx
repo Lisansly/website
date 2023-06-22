@@ -14,6 +14,7 @@ type UpdateFormProps = {
 const useStyles = createStyles((theme) => ({
   paper: {
     borderRadius: theme.fn.radius("lg"),
+    margin: theme.spacing.xs,
     marginTop: 100,
     padding: 30,
     backgroundColor:
@@ -21,7 +22,6 @@ const useStyles = createStyles((theme) => ({
         ? theme.colors.dark[9]
         : theme.colors.gray[0],
     width: "100%",
-    maxWidth: 420,
   },
 }));
 
