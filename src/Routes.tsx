@@ -17,7 +17,7 @@ const Routes = () => {
   const isAuthenticated = useIsAuthenticated();
   const { pathname } = useLocation();
   const signOut = useSignOut();
-  const idle = useIdle(300000);
+  const idle = useIdle(300000, { initialState: false });
 
   useEffect(() => {
     if (idle && isAuthenticated()) {
