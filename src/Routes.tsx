@@ -24,9 +24,7 @@ const Routes = () => {
   useEffect(() => {
     if (idle && isAuthenticated()) {
       navigate("/");
-      setTimeout(() => {
-        signOut();
-      }, 500);
+      signOut();
       navigate("/signin");
     }
   }, [idle]);
