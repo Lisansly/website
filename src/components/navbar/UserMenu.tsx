@@ -42,7 +42,7 @@ export default function UserMenu() {
       <Menu withArrow opened={opened} onChange={setOpened}>
         <Menu.Target>
           <Group className={classes.menuTarget}>
-            <Avatar size="30px" name={userData()?.name} />
+            <Avatar size="30px" />
             {opened ? (
               <IconChevronDown size="1rem" />
             ) : (
