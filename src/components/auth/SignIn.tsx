@@ -1,6 +1,6 @@
 import { signInFunctionParams } from "react-auth-kit/dist/types";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { useForm, isNotEmpty, isEmail, hasLength } from "@mantine/form";
+import { useForm, isEmail, hasLength } from "@mantine/form";
 import { SignInPathParams } from "../../clients/auth/Types";
 import { PasswordInputProps } from "../PasswordInput";
 import AuthClient from "../../clients/auth/Client";
