@@ -22,6 +22,7 @@ const useStyles = createStyles((theme) => ({
         ? theme.colors.dark[9]
         : theme.colors.gray[0],
     width: "100%",
+    maxWidth: 400,
   },
 }));
 
