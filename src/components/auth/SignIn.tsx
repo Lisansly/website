@@ -1,6 +1,6 @@
 import { signInFunctionParams } from "react-auth-kit/dist/types";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { useForm, isNotEmpty, isEmail } from "@mantine/form";
+import { useForm, isNotEmpty, isEmail, hasLength } from "@mantine/form";
 import { SignInPathParams } from "../../clients/auth/Types";
 import { PasswordInputProps } from "../PasswordInput";
 import AuthClient from "../../clients/auth/Client";
@@ -54,7 +54,10 @@ const SignIn = () => {
     },
     validate: {
       email: isEmail("Email must be valid"),
-      password: isNotEmpty("Password is required"),
+      password: hasLength(
+        { min: 10 },
+        "Password must be at least 10 characters"
+      ),
     },
     validateInputOnChange: true,
   });
