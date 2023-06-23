@@ -18,7 +18,7 @@ type MenuButtonProps = {
   onClick?: () => void;
   show: boolean;
   label: string;
-  link: string;
+  path: string;
 };
 
 type MenuProps = {
@@ -32,43 +32,43 @@ const Menu = (props: MenuProps) => {
   const menuButtons: MenuButtonProps[] = [
     {
       icon: <IconHome size="1.1rem" />,
-      link: "/",
+      path: "/",
       label: "Home",
       show: true,
     },
     {
       icon: <IconFileDescription size="1.1rem" />,
-      link: "/documentation",
+      path: "/documentation",
       label: "Documentation",
       show: true,
     },
     {
       icon: <IconLayoutDashboard size="1.1rem" />,
-      link: "/dashboard",
+      path: "/dashboard",
       label: "Dashboard",
       show: true,
     },
     {
       icon: <IconLogin size="1.1rem" />,
-      link: "/signin",
+      path: "/signin",
       label: "Sign In",
       show: !props.isAuthenticated(),
     },
     {
       icon: <IconUserPlus size="1.1rem" />,
-      link: "/signup",
+      path: "/signup",
       label: "Sign Up",
       show: !props.isAuthenticated(),
     },
     {
       icon: <IconUser size="1.1rem" />,
-      link: "/profile/edit",
+      path: "/profile/details",
       label: "Profile",
       show: props.isAuthenticated(),
     },
     {
       icon: <IconLogout size="1.1rem" />,
-      link: "/",
+      path: "/",
       label: "Sign Out",
       show: props.isAuthenticated(),
       onClick: () => signOut(),
@@ -118,7 +118,7 @@ const Menu = (props: MenuProps) => {
                 onClick={button.onClick}
                 label={button.label}
                 icon={button.icon}
-                path={button.link}
+                path={button.path}
               />
             )}
           </div>
