@@ -4,7 +4,7 @@ import SwitchTheme from "./SwitchTheme";
 import UserMenu from "./UserMenu";
 import { useState } from "react";
 import Button from "./Button";
-import Github from "./Github";
+import GitHub from "./GitHub";
 import Link from "./Link";
 import Menu from "./Menu";
 import Logo from "./Logo";
@@ -124,7 +124,7 @@ const Navbar = () => {
               </Box>
             )}
           </Group>
-          <Github />
+          <GitHub />
           <SwitchTheme />
         </Group>
       </Group>
